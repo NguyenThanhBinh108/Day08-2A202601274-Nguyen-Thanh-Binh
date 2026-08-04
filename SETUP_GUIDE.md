@@ -1,5 +1,7 @@
 # HƯỚNG DẪN THỰC HIỆN — CHECKPOINT 0 & 1
+
 # Role 2: Data & Pipeline Specialist
+
 # ====================================================
 
 ## ⚡ NHANH NHẤT: Chạy từng lệnh trong Terminal PowerShell
@@ -38,24 +40,31 @@ python check_environment.py
 ### CHECKPOINT 1 — Thu Thập Dữ Liệu (25 phút)
 
 #### Task 1: Tải PDF Chính Sách (3+ files)
+
 ```powershell
 python src/task1_collect_legal_docs.py
 ```
+
 Output: 6 file PDF trong `data/landing/legal/`
 
 #### Task 2: Crawl Bài Viết News (5+ files)
+
 ```powershell
 python src/task2_crawl_news.py
 ```
+
 Output: 8+ file JSON trong `data/landing/news/`
 
 #### Task 3: Convert sang Markdown
+
 ```powershell
 python src/task3_convert_markdown.py
 ```
+
 Output: file .md trong `data/standardized/`
 
 #### Kiểm tra kết quả CP1:
+
 ```powershell
 dir data\landing\legal\
 dir data\landing\news\
@@ -67,16 +76,16 @@ dir data\standardized\
 ## 📋 Checklist CP1
 
 - [ ] ≥3 file PDF trong `data/landing/legal/`
-- [ ] ≥5 file JSON trong `data/landing/news/`  
+- [ ] ≥5 file JSON trong `data/landing/news/`
 - [ ] Các file .md đã có trong `data/standardized/`
 
 ---
 
 ## ⚠️ Lỗi thường gặp
 
-| Lỗi | Cách fix |
-|-----|---------|
-| `MissingDependencyException` (Task 3) | `pip install "markitdown[pdf]"` |
-| `Executable doesn't exist` (Task 2) | `playwright install chromium` |
-| `UnicodeEncodeError` | `$env:PYTHONIOENCODING="utf-8"` |
-| `pip` không nhận diện | Kiểm tra `.venv` đã được kích hoạt chưa |
+| Lỗi                                    | Cách fix                                         |
+| --------------------------------------- | ------------------------------------------------- |
+| `MissingDependencyException` (Task 3) | `pip install "markitdown[pdf]"`                 |
+| `Executable doesn't exist` (Task 2)   | `playwright install chromium`                   |
+| `UnicodeEncodeError`                  | `$env:PYTHONIOENCODING="utf-8"`                 |
+| `pip` không nhận diện              | Kiểm tra`.venv` đã được kích hoạt chưa |
