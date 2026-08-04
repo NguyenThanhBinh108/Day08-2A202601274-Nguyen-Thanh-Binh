@@ -487,6 +487,69 @@ def _route_response(answer: str, decision: RouteDecision, **extra: Any) -> dict:
     return payload
 
 
+def _call_via_pool(user_message: str) -> tuple[str, str]:
+    """
+    Gọi LLM qua pool nhiều nhà cung cấp, có xử lý trường hợp chạm trần token.
+
+    Returns:
+        (answer, nhãn endpoint đã dùng) nếu thành công.
+        ("", lý do thất bại) nếu mọi endpoint đều hỏng — caller chuyển sang
+        chế độ extractive.
+    """
+    from .llm_pool import LLMPoolExhausted, get_pool
+
+    messages = [
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": user_message},
+    ]
+    try:
+        response, endpoint = get_pool().chat(
+            messages,
+            temperature=TEMPERATURE,
+            top_p=TOP_P,
+            max_tokens=MAX_TOKENS,
+        )
+    except LLMPoolExhausted as exc:
+        return "", str(exc)
+    except Exception as exc:  # noqa: BLE001 — pool lỗi bất thường
+        return "", f"{type(exc).__name__}: {exc}"
+
+    choices = getattr(response, "choices", None) or []
+    if not choices:
+        return "", f"{endpoint.label} trả về nội dung rỗng"
+
+    content = (getattr(choices[0].message, "content", None) or "").strip()
+
+    # Chạm trần token → câu cuối bỏ lửng. Xin viết tiếp đúng MỘT lần.
+    if getattr(choices[0], "finish_reason", None) == "length" and content:
+        _safe_print("  ⚠ Chạm trần token — xin model viết tiếp phần còn lại")
+        try:
+            follow, _ = get_pool().chat(
+                messages
+                + [
+                    {"role": "assistant", "content": content},
+                    {
+                        "role": "user",
+                        "content": "Viết tiếp phần còn dang dở, bắt đầu ngay từ chỗ "
+                                   "bị cắt, không nhắc lại nội dung đã viết.",
+                    },
+                ],
+                temperature=TEMPERATURE,
+                top_p=TOP_P,
+                max_tokens=MAX_TOKENS,
+            )
+            extra = (follow.choices[0].message.content or "").strip()
+            if extra:
+                content = f"{content} {extra}".strip()
+        except Exception as exc:  # noqa: BLE001 — giữ phần đã sinh
+            _safe_print(f"  ⚠ Không viết tiếp được ({exc})")
+
+    if not content:
+        return "", f"{endpoint.label} trả về nội dung rỗng"
+    _safe_print(f"  ℹ LLM: {endpoint.label}")
+    return content, endpoint.label
+
+
 def _finish(
     answer: str,
     chunks: list[dict],
@@ -531,29 +594,27 @@ def _chitchat_response(query: str, decision: RouteDecision) -> dict:
     Không gọi được LLM (thiếu key / hết credit) thì dùng câu chào soạn sẵn —
     nhánh này không cần LLM mới trả lời được.
     """
-    client = _get_llm_client(_get_api_key())
-    if client is None:
-        return _route_response(CHITCHAT_FALLBACK_ANSWER, decision)
+    from .llm_pool import LLMPoolExhausted, get_pool
 
-    for model in [LLM_MODEL, *FALLBACK_LLM_MODELS]:
-        try:
-            response = client.chat.completions.create(
-                model=model,
-                messages=[
-                    {"role": "system", "content": CHITCHAT_SYSTEM_PROMPT},
-                    {"role": "user", "content": query},
-                ],
-                temperature=0.5,      # Cao hơn nhánh RAG: lời chào cần tự nhiên,
-                top_p=TOP_P,          # không cần bám sát tài liệu như câu trả lời có trích dẫn.
-                max_tokens=250,       # Prompt yêu cầu tối đa 3 câu.
+    try:
+        response, endpoint = get_pool().chat(
+            [
+                {"role": "system", "content": CHITCHAT_SYSTEM_PROMPT},
+                {"role": "user", "content": query},
+            ],
+            temperature=0.5,   # Cao hơn nhánh RAG: lời chào cần tự nhiên, không
+            top_p=TOP_P,       # phải bám sát tài liệu như câu trả lời có trích dẫn.
+            max_tokens=250,    # Prompt yêu cầu tối đa 3 câu.
+        )
+        answer = (response.choices[0].message.content or "").strip()
+        if answer:
+            return _route_response(
+                answer, decision, model=endpoint.label, used_llm=True
             )
-            answer = (response.choices[0].message.content or "").strip()
-            if answer:
-                return _route_response(
-                    answer, decision, model=model, used_llm=True
-                )
-        except Exception as exc:  # noqa: BLE001 — thử model kế tiếp
-            _safe_print(f"  ⚠ Chitchat model '{model}' lỗi ({exc}) — thử model kế tiếp")
+    except LLMPoolExhausted as exc:
+        _safe_print(f"  ⚠ Pool cạn ({exc}) — dùng câu chào soạn sẵn")
+    except Exception as exc:  # noqa: BLE001 — nhánh này không cần LLM mới trả lời được
+        _safe_print(f"  ⚠ Chitchat lỗi ({exc}) — dùng câu chào soạn sẵn")
 
     return _route_response(CHITCHAT_FALLBACK_ANSWER, decision)
 
@@ -640,43 +701,24 @@ def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
 
     retrieval_source = chunks[0].get("source", "hybrid") if chunks else "none"
 
-    # ---- Step 5: Call LLM (OpenRouter — OpenAI-compatible API) ------------
-    api_key = _get_api_key()
-    client = _get_llm_client(api_key)
+    # ---- Step 5: Call LLM qua pool nhiều nhà cung cấp ---------------------
+    from .llm_pool import get_pool
 
-    if client is None:
-        reason = (
-            "thiếu OPENROUTER_API_KEY trong .env"
-            if not api_key
-            else "không khởi tạo được LLM client"
-        )
+    if not get_pool().available():
+        reason = "chưa có API key nào khả dụng trong .env (xem src/llm_pool.py)"
         _safe_print(f"  ⚠ Fallback extractive: {reason}")
         return _finish(
             _extractive_answer(query, reordered, reason),
             chunks, "extractive-fallback", False, retrieval_source, decision,
         )
 
-    # Thử model chính trước, sau đó lần lượt các model ":free" miễn phí.
-    # Lỗi hay gặp: 402 hết credit, 429 rate limit, 404 model bị gỡ, timeout mạng.
-    last_error = ""
-    for model in [LLM_MODEL, *FALLBACK_LLM_MODELS]:
-        try:
-            answer = _call_llm(client, model, user_message)
-        except Exception as e:
-            last_error = f"{type(e).__name__}: {e}"
-            _safe_print(f"  ⚠ Model '{model}' lỗi ({last_error}) — thử model kế tiếp...")
-            continue
-
-        if not answer:
-            last_error = "model trả về nội dung rỗng"
-            _safe_print(f"  ⚠ Model '{model}' {last_error} — thử model kế tiếp...")
-            continue
-
-        if model != LLM_MODEL:
-            _safe_print(f"  ℹ Đã dùng model dự phòng: {model}")
-
-        # ---- Step 6: Output guardrail rồi return -------------------------
-        return _finish(answer, chunks, model, True, retrieval_source, decision)
+    # Gọi qua LLM pool: tự xoay vòng Groq → Cerebras → Gemini → ... → OpenRouter.
+    # Một key duy nhất là điểm chết đơn lẻ — tài khoản OpenRouter của nhóm đã từng
+    # hết credit giữa lúc chạy đánh giá (lỗi 402), kéo cả pipeline dừng theo.
+    answer, model_used = _call_via_pool(user_message)
+    if answer:
+        return _finish(answer, chunks, model_used, True, retrieval_source, decision)
+    last_error = model_used  # _call_via_pool trả lý do lỗi ở vị trí này khi thất bại
 
     # Mọi model đều thất bại → extractive fallback, KHÔNG raise
     reason = f"tất cả model LLM đều lỗi (lỗi cuối: {last_error})"
