@@ -47,6 +47,8 @@ class RAGRequestHandler(BaseHTTPRequestHandler):
             payload = self.read_json_body()
             query = str(payload.get("query", "")).strip()
             top_k = int(payload.get("top_k", 5))
+            use_reranking = bool(payload.get("use_reranking", True))
+            use_pageindex_fallback = bool(payload.get("use_pageindex_fallback", True))
 
             if not query:
                 self.send_json({"error": "Câu hỏi không được để trống."}, status=400)
@@ -54,7 +56,12 @@ class RAGRequestHandler(BaseHTTPRequestHandler):
 
             from src.task10_generation import generate_with_citation
 
-            result = generate_with_citation(query, top_k=top_k)
+            result = generate_with_citation(
+                query,
+                top_k=top_k,
+                use_reranking=use_reranking,
+                use_pageindex_fallback=use_pageindex_fallback,
+            )
             self.send_json({
                 "answer": result.get("answer", ""),
                 "sources": result.get("sources", []),

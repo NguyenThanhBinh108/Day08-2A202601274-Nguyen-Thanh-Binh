@@ -117,7 +117,12 @@ def format_context(chunks: list[dict]) -> str:
 # GENERATION
 # =============================================================================
 
-def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
+def generate_with_citation(
+    query: str,
+    top_k: int = TOP_K,
+    use_reranking: bool = True,
+    use_pageindex_fallback: bool = True,
+) -> dict:
     """
     End-to-end RAG generation có citation.
 
@@ -131,6 +136,8 @@ def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
 
     Args:
         query: Câu hỏi của user
+        use_reranking: Bật/tắt bước xếp hạng lại sau khi gộp kết quả
+        use_pageindex_fallback: Bật/tắt fallback PageIndex khi semantic score thấp
 
     Returns:
         {
@@ -139,7 +146,12 @@ def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
             'retrieval_source': str  # 'hybrid' hoặc 'pageindex'
         }
     """
-    chunks = retrieve(query, top_k=top_k)
+    chunks = retrieve(
+        query,
+        top_k=top_k,
+        use_reranking=use_reranking,
+        use_pageindex_fallback=use_pageindex_fallback,
+    )
     reordered = reorder_for_llm(chunks)
     context = format_context(reordered)
 

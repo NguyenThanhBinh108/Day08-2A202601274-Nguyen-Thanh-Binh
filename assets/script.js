@@ -8,6 +8,8 @@ const topK = document.querySelector("#topK");
 const topKValue = document.querySelector("#topKValue");
 const clearChat = document.querySelector("#clearChat");
 const exportChat = document.querySelector("#exportChat");
+const rerankToggle = document.querySelector("#rerankToggle");
+const fallbackToggle = document.querySelector("#fallbackToggle");
 
 const demoSources = [
   {
@@ -74,6 +76,15 @@ function normalizeText(value) {
     .toLowerCase();
 }
 
+function isToggleOn(toggle) {
+  return toggle.getAttribute("aria-pressed") === "true";
+}
+
+function updateToggle(toggle, enabled) {
+  toggle.setAttribute("aria-pressed", String(enabled));
+  toggle.classList.toggle("is-on", enabled);
+}
+
 function addMessage(role, text) {
   const message = document.createElement("div");
   message.className = `message ${role}`;
@@ -126,9 +137,13 @@ function setTrace(active) {
   const labels = [
     "Đã nhận câu hỏi",
     `Truy xuất hybrid top-${topK.value}`,
-    "Xếp hạng lại bằng RRF",
+    isToggleOn(rerankToggle) ? "Xếp hạng lại bằng RRF" : "Bỏ qua xếp hạng lại",
     "Sinh câu trả lời có trích dẫn",
-    active ? "Đã hiển thị câu trả lời" : "Đang chờ câu hỏi"
+    active
+      ? "Đã hiển thị câu trả lời"
+      : isToggleOn(fallbackToggle)
+        ? "Dự phòng PageIndex đang bật"
+        : "Dự phòng PageIndex đang tắt"
   ];
 
   traceList.innerHTML = labels.map((label, index) => `
@@ -144,7 +159,9 @@ async function askBackend(query) {
     },
     body: JSON.stringify({
       query,
-      top_k: Number(topK.value)
+      top_k: Number(topK.value),
+      use_reranking: isToggleOn(rerankToggle),
+      use_pageindex_fallback: isToggleOn(fallbackToggle)
     })
   });
 
@@ -193,6 +210,13 @@ chatForm.addEventListener("submit", (event) => {
 topK.addEventListener("input", () => {
   topKValue.textContent = topK.value;
   setTrace(false);
+});
+
+[rerankToggle, fallbackToggle].forEach((toggle) => {
+  toggle.addEventListener("click", () => {
+    updateToggle(toggle, !isToggleOn(toggle));
+    setTrace(false);
+  });
 });
 
 clearChat.addEventListener("click", () => {
