@@ -1,7 +1,7 @@
 # Huong Dan Day Du Ve Voucher Va Ma Giam Gia Tren Shopee
 
 **Source:** https://help.shopee.vn/portal/4/article/166085  
-**Crawled:** 2026-08-04T15:14:27.955024  
+**Crawled:** 2026-08-04T15:31:22.712625  
 **Customer Role:** both  
 **Category:** promotion  
 

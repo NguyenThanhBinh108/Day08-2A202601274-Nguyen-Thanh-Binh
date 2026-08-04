@@ -1,7 +1,7 @@
 # Huong Dan Mo Shop Va Bat Dau Ban Hang Tren Shopee Vietnam
 
 **Source:** https://help.shopee.vn/portal/4/article/77280  
-**Crawled:** 2026-08-04T15:14:27.955024  
+**Crawled:** 2026-08-04T15:31:22.712625  
 **Customer Role:** seller  
 **Category:** seller-guide  
 

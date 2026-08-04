@@ -1,7 +1,7 @@
 # Huong Dan Thay Doi Phuong Thuc Thanh Toan Sau Khi Dat Hang Shopee
 
 **Source:** https://help.shopee.vn/portal/4/article/79200  
-**Crawled:** 2026-08-04T15:14:27.955024  
+**Crawled:** 2026-08-04T15:31:22.712625  
 **Customer Role:** buyer  
 **Category:** payment  
 

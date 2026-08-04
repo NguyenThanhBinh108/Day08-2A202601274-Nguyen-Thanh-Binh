@@ -1,7 +1,7 @@
 # Cach Cung Cap Bang Chung De Duoc Hoan Tien Nhanh Tren Shopee
 
 **Source:** https://help.shopee.vn/portal/4/article/77256  
-**Crawled:** 2026-08-04T15:14:27.955024  
+**Crawled:** 2026-08-04T15:31:22.712625  
 **Customer Role:** buyer  
 **Category:** returns  
 

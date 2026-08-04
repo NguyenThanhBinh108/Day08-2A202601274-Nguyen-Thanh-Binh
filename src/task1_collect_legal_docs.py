@@ -1084,7 +1084,8 @@ class ShopeeDocPDF(FPDF):
         self.set_font("Helvetica", "B", 9)
         self.set_fill_color(238, 77, 45)   # Shopee orange
         self.set_text_color(255, 255, 255)
-        self.cell(0, 8, "SHOPEE VIETNAM - TAI LIEU CHINH SACH", align="C", fill=True, ln=True)
+        self.cell(0, 8, "SHOPEE VIETNAM - TAI LIEU CHINH SACH", align="C", fill=True)
+        self.ln(8)
         self.set_text_color(0, 0, 0)
         self.ln(2)
 
@@ -1125,13 +1126,15 @@ def create_pdf(doc: dict) -> Path:
     ]
     for line in meta_lines:
         safe = line.encode("latin-1", errors="replace").decode("latin-1")
-        pdf.cell(0, 5, safe, ln=True, fill=True)
+        pdf.cell(0, 5, safe, fill=True)
+        pdf.ln(5)
     pdf.ln(3)
 
     # ── Separator
     pdf.set_draw_color(238, 77, 45)
     pdf.set_line_width(0.5)
     pdf.line(10, pdf.get_y(), 200, pdf.get_y())
+    pdf.set_x(pdf.l_margin)
     pdf.ln(4)
 
     # ── Body content
@@ -1144,10 +1147,10 @@ def create_pdf(doc: dict) -> Path:
         elif safe_line.isupper() and len(safe_line.strip()) > 5:
             # Section header
             pdf.set_font("Helvetica", "B", 11)
-            pdf.multi_cell(0, 6, safe_line)
+            pdf.multi_cell(0, 6, safe_line, new_x="LMARGIN", new_y="NEXT")
             pdf.set_font("Helvetica", "", 10)
         else:
-            pdf.multi_cell(0, 5.5, safe_line)
+            pdf.multi_cell(0, 5.5, safe_line, new_x="LMARGIN", new_y="NEXT")
 
     filepath = DATA_DIR / doc["filename"]
     pdf.output(str(filepath))

@@ -1,7 +1,7 @@
 # Huong Dan Xu Ly Tranh Chap Don Hang Danh Cho Nguoi Ban Shopee
 
 **Source:** https://help.shopee.vn/portal/4/article/77255  
-**Crawled:** 2026-08-04T15:14:27.955024  
+**Crawled:** 2026-08-04T15:31:22.712625  
 **Customer Role:** seller  
 **Category:** dispute  
 
