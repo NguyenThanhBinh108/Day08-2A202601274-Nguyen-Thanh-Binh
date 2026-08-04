@@ -171,8 +171,7 @@ button {
   font-weight: 700;
 }
 
-.range-row,
-.toggle-row {
+.range-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -201,38 +200,6 @@ button {
   font-family: "JetBrains Mono", monospace;
   font-size: 12px;
   font-weight: 800;
-}
-
-.toggle-row {
-  min-height: 36px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.toggle {
-  width: 44px;
-  height: 24px;
-  padding: 2px;
-  border: 0;
-  border-radius: 999px;
-  background: #c9d4e2;
-}
-
-.toggle span {
-  display: block;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(23, 32, 51, 0.18);
-}
-
-.toggle.is-on {
-  background: var(--success);
-}
-
-.toggle.is-on span {
-  transform: translateX(20px);
 }
 
 .main {
