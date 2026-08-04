@@ -1,17 +1,182 @@
 [
   {
+    "id": "q01",
+    "question": "What payment methods does the marketplace offer at checkout?",
+    "ground_truth": "At checkout the marketplace offers PayPal, PayPal Credit, credit or debit card, Apple Pay, Google Pay, Venmo, Klarna, Alipay, spendable funds, payment upon pickup, and wire transfer for selected transactions.",
+    "expected_answer": "At checkout the marketplace offers PayPal, PayPal Credit, credit or debit card, Apple Pay, Google Pay, Venmo, Klarna, Alipay, spendable funds, payment upon pickup, and wire transfer for selected transactions.",
+    "expected_context": "Bài viết Payment methods policy (article_01), mục Accepted payment methods",
+    "category": "payment",
+    "language": "en",
+    "in_domain": true
+  },
+  {
+    "id": "q02",
+    "question": "How does a buyer request a return or refund for an item?",
+    "ground_truth": "The buyer opens a return request from Purchase history within the seller's return window, selects the item and the reason for the return; the seller then has 3 business days to respond, and if there is no response the buyer can ask the marketplace to step in and help.",
+    "expected_answer": "The buyer opens a return request from Purchase history within the seller's return window, selects the item and the reason for the return; the seller then has 3 business days to respond, and if there is no response the buyer can ask the marketplace to step in and help.",
+    "expected_context": "Bài viết Return an item for a refund (article_02), mục Open a return request",
+    "category": "returns_refunds",
+    "language": "en",
+    "in_domain": true
+  },
+  {
+    "id": "q03",
+    "question": "What evidence must a buyer provide when submitting a refund request?",
+    "ground_truth": "The buyer must select the reason for the return, describe the problem and attach photos of the item as evidence; if the item does not match the listing description, is faulty or arrived damaged, the request is covered by the Money Back Guarantee even when the seller does not accept returns.",
+    "expected_answer": "The buyer must select the reason for the return, describe the problem and attach photos of the item as evidence; if the item does not match the listing description, is faulty or arrived damaged, the request is covered by the Money Back Guarantee even when the seller does not accept returns.",
+    "expected_context": "Bài viết Return an item for a refund (article_02), mục Select the reason for the return / Money Back Guarantee",
+    "category": "returns_refunds",
+    "language": "en",
+    "in_domain": true
+  },
+  {
+    "id": "q04",
+    "question": "Which payment methods are not allowed for transactions on the marketplace?",
+    "ground_truth": "Person-to-person payment transfers such as Western Union or MoneyGram are not allowed; buyers should only pay with the payment methods offered at checkout.",
+    "expected_answer": "Person-to-person payment transfers such as Western Union or MoneyGram are not allowed; buyers should only pay with the payment methods offered at checkout.",
+    "expected_context": "Bài viết Payment methods policy (article_01), mục Payment methods not allowed",
+    "category": "payment",
+    "language": "en",
+    "in_domain": true
+  },
+  {
+    "id": "q05",
+    "question": "How do I track the shipping status of my order?",
+    "ground_truth": "Open Purchase history, find the order and select the tracking number shown as a link next to the item; the tracking number opens the carrier's delivery status when the seller uses a tracked shipping service.",
+    "expected_answer": "Open Purchase history, find the order and select the tracking number shown as a link next to the item; the tracking number opens the carrier's delivery status when the seller uses a tracked shipping service.",
+    "expected_context": "Bài viết Tracking your item (article_04), mục Find the tracking number",
+    "category": "order_tracking",
+    "language": "en",
+    "in_domain": true
+  },
+  {
+    "id": "q06",
+    "question": "Which products are sellers prohibited from listing on the marketplace?",
+    "ground_truth": "Sellers may not list items covered by the prohibited and restricted items policy, such as counterfeit items, items infringing intellectual property, drugs and drug paraphernalia, weapons, government documents and IDs, hazardous materials and other goods restricted by law; restricted categories may only be listed if the specific policy is followed.",
+    "expected_answer": "Sellers may not list items covered by the prohibited and restricted items policy, such as counterfeit items, items infringing intellectual property, drugs and drug paraphernalia, weapons, government documents and IDs, hazardous materials and other goods restricted by law; restricted categories may only be listed if the specific policy is followed.",
+    "expected_context": "Bài viết Prohibited and restricted items (article_05) + tài liệu Seller Listing Rules and Prohibited Items",
+    "category": "seller_listing",
+    "language": "en",
+    "in_domain": true
+  },
+  {
+    "id": "q07",
+    "question": "What information must a seller include when creating a product listing?",
+    "ground_truth": "When creating a listing the seller describes the item, adds photos, selects the brand and physical details (item specifics) and the item condition, chooses the auction or fixed price format and sets a price, then selects the shipping options, the return policy and how the payment is received.",
+    "expected_answer": "When creating a listing the seller describes the item, adds photos, selects the brand and physical details (item specifics) and the item condition, chooses the auction or fixed price format and sets a price, then selects the shipping options, the return policy and how the payment is received.",
+    "expected_context": "Bài viết Creating a listing (article_03), mục Getting started / Item specifics",
+    "category": "seller_listing",
+    "language": "en",
+    "in_domain": true
+  },
+  {
+    "id": "q08",
+    "question": "When does the buyer get the refund money back after returning an item?",
+    "ground_truth": "The refund is issued once the returned item arrives back at the seller's location; if the buyer paid for the return shipping label its cost is deducted from the refund, and a return that complies with the seller's policy or the Money Back Guarantee can be accepted automatically for a faster refund.",
+    "expected_answer": "The refund is issued once the returned item arrives back at the seller's location; if the buyer paid for the return shipping label its cost is deducted from the refund, and a return that complies with the seller's policy or the Money Back Guarantee can be accepted automatically for a faster refund.",
+    "expected_context": "Bài viết Return an item for a refund (article_02), mục Faster refunds / Send the item back",
+    "category": "returns_refunds",
+    "language": "en",
+    "in_domain": true
+  },
+  {
+    "id": "q09",
+    "question": "Who pays the return shipping cost when an item is faulty or does not match the listing?",
+    "ground_truth": "The seller covers the return shipping cost when the item is faulty, damaged or does not match the listing description; when the buyer simply changed their mind and the seller's policy makes the buyer responsible, the cost of the return label is deducted from the refund.",
+    "expected_answer": "The seller covers the return shipping cost when the item is faulty, damaged or does not match the listing description; when the buyer simply changed their mind and the seller's policy makes the buyer responsible, the cost of the return label is deducted from the refund.",
+    "expected_context": "Bài viết Return an item for a refund (article_02), mục Return shipping costs",
+    "category": "returns_refunds",
+    "language": "en",
+    "in_domain": true
+  },
+  {
+    "id": "q10",
+    "question": "What action is taken against a seller who violates the listing rules?",
+    "ground_truth": "The marketplace may remove the listing or other content, issue a warning, restrict the account activity or suspend the account; a problematic listing can also be hidden from shoppers until the content is fixed and approved.",
+    "expected_answer": "The marketplace may remove the listing or other content, issue a warning, restrict the account activity or suspend the account; a problematic listing can also be hidden from shoppers until the content is fixed and approved.",
+    "expected_context": "Bài viết Prohibited and restricted items (article_05), mục What happens if you break the rules",
+    "category": "seller_listing",
+    "language": "en",
+    "in_domain": true
+  },
+  {
+    "id": "q11",
+    "question": "What should I do if no tracking number appears for my order?",
+    "ground_truth": "If the seller uses a tracked service but no tracking number is visible, the seller may still need to upload the tracking information; the buyer should contact the seller and ask them to add it, and can ask the marketplace to step in if the item still does not arrive.",
+    "expected_answer": "If the seller uses a tracked service but no tracking number is visible, the seller may still need to upload the tracking information; the buyer should contact the seller and ask them to add it, and can ask the marketplace to step in if the item still does not arrive.",
+    "expected_context": "Bài viết Tracking your item (article_04), mục Tip - contact the seller",
+    "category": "order_tracking",
+    "language": "en",
+    "in_domain": true
+  },
+  {
+    "id": "q12",
     "question": "Người mua có thể yêu cầu trả hàng/hoàn tiền trong thời hạn bao lâu sau khi nhận hàng?",
-    "expected_answer": "Trong vòng 15 ngày kể từ khi giao hàng thành công (24 giờ đối với thực phẩm tươi sống/đông lạnh).",
-    "expected_context": "Trang Returns and Refunds Policy, mục Return/Refund Eligibility"
+    "ground_truth": "Người mua phải mở yêu cầu trả hàng trong thời hạn đổi trả mà người bán công bố trong tin đăng; nếu hàng bị lỗi, hư hỏng hoặc không đúng mô tả thì vẫn được bảo vệ theo Money Back Guarantee kể cả khi người bán không nhận trả hàng. Người bán có 3 ngày làm việc để phản hồi yêu cầu.",
+    "expected_answer": "Người mua phải mở yêu cầu trả hàng trong thời hạn đổi trả mà người bán công bố trong tin đăng; nếu hàng bị lỗi, hư hỏng hoặc không đúng mô tả thì vẫn được bảo vệ theo Money Back Guarantee kể cả khi người bán không nhận trả hàng. Người bán có 3 ngày làm việc để phản hồi yêu cầu.",
+    "expected_context": "Bài viết Return an item for a refund (article_02), mục Open a return request",
+    "category": "returns_refunds",
+    "language": "vi",
+    "in_domain": true
   },
   {
-    "question": "Shopee hỗ trợ những phương thức thanh toán nào?",
-    "expected_answer": "ShopeePay Wallet, thẻ tín dụng/ghi nợ, trả góp qua thẻ, QR Code, chuyển khoản qua app ngân hàng, thẻ NAPAS, Apple Pay, Google Pay, và COD.",
-    "expected_context": "Trang Payment Methods Overview"
+    "id": "q13",
+    "question": "Sàn thương mại điện tử hỗ trợ những phương thức thanh toán nào?",
+    "ground_truth": "Sàn hỗ trợ PayPal, PayPal Credit, thẻ tín dụng/thẻ ghi nợ, Apple Pay, Google Pay, Venmo, Klarna, Alipay, số dư khả dụng, thanh toán khi nhận hàng trực tiếp và chuyển khoản ngân hàng cho một số giao dịch; không chấp nhận chuyển tiền cá nhân qua Western Union hay MoneyGram.",
+    "expected_answer": "Sàn hỗ trợ PayPal, PayPal Credit, thẻ tín dụng/thẻ ghi nợ, Apple Pay, Google Pay, Venmo, Klarna, Alipay, số dư khả dụng, thanh toán khi nhận hàng trực tiếp và chuyển khoản ngân hàng cho một số giao dịch; không chấp nhận chuyển tiền cá nhân qua Western Union hay MoneyGram.",
+    "expected_context": "Bài viết Payment methods policy (article_01), mục Accepted payment methods",
+    "category": "payment",
+    "language": "vi",
+    "in_domain": true
   },
   {
+    "id": "q14",
     "question": "Người bán không được đăng bán những sản phẩm nào?",
-    "expected_answer": "Hàng giả/nhái, sản phẩm bất hợp pháp, vi phạm sở hữu trí tuệ, và các mặt hàng nằm trong danh sách cấm của sàn.",
-    "expected_context": "Trang Product Listing Regulations, mục Prohibited Content"
+    "ground_truth": "Người bán không được đăng các mặt hàng thuộc chính sách hàng cấm/hạn chế: hàng giả, hàng vi phạm sở hữu trí tuệ, ma tuý và dụng cụ liên quan, vũ khí, giấy tờ tuỳ thân do nhà nước cấp, vật liệu nguy hiểm và các mặt hàng bị pháp luật hạn chế; nhóm hàng hạn chế chỉ được đăng nếu tuân thủ đúng chính sách riêng.",
+    "expected_answer": "Người bán không được đăng các mặt hàng thuộc chính sách hàng cấm/hạn chế: hàng giả, hàng vi phạm sở hữu trí tuệ, ma tuý và dụng cụ liên quan, vũ khí, giấy tờ tuỳ thân do nhà nước cấp, vật liệu nguy hiểm và các mặt hàng bị pháp luật hạn chế; nhóm hàng hạn chế chỉ được đăng nếu tuân thủ đúng chính sách riêng.",
+    "expected_context": "Bài viết Prohibited and restricted items (article_05), mục Prohibited items",
+    "category": "seller_listing",
+    "language": "vi",
+    "in_domain": true
+  },
+  {
+    "id": "q15",
+    "question": "Làm thế nào để theo dõi tình trạng giao hàng của một đơn hàng?",
+    "ground_truth": "Vào mục Purchase history (Lịch sử mua hàng), chọn đơn hàng và bấm vào mã vận đơn hiển thị cạnh sản phẩm; mã vận đơn dẫn tới trang trạng thái giao hàng của đơn vị vận chuyển khi người bán dùng dịch vụ có tracking.",
+    "expected_answer": "Vào mục Purchase history (Lịch sử mua hàng), chọn đơn hàng và bấm vào mã vận đơn hiển thị cạnh sản phẩm; mã vận đơn dẫn tới trang trạng thái giao hàng của đơn vị vận chuyển khi người bán dùng dịch vụ có tracking.",
+    "expected_context": "Bài viết Tracking your item (article_04), mục Find the tracking number",
+    "category": "order_tracking",
+    "language": "vi",
+    "in_domain": true
+  },
+  {
+    "id": "q16",
+    "question": "Sàn thu thập những dữ liệu cá nhân nào của người dùng?",
+    "ground_truth": "Sàn thu thập dữ liệu cá nhân khi người dùng sử dụng dịch vụ, tạo tài khoản, điền biểu mẫu, cập nhật thông tin tài khoản hoặc tham gia cộng đồng: thông tin nhận dạng và liên hệ, dữ liệu tài khoản, dữ liệu giao dịch/thanh toán và dữ liệu thiết bị khi truy cập; mục đích và cơ sở pháp lý xử lý được nêu trong Thông báo quyền riêng tư.",
+    "expected_answer": "Sàn thu thập dữ liệu cá nhân khi người dùng sử dụng dịch vụ, tạo tài khoản, điền biểu mẫu, cập nhật thông tin tài khoản hoặc tham gia cộng đồng: thông tin nhận dạng và liên hệ, dữ liệu tài khoản, dữ liệu giao dịch/thanh toán và dữ liệu thiết bị khi truy cập; mục đích và cơ sở pháp lý xử lý được nêu trong Thông báo quyền riêng tư.",
+    "expected_context": "Bài viết User Privacy Notice (article_06), mục 4 - What personal data we collect and process",
+    "category": "privacy",
+    "language": "vi",
+    "in_domain": true
+  },
+  {
+    "id": "q17",
+    "question": "How do I renew my Vietnamese passport at the immigration office?",
+    "ground_truth": "Tôi không thể xác minh thông tin này từ nguồn hiện có — câu hỏi nằm ngoài phạm vi corpus chính sách thương mại điện tử.",
+    "expected_answer": "Tôi không thể xác minh thông tin này từ nguồn hiện có — câu hỏi nằm ngoài phạm vi corpus chính sách thương mại điện tử.",
+    "expected_context": "Không có tài liệu phù hợp trong corpus — kỳ vọng pipeline từ chối trả lời (test fallback).",
+    "category": "out_of_domain",
+    "language": "en",
+    "in_domain": false
+  },
+  {
+    "id": "q18",
+    "question": "Công thức nấu phở bò truyền thống gồm những nguyên liệu gì?",
+    "ground_truth": "Tôi không thể xác minh thông tin này từ nguồn hiện có — câu hỏi nằm ngoài phạm vi corpus chính sách thương mại điện tử.",
+    "expected_answer": "Tôi không thể xác minh thông tin này từ nguồn hiện có — câu hỏi nằm ngoài phạm vi corpus chính sách thương mại điện tử.",
+    "expected_context": "Không có tài liệu phù hợp trong corpus — kỳ vọng pipeline từ chối trả lời (test fallback).",
+    "category": "out_of_domain",
+    "language": "vi",
+    "in_domain": false
   }
 ]
