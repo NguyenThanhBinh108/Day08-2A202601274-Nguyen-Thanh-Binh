@@ -33,10 +33,15 @@ def setup_directory():
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 
-# TODO: Điền danh sách URL bài viết cần crawl
+# Bài hướng dẫn hỗ trợ khách hàng thật từ help.shopee.vn (trang công khai).
+# customer_role gắn theo K4 Variant để lọc theo đối tượng áp dụng ở Task 4.
 ARTICLE_URLS = [
-    # Ví dụ (trang công khai Shopee Vietnam):
-    # "https://help.shopee.vn/portal/4/article/...",
+    ("https://help.shopee.vn/portal/4/article/79491-Cach-tra-cuu-ma-van-don-cua-don-hang", "buyer"),
+    ("https://help.shopee.vn/portal/4/article/79555-Toi-co-the-thay-doi-phuong-thuc-thanh-toan-cho-don-hang-khong", "buyer"),
+    ("https://help.shopee.vn/portal/4/article/188931-Nhung-quy-dinh-chung-ve-Tra-hang-Hoan-tien-cua-Shopee", "both"),
+    ("https://help.shopee.vn/portal/4/article/77268-Dieu-Khoan-Dich-Vu-Shopee-Quoc-Te", "both"),
+    ("https://help.shopee.vn/portal/4/article/79308-Cach-kiem-tra-lich-su-mua-hang-tren-Shopee", "buyer"),
+    ("https://help.shopee.vn/portal/4/article/79687-Lam-Sao-De-Theo-Doi-Hanh-Trinh-Don-Hang", "buyer"),
 ]
 
 
@@ -54,31 +59,31 @@ async def crawl_article(url: str) -> dict:
     """
     from crawl4ai import AsyncWebCrawler
 
-    # TODO: Implement crawling logic
-    # async with AsyncWebCrawler() as crawler:
-    #     result = await crawler.arun(url=url)
-    #     return {
-    #         "url": url,
-    #         "title": result.metadata.get("title", "Unknown"),
-    #         "date_crawled": datetime.now().isoformat(),
-    #         "content_markdown": result.markdown,
-    #     }
-    raise NotImplementedError("Implement crawl_article")
+    async with AsyncWebCrawler() as crawler:
+        result = await crawler.arun(url=url)
+        title = (result.metadata or {}).get("title") if result.metadata else None
+        return {
+            "url": url,
+            "title": title or "Unknown",
+            "date_crawled": datetime.now().isoformat(),
+            "content_markdown": result.markdown or "",
+        }
 
 
 async def crawl_all():
     """Crawl toàn bộ bài viết trong ARTICLE_URLS."""
     setup_directory()
 
-    for i, url in enumerate(ARTICLE_URLS, 1):
+    for i, (url, customer_role) in enumerate(ARTICLE_URLS, 1):
         print(f"[{i}/{len(ARTICLE_URLS)}] Crawling: {url}")
         article = await crawl_article(url)
+        article["customer_role"] = customer_role
 
         # Lưu file JSON
         filename = f"article_{i:02d}.json"
         filepath = DATA_DIR / filename
-        filepath.write_text(json.dumps(article, ensure_ascii=False, indent=2))
-        print(f"  ✓ Saved: {filepath}")
+        filepath.write_text(json.dumps(article, ensure_ascii=False, indent=2), encoding="utf-8")
+        print(f"  ✓ Saved: {filepath} ({len(article['content_markdown'])} chars)")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,22 @@
+{
+  "returns-refund-policy-shopee.pdf": {
+    "title": "Chính Sách Trả Hàng và Hoàn Tiền Shopee",
+    "url": "https://help.shopee.vn/portal/4/article/77251",
+    "customer_role": "both"
+  },
+  "payment-methods-shopee.pdf": {
+    "title": "Phương Thức Thanh Toán Shopee Việt Nam",
+    "url": "https://help.shopee.vn/portal/4/article/79198",
+    "customer_role": "buyer"
+  },
+  "privacy-policy-shopee.pdf": {
+    "title": "Chính Sách Bảo Mật Shopee Việt Nam",
+    "url": "https://help.shopee.vn/portal/4/article/77244",
+    "customer_role": "both"
+  },
+  "seller-listing-regulations-shopee.pdf": {
+    "title": "Quy Định Về Đăng Bán Sản Phẩm Trên Shopee",
+    "url": "https://help.shopee.vn/portal/4/article/77246",
+    "customer_role": "seller"
+  }
+}

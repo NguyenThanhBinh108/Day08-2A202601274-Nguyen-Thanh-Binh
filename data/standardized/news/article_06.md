@@ -1,0 +1,23 @@
+# [Đơn hàng] Làm Sao Để Theo Dõi Hành Trình Đơn Hàng Được Vận Chuyển Bởi GrabExpress, beDelivery, Ahamove và Green SM? | Shopee Trung tâm trợ giúp
+
+**customer_role:** buyer
+**Source:** https://help.shopee.vn/portal/4/article/79687-Lam-Sao-De-Theo-Doi-Hanh-Trinh-Don-Hang
+**Crawled:** 2026-08-04T14:55:03.458287
+
+---
+
+# Xin chào, Shopee có thể giúp gì cho bạn?
+## [Đơn hàng] Làm Sao Để Theo Dõi Hành Trình Đơn Hàng Được Vận Chuyển Bởi GrabExpress, beDelivery, Ahamove và Green SM?
+Thông tin về hành trình đơn hàng được vận chuyển bởi GrabExpress, beDelivery, Ahamove và Green SM kèm hình ảnh giao nhận do tài xế chụp lại sẽ được lưu trữ trong vòng 24 giờ kể từ khi đơn hàng được giao thành công tới Người mua hoặc hoàn thành công về cho Người bán
+**Người dùng có thể dễ dàng theo dõi hành trình đơn hàng Shopee được vận chuyển bởi GrabExpress, beDelivery, Ahamove và Green SM theo hướng dẫn sau:**
+**Bước 1** : Trên trang chủ Shopee, vào mục **Tôi** > **Đang giao**
+![](https://fileproxycdn.cs.susercontent.com/api/v5/service/download/permanent/helpcenter-fe/e82988ac7d3d4350964d53079421bb3c.gif)
+**Bước 2** : Chọn đơn hàng bạn muốn theo dõi hành trình > bấm vào dòng chữ xanh > sao chép đường dẫn sau dấuhai chấm**:** của Tracking URL ở mục Tài xế đang giao và dán vào 1 trình duyệt web trên điện thoại hoặc máy tính
+![](https://fileproxycdn.cs.susercontent.com/api/v5/service/download/permanent/helpcenter-fe/926433092ccd4591b34a77c2fd063256.jpg)_Hình minh họa của GrabExpress (các nhà vận chuyển còn lại thao tác tương tự)_
+**Bước 3:** Bấm xem chi tiết để theo dõi hành trình đơn hàng được vận chuyển bởi GrabExpress, beDelivery, Ahamove và Green SM
+**![](https://lh5.googleusercontent.com/lHZBdOm5tog97j-8mV-NaBXi898qTM9cDm3vlc9Ry_3HGvEwLmMH5e_bedT05VewZKa3GiD04Cz5IXMYNXQlF2LysXO5-3PLxiwqiIHw1ujGnhJGQQUanCpbuEfqhO_PJvDmt1s_)**
+_Hình minh họa của GrabExpress (các nhà vận chuyển còn lại thao tác tương tự)_
+**⚠️****Lưu ý:**Bạn cũng có thể theo dõi hành trình đơn hàng được giao bởi GrabExpress, beDelivery, Ahamove và Green SM trên ứng dụng của nhà vận chuyển tương ứng (tải xuống tại Google Play hoặc App Store) nếu số điện thoại đăng ký tài khoản của bạn trùng khớp với số điện thoại đăng ký tài khoản Shopee.****
+Bạn có hài lòng với bài viết này?
+Hài lòng
+Không hài lòng
