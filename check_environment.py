@@ -80,7 +80,7 @@ def check_env_file():
     if env_path.exists():
         print(f"  ✅ .env file tồn tại: {env_path}")
         # Đọc kiểm tra key
-        content = env_path.read_text()
+        content = env_path.read_text(encoding="utf-8")
         if "OPENROUTER_API_KEY" in content and "sk-or-" in content:
             print("  ✅ OPENROUTER_API_KEY đã được điền")
         else:
