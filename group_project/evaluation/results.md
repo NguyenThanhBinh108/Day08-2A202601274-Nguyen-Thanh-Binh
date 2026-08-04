@@ -5,7 +5,7 @@
 > **RAGAS 0.1.21** — LLM judge: `openai/gpt-4o-mini` qua openrouter.
 
 - Golden dataset: **18 câu hỏi** (song ngữ Anh–Việt, có câu ngoài domain để test fallback)
-- top_k = 5 | Thời điểm chạy: 2026-08-04 16:21:27
+- top_k = 5 | Thời điểm chạy: 2026-08-04 16:56:13
 
 ---
 
@@ -13,11 +13,11 @@
 
 | Metric | Config A — hybrid | Config B — dense_only | Δ (A − B) |
 |--------|--------------------|--------------------|-----------|
-| Faithfulness | 0.777 | 0.764 | +0.013 |
-| Answer Relevance | 0.650 | 0.539 | +0.111 |
-| Context Recall | 0.630 | 0.769 | -0.139 |
-| Context Precision | 0.809 | 0.844 | -0.035 |
-| **Average** | **0.716** | **0.729** | **-0.012** |
+| Faithfulness | 0.727 | n/a | n/a |
+| Answer Relevance | 0.755 | n/a | n/a |
+| Context Recall | 0.759 | n/a | n/a |
+| Context Precision | 0.730 | n/a | n/a |
+| **Average** | **0.743** | **n/a** | **n/a** |
 
 
 ---
@@ -34,40 +34,40 @@
 
 **Kết luận:**
 
-> Hai config gần như ngang nhau (chênh -0.012). Với corpus nhỏ, dense search đã đủ tìm đúng tài liệu nên phần fusion + rerank chưa tạo khác biệt rõ; nên ưu tiên `dense_only` nếu cần độ trễ thấp.
+> Chưa đủ điểm ở cả 2 config để kết luận — xem phần Ghi chú bên dưới.
 
 ---
 
 ## Worst Performers (Bottom 3)
 
-_Xếp hạng theo điểm trung bình 4 metric của config `dense_only`._
+_Xếp hạng theo điểm trung bình 4 metric của config `hybrid`._
 
 | # | Question | Faithfulness | Relevance | Recall | Precision | Failure Stage | Root Cause |
 |---|----------|-------------|-----------|--------|-----------|---------------|------------|
 | 1 | How do I renew my Vietnamese passport at the immigration office? | 0.000 | 0.000 | 0.000 | 0.000 | Ngoài domain (kỳ vọng) | Câu hỏi không có evidence trong corpus — điểm thấp là ĐÚNG, chỉ cần kiểm tra hệ thống có từ chối trả lời thay vì bịa. |
 | 2 | Công thức nấu phở bò truyền thống gồm những nguyên liệu gì? | 0.000 | 0.000 | 0.000 | 0.000 | Ngoài domain (kỳ vọng) | Câu hỏi không có evidence trong corpus — điểm thấp là ĐÚNG, chỉ cần kiểm tra hệ thống có từ chối trả lời thay vì bịa. |
-| 3 | When does the buyer get the refund money back after returning an item? | 0.500 | 0.000 | 0.667 | 1.000 | Generation | Câu trả lời lạc đề hoặc trả lời chung chung, không bám câu hỏi. |
+| 3 | What evidence must a buyer provide when submitting a refund request? | 0.400 | 0.000 | 0.667 | 0.750 | Generation | Câu trả lời chứa khẳng định không có trong context (hallucination) — cần siết system prompt và bắt buộc citation. |
 
 **Phân tích chi tiết:**
 
-1. **q17 — How do I renew my Vietnamese passport at the immigration office?** (mean = 0.000, 5 contexts, category: `out_of_domain`)
+1. **q17 — How do I renew my Vietnamese passport at the immigration office?** (mean = 0.000, 2 contexts, category: `out_of_domain`)
    - Khâu hỏng: **Ngoài domain (kỳ vọng)**
    - Nguyên nhân: Câu hỏi không có evidence trong corpus — điểm thấp là ĐÚNG, chỉ cần kiểm tra hệ thống có từ chối trả lời thay vì bịa.
-2. **q18 — Công thức nấu phở bò truyền thống gồm những nguyên liệu gì?** (mean = 0.000, 5 contexts, category: `out_of_domain`)
+2. **q18 — Công thức nấu phở bò truyền thống gồm những nguyên liệu gì?** (mean = 0.000, 3 contexts, category: `out_of_domain`)
    - Khâu hỏng: **Ngoài domain (kỳ vọng)**
    - Nguyên nhân: Câu hỏi không có evidence trong corpus — điểm thấp là ĐÚNG, chỉ cần kiểm tra hệ thống có từ chối trả lời thay vì bịa.
-3. **q08 — When does the buyer get the refund money back after returning an item?** (mean = 0.542, 5 contexts, category: `returns_refunds`)
+3. **q03 — What evidence must a buyer provide when submitting a refund request?** (mean = 0.454, 5 contexts, category: `returns_refunds`)
    - Khâu hỏng: **Generation**
-   - Nguyên nhân: Câu trả lời lạc đề hoặc trả lời chung chung, không bám câu hỏi.
+   - Nguyên nhân: Câu trả lời chứa khẳng định không có trong context (hallucination) — cần siết system prompt và bắt buộc citation.
 
 ---
 
 ## Recommendations
 
-### Cải tiến 1 — Tăng Answer Relevance
-**Action:** Thêm few-shot mẫu trả lời ngắn gọn đúng trọng tâm vào prompt và yêu cầu trả lời trực tiếp câu hỏi ở câu đầu tiên trước khi giải thích.
+### Cải tiến 1 — Tăng Faithfulness
+**Action:** Siết system prompt: bắt buộc mỗi câu phải kèm [Source] và trả lời 'Tôi không thể xác minh thông tin này từ nguồn hiện có' khi thiếu evidence; hạ temperature xuống 0.1.
 
-**Expected impact:** Câu trả lời bám câu hỏi hơn, answer_relevancy tăng rõ nhất ở các câu hỏi 'how/what'.
+**Expected impact:** Giảm hallucination, các câu ngoài domain trả lời đúng kiểu từ chối thay vì bịa.
 
 ### Cải tiến 2 — Chuẩn hoá chunking cho tài liệu song ngữ
 **Action:** Chunk theo heading (markdown-aware) thay vì cắt cứng 800 ký tự, và gắn thêm tiêu đề mục vào đầu mỗi chunk để chunk tự mang ngữ cảnh.
