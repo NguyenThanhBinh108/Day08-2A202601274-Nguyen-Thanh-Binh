@@ -848,6 +848,25 @@ def run_ragas(dataset: list[dict]) -> dict:
     if llm is None:
         return {**empty, "n": len(dataset), "error": "thiếu API key cho LLM judge"}
 
+    # answer_relevancy mặc định strictness=3: nó gửi MỘT request kèm tham số n=3 để
+    # xin model sinh 3 câu hỏi ngược rồi lấy trung bình độ tương đồng. Groq (và một
+    # số endpoint OpenAI-compatible khác) KHÔNG hỗ trợ n>1 và trả về:
+    #     400 - 'n' : number must be at most 1
+    # khiến toàn bộ metric này thành NaN. Hạ về 1 để chạy được trên mọi nhà cung cấp.
+    # Đánh đổi: điểm answer_relevancy nhiễu hơn một chút vì chỉ lấy một mẫu thay vì
+    # trung bình ba mẫu — chấp nhận được, và vẫn so sánh A/B công bằng vì cả hai cấu
+    # hình đều dùng chung thiết lập này.
+    _, _, provider = _get_api_credentials()
+    if provider in ("groq", "cerebras"):
+        try:
+            answer_relevancy.strictness = 1
+            _warn(
+                f"Hạ answer_relevancy.strictness về 1 ({provider} không hỗ trợ n>1)",
+                note=True,
+            )
+        except Exception:  # noqa: BLE001 — phiên bản RAGAS khác có thể đổi thuộc tính
+            pass
+
     # Chỉ giữ đúng 4 cột RAGAS yêu cầu, metadata phụ khớp lại theo index sau
     rows = [
         {
