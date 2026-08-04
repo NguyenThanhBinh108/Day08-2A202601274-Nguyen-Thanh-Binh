@@ -14,11 +14,19 @@ Base URL: "https://openrouter.ai/api/v1", dùng chung interface với OpenAI SDK
 """
 
 import os
-from dotenv import load_dotenv
+import re
+from typing import Any, Callable, Optional
 
-load_dotenv()
-
-from .task9_retrieval_pipeline import retrieve
+# Import "chịu lỗi": nếu một module anh em (task5..task9) chưa được implement xong hoặc
+# thiếu thư viện, việc `import src.task10_generation` vẫn phải thành công — pytest import
+# toàn bộ module trước khi chạy test, import không được phép crash (quy tắc lazy loading).
+try:
+    from .task9_retrieval_pipeline import retrieve
+except Exception as _err:  # pragma: no cover - chỉ xảy ra khi task9 chưa sẵn sàng
+    retrieve = None  # type: ignore[assignment]
+    _RETRIEVE_IMPORT_ERROR: Optional[Exception] = _err
+else:
+    _RETRIEVE_IMPORT_ERROR = None
 
 
 # =============================================================================
@@ -37,8 +45,35 @@ TOP_P = 0.9
 # Chọn 0.3 vì: RAG cần factual, ít sáng tạo
 TEMPERATURE = 0.3
 
-# TODO: Chọn LLM model (OpenRouter model ID)
+# LLM model chính (OpenRouter model ID). gpt-4o-mini rẻ, bám sát instruction và
+# trích dẫn tốt — phù hợp RAG. Cần credit trả phí trên OpenRouter.
 LLM_MODEL = "openai/gpt-4o-mini"  # hoặc model ":free" nếu chưa có credit
+
+# Danh sách model dự phòng: các model ":free" của OpenRouter, thử lần lượt khi model
+# chính lỗi (hết credit 402, rate limit 429, model bị gỡ 404...). Model free có thể
+# thay đổi theo thời gian — kiểm tra lại tại https://openrouter.ai/models?max_price=0
+FALLBACK_LLM_MODELS = [
+    "meta-llama/llama-3.3-70b-instruct:free",
+    "deepseek/deepseek-chat-v3-0324:free",
+    "qwen/qwen-2.5-72b-instruct:free",
+    "google/gemma-2-9b-it:free",
+    "mistralai/mistral-7b-instruct:free",
+]
+
+# Base URL của OpenRouter — tương thích hoàn toàn với OpenAI SDK 1.x
+OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
+
+# Timeout (giây) cho mỗi lần gọi API, tránh treo pytest khi mạng chập chờn
+REQUEST_TIMEOUT = 60.0
+
+# Số đoạn tối đa dùng cho câu trả lời extractive (chế độ không-LLM)
+FALLBACK_NUM_PASSAGES = 3
+
+# Số câu tối đa trích ra từ mỗi đoạn trong chế độ extractive
+FALLBACK_SENTENCES_PER_PASSAGE = 2
+
+# Cờ lazy: .env chỉ được nạp ở lần cần API key đầu tiên (xem _load_env_once).
+_ENV_LOADED: bool = False
 
 
 # =============================================================================
@@ -54,6 +89,126 @@ Quy tắc bắt buộc:
 3. Nếu context không đủ thông tin → trả lời: "Tôi không thể xác minh thông tin này từ nguồn hiện có"
 4. Trả lời bằng tiếng Việt, có cấu trúc rõ ràng theo đoạn văn
 5. Không suy luận hay mở rộng ngoài những gì được nêu trong context"""
+
+
+# Câu trả lời chuẩn khi retrieval không tìm được tài liệu nào.
+# Luôn là chuỗi KHÔNG rỗng để caller (app/eval) không phải xử lý None.
+NO_EVIDENCE_ANSWER = (
+    "Tôi không thể xác minh thông tin này từ nguồn hiện có: "
+    "hệ thống không truy xuất được tài liệu nào liên quan tới câu hỏi. "
+    "Vui lòng kiểm tra lại vector store (chroma_db/) và dữ liệu trong data/, "
+    "hoặc diễn đạt lại câu hỏi cụ thể hơn."
+)
+
+
+# =============================================================================
+# LAZY HELPERS — không load gì ở cấp module
+# =============================================================================
+
+def _safe_print(message: str) -> None:
+    """
+    In ra stdout mà KHÔNG BAO GIỜ raise (dùng chung cho toàn module thay cho print()).
+
+    Console Windows mặc định là codepage cp1252: các ký tự "⚠", "ℹ" và chữ tiếng Việt
+    có dấu đều không encode được → print() thường sẽ ném UnicodeEncodeError, thoát ra
+    khỏi generate_with_citation() và làm gãy cả app Streamlit lẫn pipeline eval — đúng
+    ngay ở nhánh cảnh báo (thiếu API key / không retrieve được), tức là lúc hệ thống
+    đáng ra phải degrade êm nhất. Cùng cơ chế với _safe_print/_warn ở Task 4, 5, 6, 8, 9.
+    """
+    try:
+        print(message)
+    except UnicodeEncodeError:
+        try:
+            print(message.encode("ascii", "backslashreplace").decode("ascii"))
+        except Exception:  # noqa: BLE001 — log lỗi không bao giờ được làm hỏng pipeline
+            pass
+    except Exception:  # noqa: BLE001
+        pass
+
+
+def _get_retrieve_fn() -> Optional[Callable[..., list[dict]]]:
+    """
+    Trả về hàm retrieve() của Task 9, hoặc None nếu module chưa import được.
+
+    Tách ra thành getter để việc import task10 không bao giờ crash vì task9.
+    """
+    if retrieve is None:
+        _safe_print(f"  ⚠ Không import được retrieve() từ task9: {_RETRIEVE_IMPORT_ERROR}")
+        return None
+    return retrieve
+
+
+def _load_env_once() -> None:
+    """
+    Nạp .env MỘT LẦN, lazy (ở lần cần API key đầu tiên) thay vì ở cấp module.
+
+    Vì sao không load_dotenv() ngay dưới phần import: pytest import toàn bộ module
+    này (và import gián tiếp qua app.py / eval_pipeline), import phải nhanh và không
+    được chạm đĩa — cùng nguyên tắc lazy với Task 5, 6, 8, 9.
+    Chỉ chạy đúng 1 lần để không đọc lại file ở mỗi câu hỏi, và để test vẫn có thể
+    unset biến môi trường sau lần gọi đầu mà không bị .env ghi đè lại.
+    """
+    global _ENV_LOADED
+    if _ENV_LOADED:
+        return
+    _ENV_LOADED = True
+    try:
+        from dotenv import load_dotenv
+
+        load_dotenv()
+    except Exception:  # không có python-dotenv → vẫn đọc biến môi trường hệ thống
+        pass
+
+
+def _get_api_key() -> str:
+    """
+    Đọc API key tại thời điểm gọi (không cache ở cấp module) để test có thể
+    set/unset biến môi trường mà không cần reload module.
+    """
+    _load_env_once()
+    return (os.getenv("OPENROUTER_API_KEY") or os.getenv("OPENAI_API_KEY") or "").strip()
+
+
+def _get_llm_client(api_key: str) -> Optional[Any]:
+    """
+    Khởi tạo OpenAI SDK client trỏ vào OpenRouter.
+
+    Import `openai` bên trong hàm (lazy) để module import nhanh và không phụ thuộc
+    vào việc SDK đã được cài hay chưa.
+
+    Returns:
+        Client object, hoặc None nếu thiếu key / thiếu SDK.
+    """
+    if not api_key:
+        return None
+    try:
+        from openai import OpenAI
+    except ImportError as e:
+        _safe_print(f"  ⚠ Chưa cài openai SDK ({e}) — chuyển sang chế độ extractive.")
+        return None
+
+    try:
+        return OpenAI(
+            api_key=api_key,
+            base_url=OPENROUTER_BASE_URL,
+            timeout=REQUEST_TIMEOUT,
+            max_retries=1,  # SDK tự retry 1 lần; nhiều hơn sẽ làm test chờ quá lâu
+        )
+    except Exception as e:  # cấu hình sai, key rỗng sau khi strip...
+        _safe_print(f"  ⚠ Không khởi tạo được LLM client: {type(e).__name__}: {e}")
+        return None
+
+
+def _split_sentences(text: str) -> list[str]:
+    """
+    Tách câu theo cách unicode-aware (hoạt động với cả tiếng Việt có dấu).
+
+    Không dùng thư viện ngoài: chỉ cắt sau dấu kết câu + khoảng trắng.
+    """
+    if not text:
+        return []
+    parts = re.split(r"(?<=[.!?…])\s+|\n{2,}", text.strip(), flags=re.UNICODE)
+    return [p.strip() for p in parts if p and p.strip()]
 
 
 # =============================================================================
@@ -77,15 +232,21 @@ def reorder_for_llm(chunks: list[dict]) -> list[dict]:
     Returns:
         List reordered để maximize LLM attention.
     """
-    # TODO: Implement reordering
-    #
-    # if len(chunks) <= 2:
-    #     return chunks
-    #
-    # front = chunks[::2]   # index 0, 2, 4 -> đặt ở đầu
-    # back = chunks[1::2]   # index 1, 3    -> đặt ở cuối (reversed)
-    # return front + back[::-1]
-    raise NotImplementedError("Implement reorder_for_llm")
+    if not chunks:
+        return []
+    if len(chunks) <= 2:
+        # 0-2 chunks thì không có "giữa" để mà quên → giữ nguyên thứ tự điểm số
+        return list(chunks)
+
+    # Vì sao chia chẵn/lẻ rồi đảo nửa sau:
+    #   - front = index chẵn (0, 2, 4...) giữ chunk điểm cao nhất (index 0) ở NGAY ĐẦU
+    #   - back  = index lẻ  (1, 3, 5...) đảo ngược nên chunk điểm cao thứ hai (index 1)
+    #     rơi xuống VỊ TRÍ CUỐI — hai vùng LLM chú ý nhất
+    #   - các chunk điểm thấp tự động dồn vào giữa, nơi bị "lost in the middle"
+    # Phép chia này là một hoán vị nên GIỮ NGUYÊN số lượng chunk (không mất, không lặp).
+    front = chunks[0::2]          # 0, 2, 4, ...  → đặt ở đầu
+    back = chunks[1::2][::-1]     # 1, 3, 5, ... đảo ngược → đặt ở cuối
+    return front + back
 
 
 # =============================================================================
@@ -103,18 +264,139 @@ def format_context(chunks: list[dict]) -> str:
     Returns:
         Formatted context string.
     """
-    # TODO: Implement context formatting
-    #
-    # context_parts = []
-    # for i, chunk in enumerate(chunks, 1):
-    #     source = chunk.get("metadata", {}).get("source", f"Source {i}")
-    #     doc_type = chunk.get("metadata", {}).get("type", "unknown")
-    #     context_parts.append(
-    #         f"[Document {i} | Source: {source} | Type: {doc_type}]\n"
-    #         f"{chunk['content']}\n"
-    #     )
-    # return "\n---\n".join(context_parts)
-    raise NotImplementedError("Implement format_context")
+    if not chunks:
+        return ""
+
+    context_parts: list[str] = []
+    for i, chunk in enumerate(chunks, 1):
+        # Dùng .get() phòng thủ ở mọi tầng: chunk có thể thiếu metadata (ví dụ kết quả
+        # PageIndex fallback chỉ có 'section'), không được để KeyError làm hỏng pipeline.
+        metadata = chunk.get("metadata") or {}
+        if not isinstance(metadata, dict):
+            metadata = {}
+
+        # citation_id (nếu có) là số trích dẫn ỔN ĐỊNH theo thứ hạng điểm gốc, được
+        # generate_with_citation gắn TRƯỚC khi reorder — nhờ vậy [n] trong câu trả lời
+        # luôn khớp với thứ tự nguồn mà UI hiển thị, dù prompt đã bị xáo trộn vị trí.
+        citation_no = chunk.get("citation_id", i)
+
+        source = metadata.get("source") or metadata.get("section") or f"Document {citation_no}"
+        doc_type = metadata.get("type", "unknown")
+        content = str(chunk.get("content", "")).strip()
+
+        header = f"[{citation_no}] Source: {source} | Type: {doc_type}"
+
+        score = chunk.get("score")
+        if isinstance(score, (int, float)):
+            header += f" | Score: {float(score):.3f}"
+
+        chunk_index = metadata.get("chunk_index")
+        if chunk_index is not None:
+            header += f" | Chunk: {chunk_index}"
+
+        context_parts.append(f"{header}\n{content}\n")
+
+    return "\n---\n".join(context_parts)
+
+
+# =============================================================================
+# EXTRACTIVE FALLBACK (khi không gọi được LLM)
+# =============================================================================
+
+def _extractive_answer(query: str, ordered_chunks: list[dict], reason: str) -> str:
+    """
+    Sinh câu trả lời trích xuất (extractive) trực tiếp từ context — KHÔNG cần LLM.
+
+    Dùng khi thiếu API key hoặc mọi model đều lỗi. Nguyên tắc: chỉ ghép nguyên văn
+    các đoạn điểm cao nhất kèm số trích dẫn [n] khớp với đánh số trong format_context,
+    tuyệt đối không tự sinh thêm nội dung (đúng tinh thần "không bịa đặt" của RAG).
+
+    Args:
+        query: Câu hỏi gốc
+        ordered_chunks: Chunks ĐÃ reorder (số [n] = vị trí trong context)
+        reason: Lý do phải fallback, hiển thị cho người dùng biết
+
+    Returns:
+        Chuỗi answer khác rỗng.
+    """
+    # Số trích dẫn lấy từ citation_id (khớp với context), fallback về vị trí nếu thiếu.
+    # Sắp xếp lại theo điểm giảm dần để đoạn liên quan nhất xuất hiện trước.
+    numbered = [
+        (chunk.get("citation_id", pos), chunk)
+        for pos, chunk in enumerate(ordered_chunks, 1)
+    ]
+    numbered.sort(
+        key=lambda pair: pair[1].get("score", 0.0)
+        if isinstance(pair[1].get("score"), (int, float))
+        else 0.0,
+        reverse=True,
+    )
+
+    lines: list[str] = [
+        f"[Chế độ KHÔNG-LLM — trích xuất trực tiếp từ tài liệu. Lý do: {reason}]",
+        "",
+        f"Câu hỏi: {query}",
+        "",
+        "Các đoạn tài liệu liên quan nhất truy xuất được:",
+    ]
+
+    used: list[str] = []
+    for citation_no, chunk in numbered[:FALLBACK_NUM_PASSAGES]:
+        content = str(chunk.get("content", "")).strip()
+        if not content:
+            continue
+        sentences = _split_sentences(content)
+        excerpt = " ".join(sentences[:FALLBACK_SENTENCES_PER_PASSAGE]) if sentences else content
+        excerpt = excerpt.strip()
+        if len(excerpt) > 600:
+            excerpt = excerpt[:600].rstrip() + "..."
+
+        metadata = chunk.get("metadata") or {}
+        if not isinstance(metadata, dict):
+            metadata = {}
+        source = metadata.get("source") or metadata.get("section") or f"Document {citation_no}"
+
+        lines.append(f"  [{citation_no}] {excerpt} (Nguồn: {source})")
+        used.append(f"[{citation_no}] {source}")
+
+    if not used:
+        # Có chunk nhưng toàn bộ content rỗng → vẫn phải trả chuỗi khác rỗng
+        return (
+            f"{NO_EVIDENCE_ANSWER}\n\n"
+            f"(Chế độ KHÔNG-LLM. Lý do fallback: {reason})"
+        )
+
+    lines += [
+        "",
+        "Trích dẫn: " + "; ".join(used),
+        "",
+        "Lưu ý: đây là trích dẫn nguyên văn, CHƯA được LLM tổng hợp/diễn giải. "
+        "Hãy đặt OPENROUTER_API_KEY trong .env để bật chế độ sinh câu trả lời đầy đủ.",
+    ]
+    return "\n".join(lines)
+
+
+def _call_llm(client: Any, model: str, user_message: str) -> str:
+    """
+    Gọi một model cụ thể qua OpenRouter. Raise nếu lỗi để caller thử model kế tiếp.
+
+    Returns:
+        Nội dung answer (đã strip). Chuỗi rỗng nếu model trả về nội dung trống.
+    """
+    response = client.chat.completions.create(
+        model=model,
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": user_message},
+        ],
+        temperature=TEMPERATURE,
+        top_p=TOP_P,
+    )
+    choices = getattr(response, "choices", None) or []
+    if not choices:
+        return ""
+    content = getattr(choices[0].message, "content", None)
+    return (content or "").strip()
 
 
 # =============================================================================
@@ -143,47 +425,116 @@ def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
             'retrieval_source': str  # 'hybrid' hoặc 'pageindex'
         }
     """
-    # TODO: Implement generation pipeline
-    #
-    # # Step 1: Retrieve
-    # chunks = retrieve(query, top_k=top_k)
-    #
-    # # Step 2: Reorder
-    # reordered = reorder_for_llm(chunks)
-    #
-    # # Step 3: Format context
-    # context = format_context(reordered)
-    #
-    # # Step 4: Build prompt
-    # user_message = f"""Context:\n{context}\n\n---\n\nQuestion: {query}"""
-    #
-    # # Step 5: Call LLM (OpenRouter — OpenAI-compatible API)
-    # from openai import OpenAI
-    # api_key = os.getenv("OPENROUTER_API_KEY") or os.getenv("OPENAI_API_KEY")
-    # client = OpenAI(api_key=api_key, base_url="https://openrouter.ai/api/v1")
-    #
-    # response = client.chat.completions.create(
-    #     model=LLM_MODEL,
-    #     messages=[
-    #         {"role": "system", "content": SYSTEM_PROMPT},
-    #         {"role": "user", "content": user_message}
-    #     ],
-    #     temperature=TEMPERATURE,
-    #     top_p=TOP_P,
-    # )
-    #
-    # answer = response.choices[0].message.content
-    #
-    # # Step 6: Return
-    # return {
-    #     "answer": answer,
-    #     "sources": chunks,
-    #     "retrieval_source": chunks[0].get("source", "hybrid") if chunks else "none"
-    # }
-    raise NotImplementedError("Implement generate_with_citation")
+    # ---- Step 1: Retrieve -------------------------------------------------
+    chunks: list[dict] = []
+    retrieve_fn = _get_retrieve_fn()
+    if retrieve_fn is not None:
+        try:
+            chunks = retrieve_fn(query, top_k=top_k) or []
+        except NotImplementedError:
+            _safe_print("  ⚠ Task 9 retrieve() chưa được implement — không có context.")
+        except Exception as e:
+            # Không bao giờ raise ra ngoài: thiếu chroma_db/, thiếu data/, lỗi model...
+            _safe_print(f"  ⚠ Retrieval lỗi ({type(e).__name__}: {e}) — không có context.")
+
+    if not chunks:
+        # Không có evidence → trả lời "không xác minh được", KHÔNG gọi LLM (tránh hallucination)
+        _safe_print("  ⚠ Không truy xuất được tài liệu nào cho query này.")
+        return {
+            "answer": NO_EVIDENCE_ANSWER,
+            "sources": [],
+            "model": "none",
+            "used_llm": False,
+            "retrieval_source": "none",
+        }
+
+    # ---- Step 2 + 3: Reorder rồi format context ---------------------------
+    # Gắn citation_id THEO THỨ HẠNG ĐIỂM GỐC (trước khi reorder) trên bản copy nông,
+    # để không mutate kết quả của retrieve(). Nhờ đó số [n] trong câu trả lời khớp
+    # đúng với thứ tự phần tử trong 'sources' mà UI/eval liệt kê.
+    numbered_chunks = [{**chunk, "citation_id": i} for i, chunk in enumerate(chunks, 1)]
+    reordered = reorder_for_llm(numbered_chunks)
+    context = format_context(reordered)
+
+    # ---- Step 4: Build prompt --------------------------------------------
+    user_message = (
+        f"Context:\n{context}\n\n---\n\n"
+        f"Question: {query}\n\n"
+        "Hãy trả lời dựa HOÀN TOÀN trên context ở trên, mỗi khẳng định kèm trích dẫn "
+        "nguồn tương ứng (ví dụ [1], [2] hoặc tên tài liệu)."
+    )
+
+    retrieval_source = chunks[0].get("source", "hybrid") if chunks else "none"
+
+    # ---- Step 5: Call LLM (OpenRouter — OpenAI-compatible API) ------------
+    api_key = _get_api_key()
+    client = _get_llm_client(api_key)
+
+    if client is None:
+        reason = (
+            "thiếu OPENROUTER_API_KEY trong .env"
+            if not api_key
+            else "không khởi tạo được LLM client"
+        )
+        _safe_print(f"  ⚠ Fallback extractive: {reason}")
+        return {
+            "answer": _extractive_answer(query, reordered, reason),
+            "sources": chunks,
+            "model": "extractive-fallback",
+            "used_llm": False,
+            "retrieval_source": retrieval_source,
+        }
+
+    # Thử model chính trước, sau đó lần lượt các model ":free" miễn phí.
+    # Lỗi hay gặp: 402 hết credit, 429 rate limit, 404 model bị gỡ, timeout mạng.
+    last_error = ""
+    for model in [LLM_MODEL, *FALLBACK_LLM_MODELS]:
+        try:
+            answer = _call_llm(client, model, user_message)
+        except Exception as e:
+            last_error = f"{type(e).__name__}: {e}"
+            _safe_print(f"  ⚠ Model '{model}' lỗi ({last_error}) — thử model kế tiếp...")
+            continue
+
+        if not answer:
+            last_error = "model trả về nội dung rỗng"
+            _safe_print(f"  ⚠ Model '{model}' {last_error} — thử model kế tiếp...")
+            continue
+
+        if model != LLM_MODEL:
+            _safe_print(f"  ℹ Đã dùng model dự phòng: {model}")
+
+        # ---- Step 6: Return ----------------------------------------------
+        return {
+            "answer": answer,
+            "sources": chunks,
+            "model": model,
+            "used_llm": True,
+            "retrieval_source": retrieval_source,
+        }
+
+    # Mọi model đều thất bại → extractive fallback, KHÔNG raise
+    reason = f"tất cả model LLM đều lỗi (lỗi cuối: {last_error})"
+    _safe_print(f"  ⚠ Fallback extractive: {reason}")
+    return {
+        "answer": _extractive_answer(query, reordered, reason),
+        "sources": chunks,
+        "model": "extractive-fallback",
+        "used_llm": False,
+        "retrieval_source": retrieval_source,
+    }
 
 
 if __name__ == "__main__":
+    # Console Windows mặc định cp1252 → ép UTF-8 để câu trả lời tiếng Việt hiển thị
+    # đúng dấu. Chỉ làm ở nhánh demo, KHÔNG làm lúc import (pytest/Streamlit tự quản stdout).
+    try:
+        import sys
+
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:  # noqa: BLE001 — stream không hỗ trợ reconfigure thì bỏ qua
+        pass
+
     test_queries = [
         "Shopee hỗ trợ những phương thức thanh toán nào?",
         "Làm sao để yêu cầu đổi trả hay hoàn tiền?",
@@ -191,9 +542,9 @@ if __name__ == "__main__":
     ]
 
     for q in test_queries:
-        print(f"\n{'='*70}")
-        print(f"Q: {q}")
-        print("=" * 70)
+        _safe_print(f"\n{'='*70}")
+        _safe_print(f"Q: {q}")
+        _safe_print("=" * 70)
         result = generate_with_citation(q)
-        print(f"\nA: {result['answer']}")
-        print(f"\n[Sources: {len(result['sources'])} chunks | via {result['retrieval_source']}]")
+        _safe_print(f"\nA: {result['answer']}")
+        _safe_print(f"\n[Sources: {len(result['sources'])} chunks | via {result['retrieval_source']}]")
