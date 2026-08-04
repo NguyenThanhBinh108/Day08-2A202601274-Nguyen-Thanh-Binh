@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trợ lý RAG Hỗ trợ Thương mại điện tử</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">R</div>
+        <div>
+          <p class="brand-title">Trợ lý RAG</p>
+          <p class="brand-subtitle">Hỏi đáp chính sách thương mại điện tử</p>
+        </div>
+      </div>
+
+      <section class="side-section">
+        <div class="section-head">
+          <h2>Giao diện Chatbot</h2>
+        </div>
+      </section>
+
+      <section class="side-section">
+        <div class="section-head compact">
+          <span class="section-kicker">Gợi ý</span>
+          <h2>Câu hỏi mẫu</h2>
+        </div>
+        <div class="suggestion-list">
+          <button class="suggestion" data-query="Shopee hỗ trợ những phương thức thanh toán nào?">Phương thức thanh toán</button>
+          <button class="suggestion" data-query="Làm sao để yêu cầu trả hàng hoàn tiền?">Trả hàng và hoàn tiền</button>
+          <button class="suggestion" data-query="Cần bằng chứng gì khi yêu cầu hoàn tiền?">Bằng chứng hoàn tiền</button>
+          <button class="suggestion" data-query="Người bán không được đăng bán sản phẩm nào?">Quy định người bán</button>
+        </div>
+      </section>
+
+      <section class="side-section">
+        <div class="section-head compact">
+          <span class="section-kicker">Cấu hình</span>
+          <h2>Truy xuất</h2>
+        </div>
+        <label class="field-label" for="topK">Số đoạn truy xuất</label>
+        <div class="range-row">
+          <input id="topK" type="range" min="3" max="10" value="5">
+          <span id="topKValue">5</span>
+        </div>
+        <div class="toggle-row">
+          <span>Xếp hạng lại bằng RRF</span>
+          <button class="toggle is-on" type="button" aria-pressed="true"><span></span></button>
+        </div>
+        <div class="toggle-row">
+          <span>Dự phòng PageIndex</span>
+          <button class="toggle is-on" type="button" aria-pressed="true"><span></span></button>
+        </div>
+      </section>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Ngày 8 - RAG Pipeline v2</p>
+          <h1>Trợ lý RAG Hỗ trợ Thương mại điện tử</h1>
+        </div>
+        <div class="top-actions">
+          <button id="clearChat" class="icon-button" type="button" title="Xóa hội thoại">Xóa</button>
+          <button id="exportChat" class="primary-button" type="button">Xuất demo</button>
+        </div>
+      </header>
+
+      <section class="overview-grid" aria-label="Pipeline overview">
+        <article class="metric-card">
+          <span class="metric-label">Truy xuất</span>
+          <strong>Hybrid</strong>
+          <p>Ngữ nghĩa + BM25</p>
+        </article>
+        <article class="metric-card">
+          <span class="metric-label">Xếp hạng</span>
+          <strong>RRF</strong>
+          <p>Gộp thứ hạng dense và sparse</p>
+        </article>
+        <article class="metric-card">
+          <span class="metric-label">Dự phòng</span>
+          <strong>PageIndex</strong>
+          <p>Tra cứu tài liệu không cần vector</p>
+        </article>
+        <article class="metric-card">
+          <span class="metric-label">Trả lời</span>
+          <strong>Citation</strong>
+          <p>Câu trả lời bám nguồn</p>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <div class="chat-panel">
+          <div class="panel-header">
+            <div>
+              <h2>Hỏi đáp</h2>
+              <p>Đặt câu hỏi về thanh toán, đổi trả, hoàn tiền, bảo mật hoặc quy định người bán.</p>
+            </div>
+            <span class="status-pill">Giao diện demo</span>
+          </div>
+
+          <div id="chatLog" class="chat-log" aria-live="polite">
+            <div class="message assistant">
+              <div class="avatar">AI</div>
+              <div class="bubble">
+                <span class="role-label">Trợ lý RAG</span>
+                <p>Xin chào. Hãy chọn câu hỏi mẫu hoặc nhập câu hỏi của bạn để xem cách giao diện hiển thị câu trả lời kèm trích dẫn nguồn.</p>
+              </div>
+            </div>
+          </div>
+
+          <form id="chatForm" class="composer">
+            <input id="queryInput" type="text" autocomplete="off" placeholder="Nhập câu hỏi của bạn...">
+            <button type="submit">Gửi</button>
+          </form>
+        </div>
+
+        <aside class="insight-panel">
+          <section class="panel-block">
+            <div class="panel-header slim">
+              <h2>Nguồn tham khảo</h2>
+              <span id="sourceCount" class="count-badge">3</span>
+            </div>
+            <div id="sourceList" class="source-list"></div>
+          </section>
+
+          <section class="panel-block">
+            <div class="panel-header slim">
+              <h2>Luồng xử lý</h2>
+            </div>
+            <ol id="traceList" class="trace-list">
+              <li><span></span>Đang chờ câu hỏi</li>
+              <li><span></span>Truy xuất ngữ cảnh</li>
+              <li><span></span>Sinh câu trả lời bám nguồn</li>
+            </ol>
+          </section>
+
+          <section class="panel-block">
+            <div class="panel-header slim">
+              <h2>Kết quả đánh giá mẫu</h2>
+            </div>
+            <div class="score-grid">
+              <div><strong>0.86</strong><span>Faithfulness</span></div>
+              <div><strong>0.82</strong><span>Answer Relevance</span></div>
+              <div><strong>0.78</strong><span>Context Recall</span></div>
+              <div><strong>0.80</strong><span>Context Precision</span></div>
+            </div>
+          </section>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>
