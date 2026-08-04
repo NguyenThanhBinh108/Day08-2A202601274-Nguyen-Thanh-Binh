@@ -1,7 +1,7 @@
 # Huong Dan Theo Doi Don Hang Tren Shopee - Chi Tiet Tung Buoc
 
 **Source:** https://help.shopee.vn/portal/4/article/79569  
-**Crawled:** 2026-08-04T15:31:22.712625  
+**Crawled:** 2026-08-04T16:19:17.561975  
 **Customer Role:** buyer  
 **Category:** order-tracking  
 

@@ -37,8 +37,11 @@ TOP_P = 0.9
 # Chọn 0.3 vì: RAG cần factual, ít sáng tạo
 TEMPERATURE = 0.3
 
-# TODO: Chọn LLM model (OpenRouter model ID)
-LLM_MODEL = os.getenv("OPENROUTER_MODEL", "openai/gpt-4o-mini")
+# Model free trên OpenRouter (không cần credit) — đã test thực tế 04/08/2026, trả lời
+# tiếng Việt sạch, tuân thủ đúng format citation. "openai/gpt-4o-mini" (bản trả phí) sẽ
+# lỗi 402 Insufficient credits nếu key không có credit — set OPENROUTER_MODEL trong .env
+# để override nếu tài khoản của bạn có credit và muốn dùng model mạnh hơn.
+LLM_MODEL = os.getenv("OPENROUTER_MODEL", "openai/gpt-oss-20b:free")
 
 
 # =============================================================================
@@ -181,7 +184,10 @@ def generate_with_citation(
                 top_p=TOP_P,
             )
             answer = response.choices[0].message.content
-        except Exception:
+            if not answer or not answer.strip():
+                raise ValueError(f"LLM '{LLM_MODEL}' returned empty content")
+        except Exception as exc:
+            print(f"[Task10] LLM call that bai ({LLM_MODEL}): {exc} -> dung extractive fallback")
             answer = _extractive_answer(query, reordered)
     else:
         answer = _extractive_answer(query, reordered)

@@ -1,7 +1,7 @@
 # Huong Dan Yeu Cau Hoan Tien Tung Buoc - Shopee Vietnam
 
 **Source:** https://help.shopee.vn/portal/4/article/77251  
-**Crawled:** 2026-08-04T15:31:22.712625  
+**Crawled:** 2026-08-04T16:19:17.561975  
 **Customer Role:** buyer  
 **Category:** returns  
 

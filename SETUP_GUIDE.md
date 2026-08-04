@@ -6,12 +6,12 @@ Hướng dẫn này dành cho người **chưa từng đụng vào project**, đ
 
 ## 0. Yêu cầu trước khi bắt đầu
 
-| Yêu cầu | Ghi chú |
-|---|---|
-| Python **3.10+** | Kiểm tra: `python --version` |
-| ~3GB dung lượng trống | Cho venv + model embedding (`sentence-transformers` tải model ~80MB, cache tại `~/.cache/huggingface`) |
-| Kết nối mạng | Cần cho: cài package, tải model embedding lần đầu, gọi LLM (OpenRouter) |
-| 1 API key OpenRouter (miễn phí) | Bắt buộc để chạy **Task 10 (sinh câu trả lời)** và chatbot. Đăng ký tại https://openrouter.ai/ → tạo key dạng `sk-or-v1-...` |
+| Yêu cầu                         | Ghi chú                                                                                                                                            |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Python**3.10+**             | Kiểm tra:`python --version`                                                                                                                      |
+| ~3GB dung lượng trống          | Cho venv + model embedding (`sentence-transformers` tải model ~80MB, cache tại `~/.cache/huggingface`)                                        |
+| Kết nối mạng                   | Cần cho: cài package, tải model embedding lần đầu, gọi LLM (OpenRouter)                                                                      |
+| 1 API key OpenRouter (miễn phí) | Bắt buộc để chạy**Task 10 (sinh câu trả lời)** và chatbot. Đăng ký tại https://openrouter.ai/ → tạo key dạng `sk-or-v1-...` |
 
 Không có API key vẫn chạy được Task 1-9 (thu thập dữ liệu, indexing, search, rerank) — chỉ Task 10 (LLM trả lời) và giao diện chat mới cần key.
 
@@ -127,6 +127,7 @@ python app.py
 Mở trình duyệt tại **http://localhost:5500**. Nhấn `Ctrl+C` trong terminal để dừng server.
 
 Giao diện gồm:
+
 - `index.html` — cấu trúc trang
 - `assets/styles.css` / `assets/script.js` — style & tương tác
 - `server.py` — HTTP server local, expose API `POST /api/chat` gọi `src/task10_generation.py`
@@ -142,6 +143,7 @@ python -m group_project.evaluation.eval_pipeline
 ```
 
 ⚠️ **Hiện tại `group_project/evaluation/eval_pipeline.py` mới là file khung (`TODO` + `NotImplementedError`)** — chạy lệnh trên chỉ in ra `⚠ Implement evaluation logic and run again!`, chưa thực sự đánh giá gì. Đây là phần việc của Role Evaluation & QA, cần được hoàn thiện trước CP5 (xem `group_project/README.md` và `LAB_GUIDE.md` mục Checkpoint 5):
+
 1. Import `generate_with_citation` từ `src/task10_generation.py`.
 2. Chọn 1 trong 3 framework có sẵn code mẫu trong file (`evaluate_with_ragas` / `evaluate_with_deepeval` / `evaluate_with_trulens`).
 3. Implement `export_results()` để ghi bảng điểm ra `results.md`.
@@ -167,19 +169,19 @@ python src/task4_chunking_indexing.py
 
 ## 🚨 Lỗi thường gặp
 
-| # | Lỗi / Hiện tượng | Nguyên nhân | Cách khắc phục |
-|:-:|---|---|---|
-| 1 | `FPDFException: Not enough horizontal space...` (Task 1) | Bug đã biết trong `fpdf2` khi `multi_cell()` không reset `new_x` về lề trái | Đã fix trong `src/task1_collect_legal_docs.py` (thêm `new_x="LMARGIN", new_y="NEXT"`). Nếu vẫn gặp, đảm bảo đang dùng đúng file đã fix (kéo code mới nhất). |
-| 2 | `MissingDependencyException` (Task 3, convert PDF) | Thiếu extra `[pdf]` của `markitdown` | `pip install "markitdown[pdf]"` |
-| 3 | `Executable doesn't exist` (crawl4ai/playwright) | Chưa cài Chromium binary | `playwright install chromium` |
-| 4 | `UnicodeEncodeError`/`UnicodeDecodeError` trên Windows console (vd. chạy `check_environment.py`) | Console mặc định cp1252/cp1258 thay vì UTF-8 | Chạy `$env:PYTHONIOENCODING="utf-8"` trước khi gọi `python ...`, hoặc dùng `python -X utf8 <script>` |
-| 5 | `pip`/`python` không nhận lệnh | Chưa kích hoạt venv | Chạy lại `.\.venv\Scripts\Activate.ps1` (thấy `(.venv)` ở đầu dòng lệnh là đã bật) |
-| 6 | Chatbot trả lời rỗng / "cannot verify" liên tục | `chroma_db/` chưa được index (chưa chạy Task 4), hoặc đang hỏi ngoài domain (đúng như thiết kế fallback) | Chạy lại `python src/task4_chunking_indexing.py`, kiểm tra `chroma_db/` không rỗng |
-| 7 | `401 Unauthorized` khi gọi LLM | `OPENROUTER_API_KEY` sai/thiếu trong `.env` | Kiểm tra key bắt đầu bằng `sk-or-`, không có dấu cách/thừa dòng |
-| 8 | `429 Too Many Requests` | Vượt quota free của OpenRouter (50 req/ngày/tài khoản) | Đợi reset ngày hôm sau, hoặc nạp $10 credit để lên 1000 req/ngày |
-| 9 | Task 8 (PageIndex) không trả kết quả thật | Thiếu `PAGEINDEX_API_KEY` (tùy chọn) | Bỏ qua nếu chỉ cần demo — code tự dùng fallback nội bộ. Muốn dùng PageIndex thật: đăng ký tại pageindex.ai rồi điền key vào `.env` |
-| 10 | Test Task 4/5 fail vì model tải quá lâu / timeout | Lần đầu tải `sentence-transformers/all-MiniLM-L6-v2` (~80MB) qua mạng chậm | Chạy `python src/task4_chunking_indexing.py` riêng 1 lần trước để model cache vào `~/.cache/huggingface`, các lần sau tức thì |
-| 11 | Đổi corpus nhưng kết quả search vẫn cũ | ChromaDB cũ chưa xóa | Xem mục 6 — xóa `chroma_db/` rồi index lại |
+| # | Lỗi / Hiện tượng                                                                                     | Nguyên nhân                                                                                                             | Cách khắc phục                                                                                                                                                                |
+| :-: | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1 | `FPDFException: Not enough horizontal space...` (Task 1)                                               | Bug đã biết trong`fpdf2` khi `multi_cell()` không reset `new_x` về lề trái                                   | Đã fix trong`src/task1_collect_legal_docs.py` (thêm `new_x="LMARGIN", new_y="NEXT"`). Nếu vẫn gặp, đảm bảo đang dùng đúng file đã fix (kéo code mới nhất). |
+| 2 | `MissingDependencyException` (Task 3, convert PDF)                                                     | Thiếu extra`[pdf]` của `markitdown`                                                                                 | `pip install "markitdown[pdf]"`                                                                                                                                                |
+| 3 | `Executable doesn't exist` (crawl4ai/playwright)                                                       | Chưa cài Chromium binary                                                                                                | `playwright install chromium`                                                                                                                                                  |
+| 4 | `UnicodeEncodeError`/`UnicodeDecodeError` trên Windows console (vd. chạy `check_environment.py`) | Console mặc định cp1252/cp1258 thay vì UTF-8                                                                          | Chạy`$env:PYTHONIOENCODING="utf-8"` trước khi gọi `python ...`, hoặc dùng `python -X utf8 <script>`                                                                  |
+| 5 | `pip`/`python` không nhận lệnh                                                                    | Chưa kích hoạt venv                                                                                                    | Chạy lại`.\.venv\Scripts\Activate.ps1` (thấy `(.venv)` ở đầu dòng lệnh là đã bật)                                                                                |
+| 6 | Chatbot trả lời rỗng / "cannot verify" liên tục                                                     | `chroma_db/` chưa được index (chưa chạy Task 4), hoặc đang hỏi ngoài domain (đúng như thiết kế fallback) | Chạy lại`python src/task4_chunking_indexing.py`, kiểm tra `chroma_db/` không rỗng                                                                                       |
+| 7 | `401 Unauthorized` khi gọi LLM                                                                        | `OPENROUTER_API_KEY` sai/thiếu trong `.env`                                                                          | Kiểm tra key bắt đầu bằng`sk-or-`, không có dấu cách/thừa dòng                                                                                                      |
+| 8 | `429 Too Many Requests`                                                                                | Vượt quota free của OpenRouter (50 req/ngày/tài khoản)                                                              | Đợi reset ngày hôm sau, hoặc nạp $10 credit để lên 1000 req/ngày                                                                                                       |
+| 9 | Task 8 (PageIndex) không trả kết quả thật                                                           | Thiếu`PAGEINDEX_API_KEY` (tùy chọn)                                                                                  | Bỏ qua nếu chỉ cần demo — code tự dùng fallback nội bộ. Muốn dùng PageIndex thật: đăng ký tại pageindex.ai rồi điền key vào`.env`                          |
+| 10 | Test Task 4/5 fail vì model tải quá lâu / timeout                                                    | Lần đầu tải`sentence-transformers/all-MiniLM-L6-v2` (~80MB) qua mạng chậm                                         | Chạy`python src/task4_chunking_indexing.py` riêng 1 lần trước để model cache vào `~/.cache/huggingface`, các lần sau tức thì                                     |
+| 11 | Đổi corpus nhưng kết quả search vẫn cũ                                                            | ChromaDB cũ chưa xóa                                                                                                   | Xem mục 6 — xóa`chroma_db/` rồi index lại                                                                                                                                 |
 
 ---
 
@@ -191,3 +193,11 @@ python src/task4_chunking_indexing.py
 - [ ] `chroma_db/` không rỗng
 - [ ] `pytest tests/test_individual.py -v` → 35 passed
 - [ ] `python app.py` → mở `http://localhost:5500`, hỏi thử 1 câu và nhận được câu trả lời kèm trích dẫn nguồn
+
+```powershell
+dir data\landing\legal\      # kỳ vọng: 14 file .pdf + documents_index.json
+dir data\landing\news\       # kỳ vọng: 10 file .json
+dir data\standardized\legal  # kỳ vọng: 14 file .md
+dir data\standardized\news   # kỳ vọng: 10 file .md
+dir chroma_db\               # kỳ vọng: có file, không rỗng
+```
