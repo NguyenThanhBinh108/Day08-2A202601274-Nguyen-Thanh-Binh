@@ -1,0 +1,156 @@
+[
+  {
+    "filename": "return-refund-policy-shopee.pdf",
+    "doc_id": "return-refund-policy",
+    "title": "Chinh Sach Tra Hang va Hoan Tien - Shopee Vietnam",
+    "customer_role": "buyer",
+    "category": "returns",
+    "source_url": "https://help.shopee.vn/portal/4/article/77251",
+    "document_version": "2026-03-11",
+    "language": "vi",
+    "local_path": "D:\\VINAI_Team_093\\LAB\\Day08-2A202601274-Nguyen-Thanh-Binh\\data\\landing\\legal\\return-refund-policy-shopee.pdf"
+  },
+  {
+    "filename": "return-shipping-fee-shopee.pdf",
+    "doc_id": "return-shipping-fee",
+    "title": "Cac Phuong Thuc Gui Hang Hoan Tra va Phi Hoan Tra - Shopee",
+    "customer_role": "buyer",
+    "category": "returns",
+    "source_url": "https://help.shopee.vn/portal/4/article/189477",
+    "document_version": "not-stated",
+    "language": "vi",
+    "local_path": "D:\\VINAI_Team_093\\LAB\\Day08-2A202601274-Nguyen-Thanh-Binh\\data\\landing\\legal\\return-shipping-fee-shopee.pdf"
+  },
+  {
+    "filename": "payment-methods-shopee.pdf",
+    "doc_id": "payment-methods",
+    "title": "Phuong Thuc Thanh Toan Tren Shopee Vietnam",
+    "customer_role": "buyer",
+    "category": "payment",
+    "source_url": "https://help.shopee.vn/portal/4/article/79198",
+    "document_version": "not-stated",
+    "language": "vi",
+    "local_path": "D:\\VINAI_Team_093\\LAB\\Day08-2A202601274-Nguyen-Thanh-Binh\\data\\landing\\legal\\payment-methods-shopee.pdf"
+  },
+  {
+    "filename": "seller-listing-rules-shopee.pdf",
+    "doc_id": "seller-listing-rules",
+    "title": "Quy Dinh Ve Dang Ban San Pham Tren Shopee Vietnam",
+    "customer_role": "seller",
+    "category": "seller-policy",
+    "source_url": "https://help.shopee.vn/portal/4/article/77246",
+    "document_version": "2024-08-21",
+    "language": "vi",
+    "local_path": "D:\\VINAI_Team_093\\LAB\\Day08-2A202601274-Nguyen-Thanh-Binh\\data\\landing\\legal\\seller-listing-rules-shopee.pdf"
+  },
+  {
+    "filename": "marketplace-operating-regulation-shopee.pdf",
+    "doc_id": "marketplace-operating-regulation",
+    "title": "Quy Che Hoat Dong San Thuong Mai Dien Tu Shopee.vn",
+    "customer_role": "both",
+    "category": "seller-policy",
+    "source_url": "https://help.shopee.vn/portal/4/article/77245",
+    "document_version": "2025-01-10",
+    "language": "vi",
+    "local_path": "D:\\VINAI_Team_093\\LAB\\Day08-2A202601274-Nguyen-Thanh-Binh\\data\\landing\\legal\\marketplace-operating-regulation-shopee.pdf"
+  },
+  {
+    "filename": "restricted-products-policy-shopee.pdf",
+    "doc_id": "restricted-products-policy",
+    "title": "Chinh Sach Cam / Han Che San Pham Tren Shopee Vietnam",
+    "customer_role": "seller",
+    "category": "seller-policy",
+    "source_url": "https://help.shopee.vn/portal/4/article/77247",
+    "document_version": "2025-05-05",
+    "language": "vi",
+    "local_path": "D:\\VINAI_Team_093\\LAB\\Day08-2A202601274-Nguyen-Thanh-Binh\\data\\landing\\legal\\restricted-products-policy-shopee.pdf"
+  },
+  {
+    "filename": "delivery-process-shopee.pdf",
+    "doc_id": "delivery-process",
+    "title": "Quy Trinh Giao Nhan Hang Tren Shopee Vietnam",
+    "customer_role": "buyer",
+    "category": "shipping",
+    "source_url": "https://help.shopee.vn/portal/4/article/79569",
+    "document_version": "2023-05-19",
+    "language": "vi",
+    "local_path": "D:\\VINAI_Team_093\\LAB\\Day08-2A202601274-Nguyen-Thanh-Binh\\data\\landing\\legal\\delivery-process-shopee.pdf"
+  },
+  {
+    "filename": "privacy-policy-shopee.pdf",
+    "doc_id": "privacy-policy",
+    "title": "Chinh Sach Bao Mat - Shopee Vietnam",
+    "customer_role": "both",
+    "category": "privacy",
+    "source_url": "https://help.shopee.vn/portal/4/article/77244",
+    "document_version": "2026-06-11",
+    "language": "vi",
+    "local_path": "D:\\VINAI_Team_093\\LAB\\Day08-2A202601274-Nguyen-Thanh-Binh\\data\\landing\\legal\\privacy-policy-shopee.pdf"
+  },
+  {
+    "filename": "voucher-discount-policy-shopee.pdf",
+    "doc_id": "voucher-discount-policy",
+    "title": "Chinh Sach Chung Ve Ma Giam Gia Shopee Vietnam",
+    "customer_role": "both",
+    "category": "promotion",
+    "source_url": "https://help.shopee.vn/portal/4/article/166085",
+    "document_version": "2026-05-23",
+    "language": "vi",
+    "local_path": "D:\\VINAI_Team_093\\LAB\\Day08-2A202601274-Nguyen-Thanh-Binh\\data\\landing\\legal\\voucher-discount-policy-shopee.pdf"
+  },
+  {
+    "filename": "shipping-fee-discount-program-shopee.pdf",
+    "doc_id": "shipping-fee-discount-program",
+    "title": "Dieu Khoan Chuong Trinh Uu Dai Phi Van Chuyen - Nguoi Ban Shopee",
+    "customer_role": "seller",
+    "category": "shipping",
+    "source_url": "https://help.shopee.vn/portal/4/article/77263",
+    "document_version": "2024-07-03",
+    "language": "vi",
+    "local_path": "D:\\VINAI_Team_093\\LAB\\Day08-2A202601274-Nguyen-Thanh-Binh\\data\\landing\\legal\\shipping-fee-discount-program-shopee.pdf"
+  },
+  {
+    "filename": "dispute-resolution-policy-shopee.pdf",
+    "doc_id": "dispute-resolution-policy",
+    "title": "Chinh Sach Giai Quyet Tranh Chap - Shopee Vietnam",
+    "customer_role": "both",
+    "category": "dispute",
+    "source_url": "https://help.shopee.vn/portal/4/article/77255",
+    "document_version": "2025-01-01",
+    "language": "vi",
+    "local_path": "D:\\VINAI_Team_093\\LAB\\Day08-2A202601274-Nguyen-Thanh-Binh\\data\\landing\\legal\\dispute-resolution-policy-shopee.pdf"
+  },
+  {
+    "filename": "shopeepay-wallet-policy-shopee.pdf",
+    "doc_id": "shopeepay-wallet-policy",
+    "title": "Chinh Sach Va Huong Dan ShopeePay - Vi Dien Tu Shopee",
+    "customer_role": "buyer",
+    "category": "payment",
+    "source_url": "https://help.shopee.vn/portal/4/article/77285",
+    "document_version": "2025-06-01",
+    "language": "vi",
+    "local_path": "D:\\VINAI_Team_093\\LAB\\Day08-2A202601274-Nguyen-Thanh-Binh\\data\\landing\\legal\\shopeepay-wallet-policy-shopee.pdf"
+  },
+  {
+    "filename": "seller-fee-commission-shopee.pdf",
+    "doc_id": "seller-fee-commission",
+    "title": "Chinh Sach Phi Va Hoa Hong Nguoi Ban - Shopee Vietnam",
+    "customer_role": "seller",
+    "category": "seller-policy",
+    "source_url": "https://help.shopee.vn/portal/4/article/77260",
+    "document_version": "2025-01-01",
+    "language": "vi",
+    "local_path": "D:\\VINAI_Team_093\\LAB\\Day08-2A202601274-Nguyen-Thanh-Binh\\data\\landing\\legal\\seller-fee-commission-shopee.pdf"
+  },
+  {
+    "filename": "cross-border-shopping-shopee.pdf",
+    "doc_id": "cross-border-shopping",
+    "title": "Huong Dan Mua Hang Xuyen Bien Gioi (Cross-Border) Shopee",
+    "customer_role": "buyer",
+    "category": "shipping",
+    "source_url": "https://help.shopee.vn/portal/4/article/77290",
+    "document_version": "2025-01-01",
+    "language": "vi",
+    "local_path": "D:\\VINAI_Team_093\\LAB\\Day08-2A202601274-Nguyen-Thanh-Binh\\data\\landing\\legal\\cross-border-shopping-shopee.pdf"
+  }
+]
