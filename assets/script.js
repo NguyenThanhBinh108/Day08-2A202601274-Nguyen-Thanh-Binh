@@ -99,9 +99,19 @@ function pickAnswer(query) {
   };
 }
 
+function normalizeSource(source, index) {
+  const metadata = source.metadata || {};
+  return {
+    title: source.title || metadata.source || metadata.path || `Nguồn ${index + 1}`,
+    score: Number(source.score || 0).toFixed(4),
+    text: source.text || source.content || "Không có nội dung xem trước."
+  };
+}
+
 function renderSources(sources) {
-  sourceCount.textContent = sources.length;
-  sourceList.innerHTML = sources.map((source) => `
+  const normalizedSources = sources.map(normalizeSource);
+  sourceCount.textContent = normalizedSources.length;
+  sourceList.innerHTML = normalizedSources.map((source) => `
     <article class="source-card">
       <div class="source-title">
         <span>${escapeHtml(source.title)}</span>
@@ -126,17 +136,43 @@ function setTrace(active) {
   `).join("");
 }
 
-function handleQuery(query) {
+async function askBackend(query) {
+  const response = await fetch("/api/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      query,
+      top_k: Number(topK.value)
+    })
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.detail || data.error || "Không thể gọi backend RAG.");
+  }
+  return data;
+}
+
+async function handleQuery(query) {
   if (!query.trim()) return;
 
   addMessage("user", query);
   setTrace(true);
 
-  window.setTimeout(() => {
+  try {
+    const result = await askBackend(query);
+    addMessage("assistant", result.answer || "Tôi không thể xác minh thông tin này từ nguồn hiện có.");
+    renderSources(result.sources || []);
+  } catch (error) {
     const result = pickAnswer(query);
-    addMessage("assistant", result.answer);
+    addMessage(
+      "assistant",
+      `${result.answer}\n\n[Lưu ý: Hiện đang dùng câu trả lời demo vì backend chưa chạy hoặc chưa có dữ liệu.]`
+    );
     renderSources(result.sources);
-  }, 220);
+  }
 }
 
 document.querySelectorAll(".suggestion").forEach((button) => {

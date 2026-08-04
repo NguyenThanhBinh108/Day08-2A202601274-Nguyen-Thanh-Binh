@@ -594,15 +594,12 @@ run_dashboard()
 ### Hướng Dẫn Chạy
 
 ```bash
-# Cài đặt dependencies
-pip install -r requirements.txt
-
 # Chạy giao diện demo
-# Cách 1: mở trực tiếp index.html trong trình duyệt
+py server.py
+# hoặc
+py app.py
 
-# Cách 2: chạy local server
-py -m http.server 5500
-# Sau đó mở http://localhost:5500/index.html
+# Sau đó mở http://localhost:5500
 ```
 
 ---
