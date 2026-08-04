@@ -12,6 +12,11 @@ venv/
 # Temp PDF conversion cache
 data/_tmp_pdf/
 
+# Vector store — sinh lai duoc bang `python -m src.task4_chunking_indexing`.
+# KHONG commit: la DB nhi phan ~7MB, nhieu nguoi cung push se conflict lien mien.
+# Nguoc lai data/ thi PHAI commit vi test cham diem doc file that trong do.
+chroma_db/
+
 # Temp / cache
 .pytest_cache/
 *.tmp
