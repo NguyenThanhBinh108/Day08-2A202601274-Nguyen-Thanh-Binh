@@ -1,4 +1,4 @@
-﻿"""
+"""
 RAG Chatbot — E-commerce Support
 Streamlit app kết nối RAG Retrieval (Task 9) và Generation (Task 10).
 
@@ -264,7 +264,29 @@ def render_trace(result: dict, elapsed: float, top_k: int, reranking: bool) -> s
     n_src = len(result.get("sources", []))
     is_fb = route == "pageindex"
 
+    # Nhánh không đi qua retrieval: chỉ hiện router + kết quả, không vẽ các bước
+    # semantic/BM25/RRF vì chúng KHÔNG chạy. Vẽ chúng ra sẽ nói dối về luồng.
+    decision = result.get("route", "retrieve")
+    if decision != "retrieve":
+        label = {"chitchat": "Chitchat", "blocked": "Chặn", "empty": "Rỗng"}.get(
+            decision, decision
+        )
+        cls = "alt" if decision == "chitchat" else "off"
+        return (
+            '<div class="trace">'
+            f'<div class="trace-step on"><span class="k">Router</span>'
+            f'<span class="v">{esc(result.get("route_reason", ""))[:34]}</span></div>'
+            '<span class="trace-arrow">→</span>'
+            f'<div class="trace-step {cls}"><span class="k">{label}</span>'
+            f'<span class="v">không truy hồi</span></div>'
+            '<span class="trace-arrow">→</span>'
+            f'<div class="trace-step on"><span class="k">Trả lời</span>'
+            f'<span class="v">{elapsed:.1f}s</span></div>'
+            "</div>"
+        )
+
     steps = [
+        ("Router", "cần truy hồi", "on"),
         ("Semantic", f"bge-m3 · k={top_k * 2}", "on"),
         ("BM25", f"lexical · k={top_k * 2}", "on"),
         ("RRF", "k=60", "on"),
@@ -457,6 +479,7 @@ if query:
     with st.chat_message("assistant"):
         with st.spinner("Đang truy hồi tài liệu và tổng hợp câu trả lời…"):
             trace_html = ""
+            warnings: list[str] = []
             try:
                 from src.task10_generation import generate_with_citation
 
@@ -466,6 +489,7 @@ if query:
 
                 answer = response.get("answer", "Chưa thể trả lời.")
                 sources = response.get("sources", [])
+                warnings = response.get("warnings", [])
                 trace_html = render_trace(response, elapsed, top_k, use_rerank)
 
             except NotImplementedError:
@@ -481,6 +505,8 @@ if query:
         st.markdown(answer)
         if trace_html and show_trace:
             st.markdown(trace_html, unsafe_allow_html=True)
+        for warning in warnings:
+            st.caption(f"⚠️ {warning}")
         if sources:
             with st.expander(f"Nguồn tham khảo — {len(sources)} chunk", expanded=True):
                 st.markdown(render_sources(sources), unsafe_allow_html=True)

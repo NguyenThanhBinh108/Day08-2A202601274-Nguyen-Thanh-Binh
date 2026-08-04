@@ -17,6 +17,17 @@ import os
 import re
 from typing import Any, Callable, Optional
 
+from .guardrails import (
+    BLOCKED_ANSWER,
+    CHITCHAT_FALLBACK_ANSWER,
+    CHITCHAT_SYSTEM_PROMPT,
+    EMPTY_ANSWER,
+    Route,
+    RouteDecision,
+    audit_answer,
+    classify_query,
+)
+
 # Import "chịu lỗi": nếu một module anh em (task5..task9) chưa được implement xong hoặc
 # thiếu thư viện, việc `import src.task10_generation` vẫn phải thành công — pytest import
 # toàn bộ module trước khi chạy test, import không được phép crash (quy tắc lazy loading).
@@ -460,17 +471,110 @@ def _call_llm(client: Any, model: str, user_message: str) -> str:
 # GENERATION
 # =============================================================================
 
+def _route_response(answer: str, decision: RouteDecision, **extra: Any) -> dict:
+    """Dựng dict trả về chuẩn cho các nhánh KHÔNG chạy retrieval."""
+    payload = {
+        "answer": answer,
+        "sources": [],
+        "model": "none",
+        "used_llm": False,
+        "retrieval_source": "none",
+        "route": decision.route.value,
+        "route_reason": decision.reason,
+        "warnings": [],
+    }
+    payload.update(extra)
+    return payload
+
+
+def _finish(
+    answer: str,
+    chunks: list[dict],
+    model: str,
+    used_llm: bool,
+    retrieval_source: str,
+    decision: RouteDecision,
+) -> dict:
+    """
+    Chạy output guardrail rồi dựng dict trả về cho nhánh RAG.
+
+    Nguyên tắc "không tin đầu ra của model": prompt đã cấm chép URL và bắt trích
+    dẫn đúng số, nhưng vẫn phải kiểm lại bằng code. Model có thể lờ chỉ dẫn, và
+    một trích dẫn [7] khi chỉ có 5 nguồn sẽ khiến người dùng tin vào thứ không
+    tồn tại.
+    """
+    audit = audit_answer(answer, n_sources=len(chunks))
+    for warning in audit.warnings:
+        _safe_print(f"  ⚠ Guardrail: {warning}")
+
+    return {
+        "answer": audit.answer,
+        "sources": chunks,
+        "model": model,
+        "used_llm": used_llm,
+        "retrieval_source": retrieval_source,
+        "route": decision.route.value,
+        "route_reason": decision.reason,
+        "warnings": audit.warnings,
+        "citations_used": audit.citations_used,
+    }
+
+
+def _chitchat_response(query: str, decision: RouteDecision) -> dict:
+    """
+    Trả lời câu xã giao bằng LLM nhưng KHÔNG có tài liệu.
+
+    Dùng system prompt riêng (CHITCHAT_SYSTEM_PROMPT) khoá chặt phạm vi, nếu
+    không bot sẽ sẵn sàng giải toán hay viết code — biến một hệ RAG kiểm chứng
+    được thành trợ lý đa năng không nguồn gốc.
+
+    Không gọi được LLM (thiếu key / hết credit) thì dùng câu chào soạn sẵn —
+    nhánh này không cần LLM mới trả lời được.
+    """
+    client = _get_llm_client(_get_api_key())
+    if client is None:
+        return _route_response(CHITCHAT_FALLBACK_ANSWER, decision)
+
+    for model in [LLM_MODEL, *FALLBACK_LLM_MODELS]:
+        try:
+            response = client.chat.completions.create(
+                model=model,
+                messages=[
+                    {"role": "system", "content": CHITCHAT_SYSTEM_PROMPT},
+                    {"role": "user", "content": query},
+                ],
+                temperature=0.5,      # Cao hơn nhánh RAG: lời chào cần tự nhiên,
+                top_p=TOP_P,          # không cần bám sát tài liệu như câu trả lời có trích dẫn.
+                max_tokens=250,       # Prompt yêu cầu tối đa 3 câu.
+            )
+            answer = (response.choices[0].message.content or "").strip()
+            if answer:
+                return _route_response(
+                    answer, decision, model=model, used_llm=True
+                )
+        except Exception as exc:  # noqa: BLE001 — thử model kế tiếp
+            _safe_print(f"  ⚠ Chitchat model '{model}' lỗi ({exc}) — thử model kế tiếp")
+
+    return _route_response(CHITCHAT_FALLBACK_ANSWER, decision)
+
+
 def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
     """
     End-to-end RAG generation có citation.
 
     Pipeline:
+        0. Router + input guardrail  ← quyết định có cần retrieval hay không
         1. Retrieve relevant chunks
         2. Reorder để tránh lost in the middle
         3. Format context với source labels
         4. Build prompt (system + context + query)
         5. Call LLM
-        6. Return answer + sources
+        6. Output guardrail rồi return answer + sources
+
+    Bước 0 là bổ sung so với đề bài. Lý do: pipeline RAG thuần coi mọi input đều
+    là câu hỏi cần tra tài liệu, nên gõ "hi" cũng chạy hết semantic + BM25 + RRF
+    + rerank rồi trả về "không xác minh được" — vô nghĩa với người dùng và lãng
+    phí một lượt gọi LLM. Router chặn ngay ở đầu.
 
     Args:
         query: Câu hỏi của user
@@ -479,9 +583,28 @@ def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
         {
             'answer': str,           # Câu trả lời có citation
             'sources': list[dict],   # Các chunks đã dùng
-            'retrieval_source': str  # 'hybrid' hoặc 'pageindex'
+            'retrieval_source': str, # 'hybrid' | 'pageindex' | 'none'
+            'route': str,            # 'retrieve' | 'chitchat' | 'blocked' | 'empty'
+            'route_reason': str,     # Vì sao chọn nhánh đó (hiển thị lên trace)
+            'warnings': list[str],   # Cảnh báo từ output guardrail
         }
     """
+    # ---- Step 0: Router + input guardrail ---------------------------------
+    decision = classify_query(query)
+
+    if decision.route is Route.EMPTY:
+        return _route_response(EMPTY_ANSWER, decision)
+
+    if decision.route is Route.BLOCKED:
+        _safe_print(f"  ⛔ Chặn truy vấn: {decision.reason} ({decision.matched!r})")
+        # KHÔNG gọi LLM ở nhánh này — gửi nội dung tấn công cho model là vô nghĩa
+        # và vẫn tốn tiền. Trả câu từ chối cố định.
+        return _route_response(BLOCKED_ANSWER, decision)
+
+    if decision.route is Route.CHITCHAT:
+        _safe_print(f"  💬 Nhánh chitchat: {decision.reason} — bỏ qua retrieval")
+        return _chitchat_response(query, decision)
+
     # ---- Step 1: Retrieve -------------------------------------------------
     chunks: list[dict] = []
     retrieve_fn = _get_retrieve_fn()
@@ -497,13 +620,7 @@ def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
     if not chunks:
         # Không có evidence → trả lời "không xác minh được", KHÔNG gọi LLM (tránh hallucination)
         _safe_print("  ⚠ Không truy xuất được tài liệu nào cho query này.")
-        return {
-            "answer": NO_EVIDENCE_ANSWER,
-            "sources": [],
-            "model": "none",
-            "used_llm": False,
-            "retrieval_source": "none",
-        }
+        return _route_response(NO_EVIDENCE_ANSWER, decision)
 
     # ---- Step 2 + 3: Reorder rồi format context ---------------------------
     # Gắn citation_id THEO THỨ HẠNG ĐIỂM GỐC (trước khi reorder) trên bản copy nông,
@@ -534,13 +651,10 @@ def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
             else "không khởi tạo được LLM client"
         )
         _safe_print(f"  ⚠ Fallback extractive: {reason}")
-        return {
-            "answer": _extractive_answer(query, reordered, reason),
-            "sources": chunks,
-            "model": "extractive-fallback",
-            "used_llm": False,
-            "retrieval_source": retrieval_source,
-        }
+        return _finish(
+            _extractive_answer(query, reordered, reason),
+            chunks, "extractive-fallback", False, retrieval_source, decision,
+        )
 
     # Thử model chính trước, sau đó lần lượt các model ":free" miễn phí.
     # Lỗi hay gặp: 402 hết credit, 429 rate limit, 404 model bị gỡ, timeout mạng.
@@ -561,25 +675,16 @@ def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
         if model != LLM_MODEL:
             _safe_print(f"  ℹ Đã dùng model dự phòng: {model}")
 
-        # ---- Step 6: Return ----------------------------------------------
-        return {
-            "answer": answer,
-            "sources": chunks,
-            "model": model,
-            "used_llm": True,
-            "retrieval_source": retrieval_source,
-        }
+        # ---- Step 6: Output guardrail rồi return -------------------------
+        return _finish(answer, chunks, model, True, retrieval_source, decision)
 
     # Mọi model đều thất bại → extractive fallback, KHÔNG raise
     reason = f"tất cả model LLM đều lỗi (lỗi cuối: {last_error})"
     _safe_print(f"  ⚠ Fallback extractive: {reason}")
-    return {
-        "answer": _extractive_answer(query, reordered, reason),
-        "sources": chunks,
-        "model": "extractive-fallback",
-        "used_llm": False,
-        "retrieval_source": retrieval_source,
-    }
+    return _finish(
+        _extractive_answer(query, reordered, reason),
+        chunks, "extractive-fallback", False, retrieval_source, decision,
+    )
 
 
 if __name__ == "__main__":
