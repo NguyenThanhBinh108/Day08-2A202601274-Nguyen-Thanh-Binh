@@ -1,0 +1,23 @@
+# Cấu hình Streamlit cho bản demo.
+
+[server]
+# Mặc định Streamlit dùng watcher kiểu "module", nó duyệt qua sys.modules để phát
+# hiện thay đổi — việc này kéo theo import hàng loạt module xử lý ảnh của
+# transformers (aria, beit, detr, zoedepth...) vốn cần torchvision mà pipeline
+# text của bài lab không hề dùng, làm log đầy ModuleNotFoundError giả và khởi
+# động chậm hẳn. "poll" chỉ so sánh mtime của file nên sạch và nhanh hơn.
+fileWatcherType = "poll"
+headless = true
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+# Khoá theme sáng để giao diện demo giống hệt nhau trên mọi máy — nếu để
+# Streamlit tự đổi theo cài đặt hệ điều hành thì máy coach đang để dark mode sẽ
+# hiển thị widget nền tối lẫn với bảng màu giấy ấm bên dưới.
+base = "light"
+primaryColor = "#0E4F52"
+backgroundColor = "#FBF9F6"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#141C26"

@@ -5,115 +5,51 @@
 
 ---
 
-924430627270bfe73649-c901-4d0f-b7a4-dfae1a73fed6:19fcbc8620b19997
-[Skip to main content](https://www.ebay.com/help/buying/shipping-delivery/tracking-your-item?id=4027#mainContent)
-Hi! [Sign in](https://signin.ebay.com/ws/eBayISAPI.dll?SignIn&sgfl=gh&ru=https%3A%2F%2Fwww.ebay.com%2Fhelp%2Fbuying%2Fshipping-delivery%2Ftracking-your-item%3Fid%3D4027) or [register](https://signup.ebay.com/pa/crte?ru=https%3A%2F%2Fwww.ebay.com%2Fhelp%2Fbuying%2Fshipping-delivery%2Ftracking-your-item%3Fid%3D4027)[Deals](https://www.ebay.com/deals)[Brand Outlet](https://www.ebay.com/b/Brand-Outlet/bn_7115532402)[Help & Contact](https://www.ebay.com/help/home)
-Ship to
-[Sell](https://www.ebay.com/sl/sell)
-[Watchlist](https://www.ebay.com/mye/myebay/watchlist)Expand Watch List
-[My eBay](https://www.ebay.com/mys/home?source=GBH)Expand My eBay
-  * [Summary](https://www.ebay.com/mye/myebay/summary)
-  * [Recently Viewed](https://www.ebay.com/mye/myebay/rvi)
-  * [Bids/Offers](https://www.ebay.com/mye/myebay/bidsoffers)
-  * [Watchlist](https://www.ebay.com/mye/myebay/watchlist)
-  * [Purchase History](https://www.ebay.com/mye/myebay/purchase)
-  * [Buy Again](https://www.ebay.com/mye/buyagain)
-  * [Selling](https://www.ebay.com/mys/home?CurrentPage=MyeBayAllSelling&ssPageName=STRK:ME:LNLK:MESX&source=GBH)
-  * [Saved Feed](https://www.ebay.com/mye/myebay/saved)
-  * [Saved Searches](https://www.ebay.com/mye/myebay/savedsearches)
-  * [Saved Sellers](https://www.ebay.com/mye/myebay/savedsellers)
-  * [Payments](https://ppcapp.ebay.com/myppc/wallet/list)
-  * [My Garage](https://www.ebay.com/g/mygarage)
-  * [Preferences](https://www.ebay.com/d/myebay/preferences)
-  * [My Collection](https://www.ebay.com/collection/hub)
-  * [Messages](https://mesg.ebay.com/mesgweb/ViewMessages/0)
-  * [PSA Vault](https://www.ebay.com/collection/category?notionalTypeId=Vault&period=1Y)
-  * [Issue Resolution Center](https://resolution.ebay.com)
-
-
-Notifications
-Please [sign in](https://signin.ebay.com/ws/eBayISAPI.dll?SignIn&sgfl=nf&ru=https%3A%2F%2Fwww.ebay.com%2Fhelp%2Fbuying%2Fshipping-delivery%2Ftracking-your-item%3Fid%3D4027) to view notifications.
-[](https://cart.ebay.com)Expand Cart
-Loading...
-[eBay Home](https://www.ebay.com)
 # Customer Service
-  * [Home](https://www.ebay.com/)
-  *     * [Customer Service](https://www.ebay.com/help/home)
-  * [Customer Service](https://www.ebay.com/help/home)
-  * [Shipping and tracking](https://www.ebay.com/help/ship-track)
-  * [Shipping and tracking for buyers](https://www.ebay.com/help/ship-track/ship-track-buying)
-  * Tracking your item
+* Tracking your item
 
-
-This is search service rlogid:Search service rlogid = 
 ## Suggested Articles
 We're sorry, we couldn't find any results that match your search. Please try again.
 To help you find what you’re looking for:
-  * Try different search terms
-  * Use more general search terms
-  * Make sure all words are spelled correctly
-
+* Try different search terms
+* Use more general search terms
+* Make sure all words are spelled correctly
 
 ## Browse Help Articles
-Need more help?[Go to Help home](https://www.ebay.com/help/home)
 1 min article
 # Tracking your item
 ## On this page
-  * [Track your order](https://www.ebay.com/help/buying/shipping-delivery/tracking-your-item?id=4027#section1)
-  * [Track a guest order](https://www.ebay.com/help/buying/shipping-delivery/tracking-your-item?id=4027#section2)
-
 
 You can follow your package online all the way to your shipping address when the seller uploads tracking information.
 To improve your experience, please sign into your account.
-**[Sign in](https://signin.ebay.com/ws/eBayISAPI.dll?SignIn&UsingSSL=1&siteid=0&co_partnerId=2&pageType=2493094&ru=https%3A%2F%2Fwww.ebay.com%2Fhelp%2Fbuying%2Fshipping-delivery%2Ftracking-your-item%3Fid%3D4027)**
-Are you a seller looking to add tracking to your item? Read our article on [tracking items you’ve sold](https://www.ebay.com/help/selling/posting-items/tracking-items-youve-sold?id=4088)
+Are you a seller looking to add tracking to your item? Read our article on tracking items you’ve sold
 Once the seller ships your item, you can keep track of its progress on its way to you.
 ## Track your order
 If your seller is using a tracked shipping service, you’ll be able to view carrier information as well as your order’s current location. If your item isn’t sent with tracking, you’ll be able to see the expected delivery date for your package.
-[Track your item](https://www.ebay.com/help/action?&topicId=4027)
-You can also check your order’s delivery status in your [Purchase history - opens in new window or tab](https://www.ebay.com/myb/PurchaseHistory). If the seller is using a tracked service, you’ll see the item’s tracking number as a link next to the item.
-**Tip**  
-If the seller is using a tracked service but you can’t see a tracking number, they may need to upload the tracking information. You can [contact the seller](https://www.ebay.com/help/buying/resolving-issues-sellers/contacting-seller?id=4021) to ask them to add tracking.
+You can also check your order’s delivery status in your Purchase history. If the seller is using a tracked service, you’ll see the item’s tracking number as a link next to the item.
+**Tip**
+If the seller is using a tracked service but you can’t see a tracking number, they may need to upload the tracking information. You can contact the seller to ask them to add tracking.
 ## Track a guest order
 To track items you bought as a guest, you’ll need the order confirmation we sent to the email address you entered at checkout.
-  1. Find your eBay guest order confirmation email. The subject line starts with “Order Confirmed”.
-  2. Select **View order details**.
-  3. Select **Show shipping details**.
-
+1. Find your eBay guest order confirmation email. The subject line starts with “Order Confirmed”.
+2. Select **View order details**.
+3. Select **Show shipping details**.
 
 You’ll see a delivery status bar with a delivery company, tracking number, and the item’s current location. If you don’t see the tracking information you can select **Contact seller** on the Order Details page and ask the seller if they will upload the tracking number.
 If you can’t find your guest order confirmation email, select the button below and we’ll send you a link to your order details again.
-[Find guest order details](https://www.ebay.com/help/guest-order?topicId=4035)
 Top Takeaway
 ### You’ll only be able to track your order’s progress if the seller uses a tracked delivery service and uploads the tracking number to eBay.
 ### Was this article helpful for you?
-###  Related help topics
 See other articles in:
-  * [Shipping and tracking](https://www.ebay.com/help/ship-track)
-  * [Shipping and tracking for buyers](https://www.ebay.com/help/ship-track/ship-track-buying)
-
 
 You might also be interested in:
-  * [How bidding worksBidding on an eBay auction is a great way to get the item you want – at a bargain price. 4 min overview](https://www.ebay.com/help/buying/bidding/bidding-works?id=4003&ra=true)
-  * [Expected delivery dates for buyersExpected delivery dates let you know when you can expect an eBay item to arrive. 2 min article](https://www.ebay.com/help/ship-track/ship-track-buying/delivery-times-dates?id=4025&ra=true)
-  * [Shipping rates for buyersYou can find out how much shipping costs in the shipping section of every eBay listing. We always show the shipping cost separately from the item cost so you can see exactly how much you’ll pay for delivery before you go to checkout. 1 min article](https://www.ebay.com/help/ship-track/ship-track-buying/shipping-fees?id=4026&ra=true)
-  * [Changing your shipping details after a purchaseIf you’ve already completed your purchase but need to make a change to your address or shipping details, contact the seller as soon as possible to let them know. 3 min article](https://www.ebay.com/help/ship-track/ship-track-buying/choose-change-delivery-method?id=4028&ra=true)
-
+* How bidding worksBidding on an eBay auction is a great way to get the item you want – at a bargain price. 4 min overview
+* Expected delivery dates for buyersExpected delivery dates let you know when you can expect an eBay item to arrive. 2 min article
+* Shipping rates for buyersYou can find out how much shipping costs in the shipping section of every eBay listing. We always show the shipping cost separately from the item cost so you can see exactly how much you’ll pay for delivery before you go to checkout. 1 min article
+* Changing your shipping details after a purchaseIf you’ve already completed your purchase but need to make a change to your address or shipping details, contact the seller as soon as possible to let them know. 3 min article
 
 ## Need more help?
 Get the help you need from our automated assistant, or contact an agentContact us
-  * [About eBay](https://www.ebayinc.com)
-  * [Announcements](https://community.ebay.com/t5/Announcements/bg-p/Announcements)
-  * [Community](https://community.ebay.com)
-  * [Security Center](https://pages.ebay.com/securitycenter/index.html)
-  * [Seller Center](https://www.ebay.com/sellercenter)
-  * [Policies](https://www.ebay.com/help/policies/default/ebays-rules-policies?id=4205)
-  * [Affiliates](https://partnernetwork.ebay.com/)
-  * [Product Safety Tips](https://pages.ebay.com/safetytips)
-  * [Help & Contact](https://www.ebay.com/help/home)
-  * [Site Map](https://pages.ebay.com/sitemap.html)
 
-
-Copyright © 1995-2026 eBay Inc. All Rights Reserved. [Accessibility](https://www.ebayinc.com/accessibility/), [User Agreement](https://www.ebay.com/help/policies/member-behaviour-policies/user-agreement?id=4259), [Privacy](https://www.ebay.com/help/policies/member-behaviour-policies/user-privacy-notice-privacy-policy?id=4260), [Consumer Health Data](https://www.ebayinc.com/company/privacy-center/privacy-notice/consumer-health-data-privacy-policy/), [Payments Terms of Use](https://pages.ebay.com/payment/2.0/terms.html), [Cookies](https://www.ebay.com/help/policies/member-behaviour-policies/ebay-cookie-notice?id=4267), [CA Privacy Notice](https://www.ebayinc.com/company/privacy-center/privacy-notice/state-privacy-disclosures/#california), [Your Privacy Choices](https://www.ebay.com/adchoice/ccpa) and [AdChoice ](https://www.ebay.com/adchoice)
-Copyright © 1995-2026 eBay Inc. All Rights Reserved. [Accessibility](https://www.ebayinc.com/accessibility/), [User Agreement](https://www.ebay.com/help/policies/member-behaviour-policies/user-agreement?id=4259), [Privacy](https://www.ebay.com/help/policies/member-behaviour-policies/user-privacy-notice-privacy-policy?id=4260), [Consumer Health Data](https://www.ebayinc.com/company/privacy-center/privacy-notice/consumer-health-data-privacy-policy/), [Payments Terms of Use](https://pages.ebay.com/payment/2.0/terms.html), [Cookies](https://www.ebay.com/help/policies/member-behaviour-policies/ebay-cookie-notice?id=4267), [CA Privacy Notice](https://www.ebayinc.com/company/privacy-center/privacy-notice/state-privacy-disclosures/#california), [Your Privacy Choices](https://www.ebay.com/adchoice/ccpa) and [AdChoice](https://www.ebay.com/adchoice)
-![](https://rover.ebay.com/roverimp/0/0/9?imp=2046301&trknvp=cp%3D2493094%26ghi%3D98&1785830338743)
+Copyright © 1995-2026 eBay Inc. All Rights Reserved. Accessibility, User Agreement, Privacy, Consumer Health Data, Payments Terms of Use, Cookies, CA Privacy Notice, Your Privacy Choices and AdChoice
+Copyright © 1995-2026 eBay Inc. All Rights Reserved. Accessibility, User Agreement, Privacy, Consumer Health Data, Payments Terms of Use, Cookies, CA Privacy Notice, Your Privacy Choices and AdChoice

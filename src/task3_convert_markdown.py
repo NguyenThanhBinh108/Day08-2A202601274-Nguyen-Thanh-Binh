@@ -17,6 +17,7 @@ Hướng dẫn:
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any, Optional
@@ -72,13 +73,137 @@ def _get_markitdown() -> Optional[Any]:
     return _markitdown
 
 
-def _write_markdown(output_path: Path, text: str, source_name: str) -> bool:
+# ---------------------------------------------------------------------------
+# LÀM SẠCH MARKDOWN
+# ---------------------------------------------------------------------------
+# Vì sao bước này quan trọng: trang help center crawl về mang theo toàn bộ khung
+# điều hướng (Skip to main content / Sign in / Watchlist / Deals...), cú pháp
+# markdown link và URL trần. Đo trên corpus thật: 324.107 ký tự chứa tới 722
+# markdown link và 735 URL.
+#
+# Rác này đi thẳng vào chunk → vector store → context của LLM, khiến câu trả lời
+# lẫn nguyên chuỗi "[Check the status](https://www.ebay.com/help/action?topicid=...)"
+# và đọc như bị đứt đoạn. Làm sạch ở đây là rẻ nhất: sửa một lần, mọi task phía
+# sau (4, 5, 6, 8, 9, 10) đều hưởng.
+
+_RE_IMAGE = re.compile(r"!\[[^\]]*\]\([^)]*\)")
+_RE_LINK = re.compile(r"\[([^\]]*)\]\([^)]*\)")
+_RE_BARE_URL = re.compile(r"https?://\S+")
+# Chuỗi định danh phiên kiểu 924430616488a6f264e0-09af-46bb-...:19fcbc840a01
+_RE_SESSION_ID = re.compile(r"^[0-9a-f]{12,}[0-9a-f:\-]*$", re.IGNORECASE)
+_RE_BLANK_RUNS = re.compile(r"\n{3,}")
+_RE_INLINE_SPACES = re.compile(r"[ \t]{2,}")
+
+# Mẩu chữ do widget động của trang sinh ra, dính vào giữa câu nội dung thật.
+# Ví dụ: "Open a return request - opens in new window or tab" -> bỏ phần đuôi.
+_RE_WIDGET_NOISE = re.compile(
+    r"\s*[-–]\s*opens in (?:a )?new (?:window|tab)(?: or tab)?", re.IGNORECASE
+)
+
+# Dòng rác của khung tìm kiếm / trạng thái tải, không mang nội dung chính sách.
+_NOISE_MARKERS = ("rlogid", "loading...", "javascript is required")
+
+# Chỉ khớp khi CẢ DÒNG đúng bằng cụm này (so sánh sau khi lower + strip), nên không
+# xoá nhầm đoạn nội dung thật có chứa cùng từ khoá.
+_NAV_EXACT = frozenset(
+    {
+        "ship to", "sell", "watchlist", "expand watchlist", "my ebay",
+        "expand my ebay", "notifications", "expand cart", "hi!",
+        "back to home page", "skip to main content", "help & contact",
+        "was this article helpful?", "yes", "no",
+        "related help topics", "still have questions?",
+        "bạn có hài lòng với bài viết này?", "hài lòng", "không hài lòng",
+        "xem thêm:", "xem thêm", "chia sẻ bài viết",
+        "xin chào, shopee có thể giúp gì cho bạn?",
+    }
+)
+
+
+def _strip_bullet(line: str) -> str:
+    """Bỏ ký hiệu bullet/đánh số đầu dòng để đo độ dài phần chữ thật."""
+    return re.sub(r"^\s*(?:[-*+•]|\d+[.)])\s*", "", line).strip()
+
+
+def clean_markdown(text: str) -> str:
     """
-    Ghi text ra file markdown nếu đủ dài. Trả về True nếu đã ghi.
+    Bỏ khung điều hướng, cú pháp link và URL trần khỏi markdown đã crawl.
+
+    Nguyên tắc giữ nội dung: KHÔNG xoá theo danh sách từ khoá (dễ xoá nhầm đoạn
+    chính sách thật). Quy tắc chính là cấu trúc — một dòng mà sau khi gỡ hết link
+    gần như không còn chữ nào thì đó là thanh điều hướng, không phải nội dung.
+
+    Args:
+        text: Markdown thô từ MarkItDown hoặc Crawl4AI.
+
+    Returns:
+        Markdown đã làm sạch, giữ nguyên heading và đoạn văn.
+    """
+    if not text:
+        return ""
+
+    kept: list[str] = []
+    for raw_line in text.splitlines():
+        line = _RE_IMAGE.sub("", raw_line)
+
+        # Đếm link TRƯỚC khi gỡ, để nhận ra dòng vốn chỉ toàn link.
+        link_count = len(_RE_LINK.findall(line))
+        # Giữ lại phần chữ hiển thị của link, bỏ URL: [Trả hàng](http://...) -> Trả hàng
+        line = _RE_LINK.sub(r"\1", line)
+        line = _RE_BARE_URL.sub("", line)
+        line = _RE_WIDGET_NOISE.sub("", line)
+        line = _RE_INLINE_SPACES.sub(" ", line).strip()
+
+        if not line:
+            kept.append("")
+            continue
+
+        lowered = line.lower().strip(" *_#:|-")
+        if lowered in _NAV_EXACT:
+            continue
+        if any(marker in lowered for marker in _NOISE_MARKERS):
+            continue
+        if _RE_SESSION_ID.match(line.replace(" ", "")):
+            continue
+
+        # Dòng chỉ toàn link và còn lại rất ít chữ → thanh điều hướng.
+        if link_count >= 2 and len(line) < 90:
+            continue
+
+        # Mục menu dạng bullet ("* Summary", "* Bids/Offers"): bản chất là MỘT link
+        # với nhãn ngắn. Câu chính sách thật gần như luôn dài hơn 45 ký tự và hiếm
+        # khi là link, nên ngưỡng này cắt được menu mà giữ nguyên nội dung.
+        if link_count >= 1 and len(_strip_bullet(line)) < 45:
+            continue
+
+        # Dòng quá ngắn và không phải heading/bullet thì không mang thông tin gì.
+        if len(line) < 3 and not line.startswith("#"):
+            continue
+
+        kept.append(line)
+
+    cleaned = "\n".join(kept)
+    return _RE_BLANK_RUNS.sub("\n\n", cleaned).strip()
+
+
+def _write_markdown(
+    output_path: Path, text: str, source_name: str, clean: bool = True
+) -> bool:
+    """
+    Làm sạch rồi ghi text ra file markdown nếu đủ dài. Trả về True nếu đã ghi.
+
+    Args:
+        clean: Đặt False khi caller đã tự làm sạch phần nội dung và ghép header
+            vào sau (nhánh news) — tránh làm sạch hai lần và xoá nhầm URL nguồn.
 
     Bỏ qua (kèm cảnh báo rõ tên file) khi nội dung rỗng hoặc ngắn hơn MIN_CONTENT_CHARS.
     """
-    text = (text or "").strip()
+    if clean:
+        raw_len = len((text or "").strip())
+        text = clean_markdown(text or "")
+        if raw_len and text:
+            removed = raw_len - len(text)
+            if removed > 0:
+                _print(f"    · làm sạch: bỏ {removed:,} ký tự rác ({removed / raw_len:.0%})")
     if not text:
         _print(f"  ⚠ Bỏ qua {source_name}: convert ra nội dung RỖNG")
         return False
@@ -161,13 +286,18 @@ def convert_news_articles() -> int:
                 data = json.loads(filepath.read_text(encoding="utf-8"))
                 output_path = output_dir / f"{filepath.stem}.md"
 
-                # Thêm metadata header
+                # Làm sạch phần NỘI DUNG trước, rồi mới ghép header vào.
+                # Thứ tự này quan trọng: nếu làm sạch cả header thì URL trong dòng
+                # "**Source:**" cũng bị bộ lọc URL trần xoá mất, kéo theo mất luôn
+                # thông tin nguồn gốc mà Task 8 và phần trích dẫn cần đến.
+                body = clean_markdown(_extract_news_content(data))
+
                 header = f"# {data.get('title', 'Unknown')}\n\n"
                 header += f"**Source:** {data.get('url', 'N/A')}\n"
                 header += f"**Crawled:** {data.get('date_crawled', 'N/A')}\n\n---\n\n"
 
-                content = header + _extract_news_content(data)
-                if _write_markdown(output_path, content, filepath.name):
+                content = header + body
+                if _write_markdown(output_path, content, filepath.name, clean=False):
                     converted += 1
             except Exception as exc:
                 _print(f"  ✗ Lỗi khi convert {filepath.name}: {type(exc).__name__}: {exc}")

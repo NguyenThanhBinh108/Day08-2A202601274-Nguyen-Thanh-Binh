@@ -41,6 +41,12 @@ TOP_K = 5
 # Chọn 0.9 vì: đủ diverse nhưng không quá random
 TOP_P = 0.9
 
+# max_tokens: trần độ dài câu trả lời.
+# Đặt tường minh vì mỗi model trên OpenRouter có mặc định khác nhau, có model cắt
+# rất sớm khiến câu trả lời đứt giữa chừng. 1400 token đủ cho một câu trả lời có
+# liệt kê đầy đủ mà vẫn rẻ.
+MAX_TOKENS = 1400
+
 # temperature: Độ ngẫu nhiên của output
 # Chọn 0.3 vì: RAG cần factual, ít sáng tạo
 TEMPERATURE = 0.3
@@ -83,12 +89,33 @@ _ENV_LOADED: bool = False
 SYSTEM_PROMPT = """Bạn là trợ lý trả lời câu hỏi về chính sách thương mại điện tử và hỗ trợ
 khách hàng (thanh toán, đổi trả, giao hàng, quyền riêng tư, quy định người bán).
 
+Mỗi đoạn context được đánh số sẵn ở đầu dòng theo dạng "[3] Source: ... | Type: ...".
+Con số đó chính là số trích dẫn bạn phải dùng.
+
+QUY TẮC SỐ 0 — NGÔN NGỮ (quan trọng nhất, kiểm tra trước khi viết chữ đầu tiên):
+Trả lời ĐÚNG ngôn ngữ của CÂU HỎI, không phải ngôn ngữ của tài liệu.
+  - Câu hỏi tiếng Anh  -> toàn bộ câu trả lời bằng tiếng Anh.
+  - Câu hỏi tiếng Việt -> toàn bộ câu trả lời bằng tiếng Việt.
+Corpus là song ngữ, nên chuyện tài liệu tiếng Việt mà câu hỏi tiếng Anh (và ngược
+lại) là bình thường — cứ dịch ý sang ngôn ngữ của người hỏi.
+
 Quy tắc bắt buộc:
-1. Chỉ sử dụng thông tin từ context được cung cấp — KHÔNG bịa đặt
-2. Mỗi khẳng định phải có trích dẫn ngay sau, ví dụ: [Returns Policy, 2026]
-3. Nếu context không đủ thông tin → trả lời: "Tôi không thể xác minh thông tin này từ nguồn hiện có"
-4. Trả lời bằng tiếng Việt, có cấu trúc rõ ràng theo đoạn văn
-5. Không suy luận hay mở rộng ngoài những gì được nêu trong context"""
+1. Chỉ dùng thông tin có trong context — KHÔNG bịa, KHÔNG lấy kiến thức bên ngoài.
+2. Trích dẫn bằng ĐÚNG số của đoạn context, viết ngay sau khẳng định: [1], [3].
+   Có thể gộp nhiều nguồn: [1][4]. TUYỆT ĐỐI không tự đặt tên hay năm cho nguồn
+   (không viết kiểu "[Returns Policy, 2026]") — số phải khớp context thì giao diện
+   mới liên kết được câu trả lời với tài liệu.
+3. Trả lời CÙNG NGÔN NGỮ với câu hỏi: hỏi tiếng Việt thì đáp tiếng Việt, hỏi tiếng
+   Anh thì đáp tiếng Anh.
+4. Viết thành câu hoàn chỉnh, đủ ý, không bỏ lửng giữa chừng. Khi tài liệu liệt kê
+   nhiều mục (các phương thức thanh toán, các bước thực hiện, các trường hợp được
+   hoàn tiền) thì liệt kê ĐẦY ĐỦ bằng gạch đầu dòng, đừng tóm tắt cụt lủn.
+   Nêu rõ con số cụ thể khi tài liệu có nêu (số ngày, mức phí, thời hạn).
+5. TUYỆT ĐỐI không chép lại URL, đường dẫn hay cú pháp markdown link còn sót trong
+   context. Chỉ diễn đạt lại nội dung bằng câu văn bình thường.
+6. Nếu context không đủ để trả lời, nói thẳng: "Tôi không thể xác minh thông tin này
+   từ nguồn hiện có", rồi nêu phần nào trả lời được (nếu có).
+7. Bố cục: mở đầu một câu trả lời trực tiếp vào trọng tâm, sau đó mới đến chi tiết."""
 
 
 # Câu trả lời chuẩn khi retrieval không tìm được tài liệu nào.
@@ -383,20 +410,50 @@ def _call_llm(client: Any, model: str, user_message: str) -> str:
     Returns:
         Nội dung answer (đã strip). Chuỗi rỗng nếu model trả về nội dung trống.
     """
+    messages = [
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": user_message},
+    ]
     response = client.chat.completions.create(
         model=model,
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": user_message},
-        ],
+        messages=messages,
         temperature=TEMPERATURE,
         top_p=TOP_P,
+        max_tokens=MAX_TOKENS,
     )
     choices = getattr(response, "choices", None) or []
     if not choices:
         return ""
-    content = getattr(choices[0].message, "content", None)
-    return (content or "").strip()
+    content = (getattr(choices[0].message, "content", None) or "").strip()
+
+    # Model dừng vì CHẠM TRẦN token, không phải vì đã nói xong → câu cuối đang bỏ
+    # lửng. Xin viết tiếp một lần rồi nối lại, thay vì trả về câu cụt cho người dùng.
+    # Chỉ nối tiếp đúng MỘT lần để không rơi vào vòng gọi API vô tận.
+    if getattr(choices[0], "finish_reason", None) == "length" and content:
+        _safe_print("  ⚠ Câu trả lời chạm trần token — đang xin model viết tiếp phần còn lại")
+        try:
+            follow_up = client.chat.completions.create(
+                model=model,
+                messages=messages
+                + [
+                    {"role": "assistant", "content": content},
+                    {
+                        "role": "user",
+                        "content": "Viết tiếp phần còn dang dở, bắt đầu ngay từ chỗ bị "
+                                   "cắt, không nhắc lại nội dung đã viết.",
+                    },
+                ],
+                temperature=TEMPERATURE,
+                top_p=TOP_P,
+                max_tokens=MAX_TOKENS,
+            )
+            extra = (follow_up.choices[0].message.content or "").strip()
+            if extra:
+                content = f"{content} {extra}".strip()
+        except Exception as exc:  # noqa: BLE001 — nối tiếp lỗi thì giữ phần đã có
+            _safe_print(f"  ⚠ Không viết tiếp được ({exc}) — giữ phần đã sinh")
+
+    return content
 
 
 # =============================================================================

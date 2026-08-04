@@ -273,7 +273,20 @@ def retrieve(
         merged = _normalize_results(fallback_merge, source="hybrid")
 
     # Step 3: Rerank
-    if use_reranking and merged:
+    #
+    # KHÔNG chạy RRF lần thứ hai. Bước 2 đã fuse dense + sparse, và điểm sau khi
+    # fuse mang thông tin thật: tài liệu được CẢ HAI ranker bình chọn sẽ cộng hai
+    # phiếu (≈ 1/61 + 1/64 ≈ 0,032), gấp đôi tài liệu chỉ một ranker tìm ra
+    # (≈ 0,016). Đo trên corpus này, dense và sparse trùng nhau 8/10 chunk nên
+    # chênh lệch đó là tín hiệu xếp hạng có giá trị.
+    #
+    # Nếu đem `merged` (một danh sách duy nhất) chạy qua rerank_rrf lần nữa thì
+    # mỗi tài liệu lại chỉ còn đúng một phiếu, điểm bị ghi đè thành 1/(60+rank)
+    # đều tăm tắp — thứ tự vẫn giữ nhưng thông tin "được mấy ranker đồng thuận"
+    # mất sạch, và thanh đo điểm trên giao diện thành vô nghĩa.
+    #
+    # Cross-encoder và MMR thì khác: chúng chấm lại bằng ngữ nghĩa nên vẫn chạy.
+    if use_reranking and merged and RERANK_METHOD != "rrf":
         final_results = _safe_call(
             rerank,
             f"rerank(method={RERANK_METHOD}) (Task 7)",

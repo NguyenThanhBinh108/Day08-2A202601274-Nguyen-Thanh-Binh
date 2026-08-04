@@ -1,15 +1,14 @@
 Shopee - Chính sách Bảo mật
 
-Source URL: https://help.shopee.vn/portal/4/article/77244
+Source URL:
 Customer role: both
 Collected at: 2026-08-04T15:30:31
 ------------------------------------------------------------ ------------------
-Xin chào, Shopee có thể giúp gì cho bạn?
 CHÍNH SÁCH BẢO MẬT
 1. GIỚI THIỆU
 1.1. Chào mừng bạn đến với nền tảng Shopee.vn (bao gồm website và ứng dụng di động Shopee) được
 vận hành bởi Công ty TNHH Shopee và các công ty liên kết (gọi riêng và gọi chung là, "Shopee", "chúng
-tôi",  hay  "của  chúng  tôi").  Shopee  nghiêm  túc  thực  hiện  trách  nhiệm  của  mình  liên  quan  đến  bảo  mật
+tôi", hay "của chúng tôi"). Shopee nghiêm túc thực hiện trách nhiệm của mình liên quan đến bảo mật
 thông tin theo các quy định về bảo vệ bí mật thông tin cá nhân của pháp luật Việt Nam (“Luật riêng tư”)
 và cam kết tôn trọng quyền riêng tư và sự quan tâm của tất cả người dùng đối với website và ứng dụng
 di động của chúng tôi (“Nền tảng”) (chúng tôi gọi chung Các Nền tảng và các dịch vụ chúng tôi cung cấp
@@ -17,28 +16,28 @@ như được mô tả trong Nền tảng của chúng tôi là "các Dịch V�
 tài khoản với chúng tôi để sử dụng các Dịch Vụ, bao gồm cả người mua và người bán (gọi chung và gọi
 riêng là “Các Người Dùng”, “bạn” hoặc “của bạn”). Chúng tôi nhận biết tầm quan trọng của dữ liệu cá
 nhân mà bạn đã tin tưởng giao cho chúng tôi và tin rằng chúng tôi có trách nhiệm quản lý, bảo vệ và xử
-lý  dữ  liệu  cá  nhân  của  bạn  một  cách  thích  hợp.  Chính  sách  bảo  mật  này  ("Chính  sách  bảo  mật"  hay
-"Chính  sách")  được  thiết  kế  để  giúp  bạn  hiểu  được  cách  thức  chúng  tôi  thu  thập,  sử  dụng,  tiết  lộ
+lý dữ liệu cá nhân của bạn một cách thích hợp. Chính sách bảo mật này ("Chính sách bảo mật" hay
+"Chính sách") được thiết kế để giúp bạn hiểu được cách thức chúng tôi thu thập, sử dụng, tiết lộ
 và/hoặc xử lý dữ liệu cá nhân mà bạn đã cung cấp cho chúng tôi và/hoặc lưu giữ về bạn, cho dù là hiện
-nay  hoặc  trong  tương  lai,  cũng  như  để  giúp  bạn  đưa  ra  quyết  định  sáng  suốt  trước  khi  cung  cấp  cho
+nay hoặc trong tương lai, cũng như để giúp bạn đưa ra quyết định sáng suốt trước khi cung cấp cho
 chúng tôi bất kỳ dữ liệu cá nhân nào của bạn.
 1.2. "Dữ Liệu Cá Nhân" hay "dữ liệu cá nhân" có nghĩa là dữ liệu, dù đúng hay không, về một cá nhân
 mà thông qua đó có thể được xác định được danh tính, hoặc từ dữ liệu đó và thông tin khác mà một tổ
-chức  có  hoặc  có  khả  năng  tiếp  cận.  Các  ví  dụ  thường  gặp  về  dữ  liệu  cá  nhân  có  thể  gồm  có  tên,  số
+chức có hoặc có khả năng tiếp cận. Các ví dụ thường gặp về dữ liệu cá nhân có thể gồm có tên, số
 chứng minh nhân dân và thông tin liên hệ.
 1.3. Bằng việc sử dụng Các Dịch Vụ, đăng ký một tài khoản với chúng tôi hoặc truy cập Nền tảng, bạn
 xác nhận và đồng ý rằng bạn chấp nhận các phương pháp, yêu cầu, và/hoặc chính sách được mô tả
 trong Chính sách bảo mật này, và theo đây bạn xác nhận bạn đã biết rõ và đồng ý toàn bộ cho phép
 chúng tôi thu thập, sử dụng, tiết lộ và/hoặc xử lý dữ liệu cá nhân của bạn như mô tả trong đây. NẾU
 BẠN KHÔNG ĐỒNG Ý CHO PHÉP XỬ LÝ DỮ LIỆU CÁ NHÂN CỦA BẠN NHƯ MÔ TẢ TRONG CHÍNH
-SÁCH  NÀY,  VUI  LÒNG  KHÔNG  SỬ  DỤNG  CÁC  DỊCH  VỤ  CỦA  CHÚNG  TÔI  HAY  TRUY  CẬP  NỀN
+SÁCH NÀY, VUI LÒNG KHÔNG SỬ DỤNG CÁC DỊCH VỤ CỦA CHÚNG TÔI HAY TRUY CẬP NỀN
 TẢNG HOẶC TRANG WEB CỦA CHÚNG TÔI. Nếu chúng tôi thay đổi Chính sách bảo mật của mình,
 chúng tôi sẽ thông báo cho bạn bao gồm cả thông qua việc đăng tải những thay đổi đó hoặc Chính sách
 bảo mật sửa đổi trên Nền tảng của chúng tôi. Trong phạm vi pháp luật cho phép, việc tiếp tục sử dụng
 các Dịch Vụ hoặc Nền Tảng, bao gồm giao dịch của bạn, được xem là bạn đã công nhận và đồng ý với
 các thay đổi trong Chính Sách Bảo Mật này.
-1.4.  Chính  sách  này  áp  dụng  cùng  với  các  thông  báo,  điều  khoản  hợp  đồng,  điều  khoản  chấp  thuận
-khác  áp  dụng  liên  quan  đến  việc  chúng  tôi  thu  thập,  lưu  trữ,  sử  dụng,  tiết  lộ  và/hoặc  xử  lý  dữ  liệu  cá
+1.4. Chính sách này áp dụng cùng với các thông báo, điều khoản hợp đồng, điều khoản chấp thuận
+khác áp dụng liên quan đến việc chúng tôi thu thập, lưu trữ, sử dụng, tiết lộ và/hoặc xử lý dữ liệu cá
 nhân của bạn và không nhằm ghi đè những thông báo hoặc các điều khoản đó trừ khi chúng tôi có tuyên
 bố ràng khác.
 1.5. Chính sách này được áp dụng cho cả Người bán và Người mua đang sử dụng Dịch vụ trừ khi có
@@ -47,15 +46,15 @@ tuyên bố rõ ràng ngược lại.
 2.1. Chúng tôi sẽ/có thể thu thập dữ liệu cá nhân về bạn:
 khi bạn đăng ký và/hoặc sử dụng Các Dịch Vụ hoặc Nền tảng của chúng tôi, hoặc mở một tài khoản với
 
-chúng tôi;
+chúng tôi;
 khi bạn gửi bất kỳ biểu mẫu nào, bao gồm đơn đăng ký hoặc các mẫu đơn khác liên quan đến bất kỳ
 sản phẩm và dịch vụ nào của chúng tôi, bằng hình thức trực tuyến hay dưới hình thức khác;
 khi bạn ký kết bất kỳ thỏa thuận nào hoặc cung cấp các tài liệu hoặc thông tin khác liên quan đến tương
 tác giữa bạn với chúng tôi, hoặc khi bạn sử dụng các sản phẩm và dịch vụ của chúng tôi;
 khi bạn tương tác với chúng tôi, chẳng hạn như thông qua các cuộc gọi điện thoại (có thể được ghi âm
 lại), thư từ, fax, gặp gỡ trực tiếp, các nền ứng dụng truyền thông xã hội và email;
-khi  bạn  sử  dụng  các  dịch  vụ  điện  tử  của  chúng  tôi,  hoặc  tương  tác  với  chúng  tôi  qua  Nền  tảng  hoặc
-Trang  Web  hoặc  Các  Dịch  Vụ  của  chúng  tôi.  Trường  hợp  này  bao  gồm  thông  qua  tập  tin  cookie  mà
+khi bạn sử dụng các dịch vụ điện tử của chúng tôi, hoặc tương tác với chúng tôi qua Nền tảng hoặc
+Trang Web hoặc Các Dịch Vụ của chúng tôi. Trường hợp này bao gồm thông qua tập tin cookie mà
 chúng tôi có thể triển khai khi bạn tương tác với các Nền tảng hoặc Trang Web của chúng tôi;
 khi bạn cấp quyền trên thiết bị của bạn để chia sẻ thông tin với ứng dụng hoặc Nền tảng của chúng tôi
 khi bạn liên kết tài khoản Shopee với tài khoản mạng xã hội của bạn hoặc các tài khoản bên ngoài khác
@@ -96,7 +95,7 @@ hình ảnh hoặc âm thanh hoặc video;
 thông tin về nhân thân được cấp bởi chính phủ hoặc các thông tin khác phục vụ cho các mục đích đánh
 giá pháp lý, nhận biết khách hàng, xác minh thông tin và/hoặc phòng chống gian lận của chúng tôi;
 
-dữ liệu truyền thông hoặc liên lạc, ví dụ như các tùy chọn nhận thông tin quảng cáo từ chúng tôi hoặc
+dữ liệu truyền thông hoặc liên lạc, ví dụ như các tùy chọn nhận thông tin quảng cáo từ chúng tôi hoặc
 các bên thứ ba của bạn, tùy chọn phương tiện liên lạc và lịch sử thông tin liên lạc với chúng tôi, các nhà
 cung cấp dịch vụ của chúng tôi, và các bên thứ ba khác;
 thông tin sử dụng và giao dịch, bao gồm chi tiết về lịch sử tìm kiếm, giao dịch, quảng cáo và nội dung
@@ -106,11 +105,11 @@ bất kỳ thông tin nào khác về người dùng khi người dùng đăng n
 tảng của chúng tôi, và khi người dùng sử dụng Các Dịch Vụ hoặc Nền tảng, cũng như thông tin về việc
 người dùng sử dụng Các Dịch Vụ hoặc Nền tảng của chúng tôi như thế nào; và
 dữ liệu tổng hợp về nội dung người dùng sử dụng.
-3.2.  Bạn  đồng  ý  không  cung  cấp  cho  chúng  tôi  bất  cứ  thông  tin  nào  không  chính  xác  hoặc  gây  hiểu
+3.2. Bạn đồng ý không cung cấp cho chúng tôi bất cứ thông tin nào không chính xác hoặc gây hiểu
 nhầm và bạn đồng ý sẽ thông báo cho chúng tôi về bất cứ thông tin nào không chính xác hoặc khi có sự
 thay đổi thông tin. Chúng tôi bảo lưu quyền theo quyết định riêng của chúng tôi được yêu cầu các tài liệu
 cần thiết khác để xác minh bất cứ thông tin nào được bạn cung cấp.
-3.3.  Nếu  bạn  đăng  nhập  để  trở  thành  Người  sử  dụng  các  Nền  tảng  của  chúng  tôi  sử  dụng  tài  khoản
+3.3. Nếu bạn đăng nhập để trở thành Người sử dụng các Nền tảng của chúng tôi sử dụng tài khoản
 mạng xã hội của Bạn (“Tài khoản Mạng Xã hội”), liên kết tài khoản của bạn với Tài khoản Mạng Xã hội
 của bạn hoặc sử dụng bất cứ tính năng mạng xã hội Shopee nào, chúng tôi có quyền truy cập thông tin
 về bạn mà bạn đã cung cấp một cách tự nguyên cho nhà cung cấp dịch vụ Tài khoản Mạng Xã hội của
@@ -132,11 +131,11 @@ tin này thông thường bao gồm nhưng không giới hạn địa chỉ IP, 
 nhất (UDID) hoặc mã định danh thiết bị di động (MEID) của thiết bị di động của bạn, địa chỉ tham chiếu
 của Trang Web (nếu có), các trang mà bạn đã truy cập đến trên trang web hoặc ứng dụng di động của
 chúng tôi và thời gian truy cập và đôi khi là "cookie" (có thể vô hiệu hóa bằng cách sử dụng tùy chọn
-trình  duyệt  của  bạn)  để  giúp  trang  web  ghi  nhớ  lần  truy  cập  cuối  cùng  của  bạn.  Nếu  bạn  đăng  nhập,
+trình duyệt của bạn) để giúp trang web ghi nhớ lần truy cập cuối cùng của bạn. Nếu bạn đăng nhập,
 thông tin này được liên kết với tài khoản cá nhân của bạn. Thông tin này cũng được đưa vào các số liệu
 thống kê ẩn danh để giúp chúng tôi hiểu được khách truy cập sử dụng Trang Web của chúng tôi như thế
 nào.
-4.2  Các  ứng  dụng  di  động  của  chúng  tôi  có  thể  thu  thập  thông  tin  chính  xác  về  địa  chỉ  của  thiết  bị  di
+4.2 Các ứng dụng di động của chúng tôi có thể thu thập thông tin chính xác về địa chỉ của thiết bị di
 động của bạn sử dụng các công nghệ như GPS, Wi-Fi,…. Chúng tôi thu thập, sử dụng, công bố và/hoặc
 xử lý các thông tin này cho một hoặc nhiều mục đích bao gồm nhưng không giới hạn các dịch vụ được
 cung cấp dựa trên vị trí mà bạn yêu cầu hoặc chuyển các nội dung có liên quan đến bạn dựa trên vị trí
@@ -145,16 +144,16 @@ Dịch vụ được cung cấp bởi các ứng dụng di động của chúng 
 bạn có thể rút lại sự cho phép để chúng tôi được thu thập các thông tin này dựa trên vị trí của bạn thông
 qua các cài đặt trên thiết bị. Nếu bạn có câu hỏi nào về cách thức vô hiệu hóa các dịch vụ vị trí trên thiết
 
-bị di động của bạn, vui lòng liên hệ với các nhà cung cấp dịch vụ thiết bị di động hoặc nhà sản xuất thiết
+bị di động của bạn, vui lòng liên hệ với các nhà cung cấp dịch vụ thiết bị di động hoặc nhà sản xuất thiết
 bị của bạn.
 4.3. Như khi bạn xem các trang trên trang web hoặc ứng dụng di động của chúng tôi, khi bạn xem các
-nội  dung  và  quảng  cáo  và  truy  cập  vào  phần  mềm  khác  trên  Nền  tảng  của  chúng  tôi  hoặc  thông  qua
+nội dung và quảng cáo và truy cập vào phần mềm khác trên Nền tảng của chúng tôi hoặc thông qua
 Dịch vụ, các thông tin có thể được gửi đến cho chúng tôi (bao gồm nhưng không giới hạn, địa chỉ IP, hệ
 điều hành, v.v..); nhưng, thay vì các số lượt xem trang, thiết bị của bạn gửi đến chúng tôi các thông tin
 về nội dung, quảng cáo được xem và/hoặc phần mềm được cài đặt bởi các Dịch vụ và Nền tảng và thời
 điểm.
 5. COOKIES
-5.1.  Đôi  khi  chúng  tôi  hoặc  các  nhà  cung  cấp  dịch  vụ  được  cho  phép  và  các  đối  tác  quảng  cáo  của
+5.1. Đôi khi chúng tôi hoặc các nhà cung cấp dịch vụ được cho phép và các đối tác quảng cáo của
 chúng tôi có thể sử dụng "cookie" hoặc các tính năng khác để cho phép chúng tôi hoặc các bên thứ ba
 thu thập hoặc chia sẻ thông tin liên quan đến việc sử dụng của bạn đối với Dịch vụ hoặc Nền tảng của
 chúng tôi. Các tính năng này sẽ giúp chúng tôi cải thiện Nền tảng và Các Dịch Vụ chúng tôi cung cấp,
@@ -164,7 +163,7 @@ lưu trữ trên máy tính hoặc thiết bị di động của bạn lưu tr�
 cách nào và khi nào Các Dịch Vụ hoặc Nền tảng được sử dụng hay truy cập, bởi bao nhiêu người và để
 theo dõi những hoạt động trong Các Nền tảng của chúng tôi. Chúng tôi có thể liên kết thông tin cookie
 với dữ liệu cá nhân. Cookie cũng liên kết với thông tin về những nội dung bạn đã chọn để mua sắm và
-các  trang  web  mà  bạn  đã  xem.  Thông  tin  này  được  sử  dụng  để  theo  dõi  giỏ  hàng,  để  chuyển  tải  nội
+các trang web mà bạn đã xem. Thông tin này được sử dụng để theo dõi giỏ hàng, để chuyển tải nội
 dung phù hợp với sở thích của bạn, để cho phép các đối tác cung cấp dịch vụ quảng cáo cung cấp dịch
 vụ quảng cáo trên các trang thông qua mạng Internet và để thực hiện phân tích dữ liệu và hoặc theo dõi
 việc sử dụng Dịch vụ
@@ -192,13 +191,13 @@ nào áp dụng;
 thể được yêu cầu tùy lúc nhằm đảm bảo Các Dịch Vụ của chúng tôi hoạt động suôn sẻ;
 để giải quyết hoặc tạo điều kiện thuận lợi cho dịch vụ khách hàng, thực hiện các chỉ thị của bạn, giải
 quyết hoặc trả lời bất kỳ thắc mắc nào được gửi bởi (hoặc nhằm được gửi bởi) bạn hoặc thay mặt bạn;
-để  liên  hệ  với  bạn  hoặc  liên  lạc  với  bạn  qua  điện  thoại,  tin  nhắn  văn  bản  và/hoặc  tin  nhắn  fax,  email
+để liên hệ với bạn hoặc liên lạc với bạn qua điện thoại, tin nhắn văn bản và/hoặc tin nhắn fax, email
 
-và/hoặc  thư  hoặc  cách  khác  nhằm  mục  đích  quản  trị  và/hoặc  quản  lý  quan  hệ  của  bạn  với  chúng  tôi
-hoặc  việc  bạn  sử  dụng  Các  Dịch  Vụ  của  chúng  tôi,  chẳng  hạn  như  ở  việc  truyền  đạt  thông  tin  hành
+và/hoặc thư hoặc cách khác nhằm mục đích quản trị và/hoặc quản lý quan hệ của bạn với chúng tôi
+hoặc việc bạn sử dụng Các Dịch Vụ của chúng tôi, chẳng hạn như ở việc truyền đạt thông tin hành
 chính cho bạn liên quan đến Các Dịch Vụ của chúng tôi. Bạn xác nhận và đồng ý rằng sự liên lạc như
 thế của chúng tôi có thể là theo cách gửi thư qua đường bưu điện, tài liệu hoặc thông báo cho bạn, có
-thể  gồm  có  tiết  lộ  dữ  liệu  cá  nhân  nhất  định  về  bạn  để  cung  cấp  các  tài  liệu  đó  cũng  như  trên  bao
+thể gồm có tiết lộ dữ liệu cá nhân nhất định về bạn để cung cấp các tài liệu đó cũng như trên bao
 bì/phong bì;
 để cho phép các người dùng khác tương tác hoặc liên lạc với bạn hoặc thấy một số hoạt động của bạn
 trên Nền tảng, bao gồm để thông báo cho bạn khi một người dùng khác đã gửi cho bạn một tin nhắn
@@ -211,7 +210,7 @@ sử dụng Các Dịch Vụ của chúng tôi, để giới thiệu sản phẩ
 bạn;
 để cho phép kiểm tra và khảo sát khác để, ngoài những hoạt động khác, xác thực quy mô và thành phần
 của đối tượng mục tiêu của chúng tôi, và hiểu được trải nghiệm của họ với Các Dịch Vụ của Shopee;
-vì  mục  đích  tiếp  thị  và  quảng  cáo,  trong  trường  hợp  này,  để  gửi  cho  bạn  qua  các  phương  tiện  và
+vì mục đích tiếp thị và quảng cáo, trong trường hợp này, để gửi cho bạn qua các phương tiện và
 phương thức liên lạc khác nhau, thông tin và tài liệu tiếp thị và quảng bá liên quan đến các sản phẩm
 và/hoặc dịch vụ (bao gồm, nhưng không giới hạn các sản phẩm và/hoặc dịch vụ của các bên thứ ba mà
 Shopee có thể hợp tác hoặc liên kết) mà Shopee (và/hoặc các bên liên kết hoặc công ty có liên quan
@@ -221,7 +220,7 @@ nào bằng cách sử dụng chức năng hủy đăng ký trong các tài li�
 dụng các thông tin liên hệ của bạn để gửi các bản tin và/hoặc tài liệu truyền thông từ chúng tôi hoặc từ
 các công ty có liên quan của chúng tôi;
 để cung cấp các chương trình và ưu đãi khách hàng thường xuyên, đối tác và tiền thưởng, cũng như
-các  chiến  dịch  marketing  đồng  thương  hiệu  khác,  ví  dụ  như:  chương  trình  khách  hàng  thân  thiết  của
+các chiến dịch marketing đồng thương hiệu khác, ví dụ như: chương trình khách hàng thân thiết của
 người bán, ưu đãi của người bán hoặc thẻ tín dụng đồng thương hiệu với sự hợp tác của các bên thứ
 ba;
 để đáp ứng các thủ tục pháp lý hoặc để tuân thủ hoặc theo quy định của pháp luật hiện hành, và các
@@ -243,12 +242,12 @@ quan đến việc bạn sử dụng Các Dịch Vụ của chúng tôi hay khô
 quan hệ của bạn với chúng tôi;
 Để đáp ứng bất cứ các mối đe dọa hoặc yêu cầu thực tế nào được khẳng định chống lại Shopee hoặc
 
-các yêu cầu khác liên quan đến các Nội dung vi phạm quy định của các bên thứ ba;
+các yêu cầu khác liên quan đến các Nội dung vi phạm quy định của các bên thứ ba;
 để lưu trữ, lập máy chủ, sao lưu (cho dù là vì mục đích khôi phục sau thảm họa hoặc mục đích khác) đối
 với dữ liệu cá nhân của bạn;
-để  xử  lý  và/hoặc  tạo  thuận  tiện  cho  một  giao  dịch  tài  sản  kinh  doanh  hoặc  một  giao  dịch  tài  sản  kinh
+để xử lý và/hoặc tạo thuận tiện cho một giao dịch tài sản kinh doanh hoặc một giao dịch tài sản kinh
 doanh tiềm năng, trường hợp giao dịch đó liên quan đến Shopee như một bên tham gia hoặc chỉ liên
-quan  đến  một  công  ty  hay  công  ty  liên  kết  của  Shopee  như  một  bên  tham  gia  hoặc  liên  quan  đến
+quan đến một công ty hay công ty liên kết của Shopee như một bên tham gia hoặc liên quan đến
 Shopee và/hoặc bất kỳ một hay nhiều công ty hoặc công ty liên kết của Shopee như (các) bên tham gia,
 và có thể có các tổ chức bên thứ ba khác tham gia giao dịch như thế. "Giao dịch tài sản kinh doanh" là
 các giao dịch mua, bán, cho thuê, sáp nhập, hợp nhất hoặc bất kỳ hoạt động mua lại, thanh lý hay tài trợ
@@ -283,7 +282,7 @@ dạng ra khỏi dữ liệu cá nhân của bạn khi chúng tôi nhận đư�
 định của Luật riêng tư hiện hành hoặc khi chúng tôi có lý do hợp lý để xác định rằng (i) việc lưu trữ dữ
 liệu cá nhân đó không còn phục vụ mục đích thu thập dữ liệu cá nhân đó nữa; (ii) việc lưu giữ không còn
 cần thiết cho bất kỳ mục đích hợp pháp hay mục đích kinh doanh nào và (iii) không còn các lợi ích hợp
-pháp  nào  khác  để  tiếp  tục  lưu  giữ  các  dữ  liệu  cá  nhân  này.  Nếu  bạn  ngưng  sử  dụng  Nền  tảng  của
+pháp nào khác để tiếp tục lưu giữ các dữ liệu cá nhân này. Nếu bạn ngưng sử dụng Nền tảng của
 chúng tôi, hoặc quyền của bạn được sử dụng Nền tảng và/hoặc Các Dịch Vụ bị chấm dứt hoặc hủy bỏ,
 chúng tôi có thể tiếp tục lưu, sử dụng và/hoặc tiết lộ dữ liệu cá nhân của bạn tuân theo Chính sách bảo
 mật này và các nghĩa vụ của chúng tôi theo các quy định của pháp luật về bảo vệ bí mật thông tin cá
@@ -292,13 +291,13 @@ an toàn mà không cần thông báo trước cho bạn.
 7.3. Chúng tôi bảo lưu quyền từ chối xóa, tiêu hủy dữ liệu trong trường hợp yêu cầu của bạn không phù
 hợp với quy định của Luật riêng tư hiện hành, hoặc mặc dù phù hợp nhưng thuộc trường hợp Chúng tôi
 
-không được xóa, tiêu hủy theo quy định của Luật riêng tư hiện hành.
+không được xóa, tiêu hủy theo quy định của Luật riêng tư hiện hành.
 8. SHOPEE CÓ TIẾT LỘ THÔNG TIN THU THẬP TỪ NGƯỜI TRUY CẬP HAY KHÔNG?
 8.1 Trong quá trình thực hiện hoạt động kinh doanh, chúng tôi sẽ/có thể cần phải sử dụng, xử lý, tiết lộ
 và/hoặc chuyển giao dữ liệu cá nhân của bạn cho các nhà cung cấp dịch vụ bên thứ ba, đại lý và/hoặc
 các công ty liên kết hoặc công ty liên quan của chúng tôi, và/hoặc các bên thứ ba khác có thể ở Việt
 Nam hoặc bên ngoài Việt Nam, vì một hay nhiều Mục Đích nói trên, và việc tiết lộ này sẽ được thực hiện
-theo  đúng  trình  tự  và  quy  định  của  pháp  luật  hiện  hành.  Chúng  tôi  cũng  có  thể  sử  dụng,  xử  lý,  tiết  lộ
+theo đúng trình tự và quy định của pháp luật hiện hành. Chúng tôi cũng có thể sử dụng, xử lý, tiết lộ
 và/hoặc chuyển giao dữ liệu cá nhân của bạn cho các nhà cung cấp dịch vụ, đại lý và bên thứ ba khác
 khi bạn yêu cầu hoặc chỉ thị chúng tôi thực hiện, bao gồm việc liên kết hoặc tích hợp tài khoản Shopee
 của bạn với các tài khoản khác mà bạn đang sở hữu với các nhà cung cấp bên thứ ba. Các nhà cung
@@ -315,7 +314,7 @@ những người sử dụng khác của Nền tảng của chúng tôi cho mộ
 nhà thầu, đại lý, nhà cung cấp dịch vụ và các bên thứ ba khác mà chúng tôi thuê để hỗ trợ hoặc bổ sung
 cho hoạt động kinh doanh của chúng tôi, hoặc bên mà bạn đã chọn liên kết tài khoản Shopee của mình
 hoặc cho phép tích hợp một cách rõ ràng . Những bên này bao gồm, nhưng không giới hạn ở những
-bên  cung  cấp  các  dịch  vụ  quản  trị  hoặc  các  dịch  vụ  khác  cho  chúng  tôi  chẳng  hạn  như  công  ty  bưu
+bên cung cấp các dịch vụ quản trị hoặc các dịch vụ khác cho chúng tôi chẳng hạn như công ty bưu
 chính, công ty viễn thông, đối tác quảng cáo và truyền thông, công ty công nghệ thông tin, lưu trữ đám
 mây, dịch vụ AI tạo sinh và sáng tạo nội dung, các tổ chức hoạt động thương mại điện tử, và trung tâm
 dữ liệu. Dữ liệu đầu vào và thông tin của bạn cũng có thể được chuyển đến các mô hình AI hoặc nhà
@@ -338,34 +337,34 @@ quảng cáo, tái quảng cáo, và/hoặc lập trình.
 8.3. Để tránh nghi ngờ, trong trường hợp các quy định của pháp luật về bảo vệ bí mật thông tin cá nhân
 hoặc các điều luật hiện hành khác cho phép một tổ chức chẳng hạn như chúng tôi thu thập, sử dụng
 hoặc tiết lộ dữ liệu cá nhân của bạn mà không cần sự đồng ý của bạn, sự cho phép như thế của pháp
-luật  sẽ  tiếp  tục  áp  dụng.  Phù  hợp  với  các  quy  định  nêu  trên  và  theo  các  quy  định  của  pháp  luật  hiện
+luật sẽ tiếp tục áp dụng. Phù hợp với các quy định nêu trên và theo các quy định của pháp luật hiện
 hành, chúng tôi có thể sử dụng dữ liệu cá nhân của bạn cho các cơ sở pháp lý đã được công nhận, bao
 
-gồm tuân thủ các nghĩa vụ pháp lý của chúng tôi, để thực hiện hợp đồng của chúng tôi với bạn, để đạt
+gồm tuân thủ các nghĩa vụ pháp lý của chúng tôi, để thực hiện hợp đồng của chúng tôi với bạn, để đạt
 được lợi ích hợp pháp và lý do của chúng tôi để sử dụng dữ liệu đó cao hơn bất kỳ phương hại nào đến
 quyền bảo vệ dữ liệu của bạn hoặc khi cần thiết liên quan với một yêu cầu pháp lý.
-8.4.  Các  bên  thứ  ba  có  thể  chặn  hoặc  truy  cập  trái  phép  dữ  liệu  cá  nhân  được  gửi  đến  hoặc  có  trên
+8.4. Các bên thứ ba có thể chặn hoặc truy cập trái phép dữ liệu cá nhân được gửi đến hoặc có trên
 trang web, các công nghệ có thể hoạt động không chính xác hoặc không hoạt động như dự kiến, hoặc
 có người có thể truy cập, lạm dụng hoặc sử dụng sai trái thông tin mà không phải lỗi của chúng tôi. Tuy
 nhiên chúng tôi sẽ triển khai các biện pháp bảo mật hợp lý để bảo vệ dữ liệu cá nhân của bạn theo quy
 định của các quy định của pháp luật về bảo vệ bí mật thông tin cá nhân; tuy nhiên không thể đảm bảo
 sự bảo mật tuyệt đối chẳng hạn như trường hợp tiết lộ trái phép phát sinh từ hoạt động tin tặc vì ý đồ
 xấu hoặc hành vi tấn cung tinh vi bưởi kẻ xấu mà không phải lỗi của chúng tôi.
-8.5.  Shopee  cho  phép  bạn  chia  sẻ  video  từ  YouTube  trong  tính  năng  Shopee  Livestream  (“Nội  Dung
+8.5. Shopee cho phép bạn chia sẻ video từ YouTube trong tính năng Shopee Livestream (“Nội Dung
 YouTube”). Về mặt kỹ thuật, Shopee sử dụng Tính Năng YouTube API của chính YouTube. Thông qua
 việc chia sẻ Nội Dung YouTube, bạn theo đây đồng ý chịu sự điều chỉnh của Chính Sách Bảo Mật của
-YouTube ( http://www.google.com/policies/privacy ).
+YouTube ( ).
 8.6. Như được quy định trong Điều khoản dịch vụ của Shopee, Người dùng (bao gồm bất cứ người lao
-động,  đại  lý,  người  đại  diện  hoặc  bất  cứ  bên  nào  khác  hành  động  cho  Người  dùng  đó  hoặc  thay  mặt
+động, đại lý, người đại diện hoặc bất cứ bên nào khác hành động cho Người dùng đó hoặc thay mặt
 người dùng đó) sở hữu dữ liệu cá nhân của Người dùng khác thông qua việc sử dụng Dịch vụ (“Bên
 nhận dữ liệu”) tại đây đồng ý rằng, họ sẽ (i) tuân thủ với các quy định của pháp luật về bảo vệ dữ liệu cá
 nhân liên quan đến các dữ liệu này, bao gồm bất cứ hoạt động thu thập, xử lý, lưu giữ và chuyển giao
-các  dữ  liệu  này;  (ii)  cho  phép  Shopee  hoặc  Người  dùng  mà  dữ  liệu  cá  nhân  của  Bên  nhận  được  thu
+các dữ liệu này; (ii) cho phép Shopee hoặc Người dùng mà dữ liệu cá nhân của Bên nhận được thu
 thập (“Bên tiết lộ”) được xóa dữ liệu của anh hoặc cô ấy đã bị thu thập khỏi cơ sở dữ liệu của Bên nhận
 dữ liệu; và (iii) cho phép Shopee hoặc Bên tiết lộ dữ liệu được rà soát những nội dung đã bị thu thập liên
 quan đến họ bởi Bên nhận dữ liệu, trong mỗi trường hợp (ii) và (iii) nêu trên, tuân thủ với và khi được
 yêu cầu bởi các quy định của pháp luật có liên quan.
-8.7.  Bất  kể  quy  định  nào  được  quy  định  tại  đây,  Người  bán  (bao  gồm  bất  cứ  người  lao  động,  đại  lý,
+8.7. Bất kể quy định nào được quy định tại đây, Người bán (bao gồm bất cứ người lao động, đại lý,
 người đại diện hoặc bất cứ bên nào khác hành động cho Người dùng đó hoặc thay mặt người dùng đó)
 phải tuân thủ các quy định của pháp luật có liên quan và, liên quan đến bất cứ dữ liệu cá nhân nào của
 Người mua nhận được từ Shopee, (i) không được cho phép sử dụng các dữ liệu cá nhân của Người
@@ -374,23 +373,23 @@ việc trả lời, xử lý, giải quyết hoặc hoàn thành các giao dịc
 bản của Người mua và Shopee; (ii) phải ngưng việc liên lạc với Người mua sử dụng các thông tin này
 bên ngoài nền tảng Shopee; (iii) không được cho phép tiết lộ các dữ liệu cá nhân của Người mua này
 đến bất cứ bên thứ ba không được phép nào mà không có sự cho phép trước bằng văn bản của Người
-mua  và  Shopee;  (iv)  phải  thực  hiện  các  biện  pháp  an  ninh  thích  hợp  để  bảo  vệ  từng  dữ  liệu  cá  nhân
+mua và Shopee; (iv) phải thực hiện các biện pháp an ninh thích hợp để bảo vệ từng dữ liệu cá nhân
 người dùng của Shopee mà họ đang sở hữu, chỉ lưu giữ dữ liệu này chừng nào vẫn còn cần thiết cho
 các mục đích ở trên và phù hợp với quy định của pháp luật bảo vệ dữ liệu cá nhân, và xóa hoặc hoàn
 trả các dữ liệu này cho Shopee theo yêu cầu từ Shopee hoặc trong thời gian sớm nhất có thể khi hoàn
-thành  giao  dịch;  và  (v)  thông  báo  cho  Bộ  phận  bảo  vệ  Dữ  liệu  Cá  nhân  của  Shopee  tại
+thành giao dịch; và (v) thông báo cho Bộ phận bảo vệ Dữ liệu Cá nhân của Shopee tại
 dpo.vn@shopee.com trong trường hợp có khả năng vi phạm dữ liệu hoặc mất dữ liệu khác của người
 dùng này.
 9. THÔNG TIN VỀ TRẺ EM
 Các Dịch Vụ này không dành cho trẻ em dưới 13 tuổi. Chúng tôi không cố tình thu thập hay lưu giữ bất
 kỳ dữ liệu cá nhân hay thông tin không nhận dạng cá nhân nào của bất kỳ ai dưới 13 tuổi, bất kỳ phần
-nào  của  Nền  tảng  của  chúng  tôi  hoặc  Các  Dịch  Vụ  khác  cũng  không  dành  cho  trẻ  em  dưới  13  tuổi.
+nào của Nền tảng của chúng tôi hoặc Các Dịch Vụ khác cũng không dành cho trẻ em dưới 13 tuổi.
 Bố/mẹ hoặc người giám hộ của trẻ em dưới 13 tuổi vui lòng giám sát và đảm bảo thông tin cá nhân của
 trẻ dưới 13 tuổi mà mình đang giám hộ không đăng tải thông tin cá nhân cho Shopee. Trong trường hợp
 thông tin cá nhân của của trẻ em dưới 13 tuổi do quý phụ huynh giám hộ được cung cấp cho Shopee,
 Bố/mẹ hoặc người giám hộ theo đồng ý với việc xử lý thông tin của trẻ em dưới 13 tuổi có liên quan, và
 
-đồng ý chịu sự điều chỉnh của Chính Sách này thay mặt cho người được giám hộ. Chúng tôi sẽ khóa bất
+đồng ý chịu sự điều chỉnh của Chính Sách này thay mặt cho người được giám hộ. Chúng tôi sẽ khóa bất
 kỳ tài khoản nào chỉ được sử dụng bởi đối tượng trẻ em như vậy và sẽ gỡ và/hoặc xóa bất kỳ dữ liệu cá
 nhân nào mà chúng tôi cho là đã được gửi bởi bất kỳ trẻ em nào dưới 13 tuổi.
 10. THÔNG TIN THU THẬP BỞI CÁC BÊN THỨ BA
@@ -406,12 +405,12 @@ bên thứ ba đó xử lý thông tin thay mặt Google. Google sẽ không li�
 liệu nào khác mà Google nắm giữ
 10.2. Chúng tôi, và các bên thứ ba, có thể trong từng thời điểm cung cấp các bản tải về ứng dụng phần
 mềm cho bạn sử dụng bởi Nền tảng hoặc thông qua Các Dịch Vụ. Những ứng dụng này có thể truy cập
-riêng,  và  cho  phép  một  bên  thứ  ba  xem,  thông  tin  nhận  dạng  của  bạn,  chẳng  hạn  như  tên,  ID  người
+riêng, và cho phép một bên thứ ba xem, thông tin nhận dạng của bạn, chẳng hạn như tên, ID người
 dùng của bạn, Địa chỉ IP của thiết bị của bạn hoặc thông tin khác chẳng hạn như game bạn đang chơi
 trong bất kỳ phiên truy cập cụ thể nào, và bất kỳ cookie nào trước đây bạn có thể đã cài đặt hoặc đã
 được cài đặt cho bạn bởi một ứng dụng phần mềm hoặc trang web của bên thứ ba. Ngoài ra, các ứng
 dụng này có thể yêu cầu bạn cung cấp thêm thông tin trực tiếp cho các bên thứ ba. Các sản phẩm hoặc
-dịch  vụ  của  bên  thứ  ba  được  cung  cấp  thông  qua  các  ứng  dụng  này  không  thuộc  sở  hữu  hay  quyền
+dịch vụ của bên thứ ba được cung cấp thông qua các ứng dụng này không thuộc sở hữu hay quyền
 kiểm soát của Shopee. Bạn nên đọc các điều khoản và các chính sách khác được công bố bởi các bên
 thứ ba đó trên trang web của họ hoặc nơi khác.
 11. LOẠI TRỪ TRÁCH NHIỆM VỀ NGHĨA VỤ BẢO MẬT VÀ CÁC TRANG WEB BÊN THỨ BA
@@ -426,7 +425,7 @@ yêu cầu bảo mật dữ liệu cá nhân đó. Khi bạn đặt hàng hoặc
 11.2. Nhằm cung cấp cho bạn giá trị gia tăng, chúng tôi có thể chọn các trang web hoặc ứng dụng hoặc
 dịch vụ của bên thứ ba khác nhau để liên kết, và đóng khung bên trong Nền tảng. Chúng tôi cũng có thể
 tham gia các quan hệ cùng tiếp thị và các quan hệ khác để cung cấp dịch vụ thương mại điện tử và các
-dịch  vụ  và  tính  năng  khác  cho  khách  truy  cập.  Những  trang  được  liên  kết  này  có  các  chính  sách  về
+dịch vụ và tính năng khác cho khách truy cập. Những trang được liên kết này có các chính sách về
 quyền riêng tư cũng như các biện pháp bảo mật riêng và độc lập. Ngay cả khi bên thứ ba đó có liên kết
 với chúng tôi, chúng tôi cũng không kiểm soát các trang web/ứng dụng/dịch vụ được liên kết này, mỗi
 trang đó có các phương pháp bảo vệ quyền riêng tư và thu thập dữ liệu riêng biệt, độc lập với chúng tôi.
@@ -439,13 +438,13 @@ liên kết này. Những trang web/ứng dụng/dịch vụ được liên kế
 bạn tự chịu trách nhiệm khi truy cập chúng. Tuy nhiên, chúng tôi tìm cách bảo vệ tính toàn vẹn của Nền
 tảng của chúng tôi và các liên kết được đặt trên từng trang web đó và do đó chúng tôi hoan nghênh ý
 
-kiến phản hồi về các trang web được liên kết này (bao gồm nếu một trang web cụ thể không hoạt động).
+kiến phản hồi về các trang web được liên kết này (bao gồm nếu một trang web cụ thể không hoạt động).
 12. SHOPEE SẼ CHUYỂN THÔNG TIN CỦA BẠN RA NƯỚC NGOÀI?
 Thông tin và/hoặc dữ liệu cá nhân của bạn có thể được chuyển ra nước ngoài, lưu trữ hoặc xử lý bên
 ngoài quốc gia của bạn cho một hoặc nhiều Mục đích. Shopee sẽ chỉ chuyển dữ liệu cá nhân của bạn ra
 nước ngoài khi phù hợp với các quy định của pháp luật về bảo vệ dữ liệu cá nhân.
 13. BẠN CÓ THỂ RÚT LẠI SỰ ĐỒNG Ý, YÊU CẦU HẠN CHẾ XỬ LÝ, PHẢN ĐỐI XỬ LÝ, YÊU CẦU
-CUNG  CẤP  DỮ  LIỆU  CÁ  NHÂN,  TRUY  CẬP  HOẶC  ĐIỀU  CHỈNH  THÔNG  TIN  BẠN  ĐÃ  CUNG  CẤP
+CUNG CẤP DỮ LIỆU CÁ NHÂN, TRUY CẬP HOẶC ĐIỀU CHỈNH THÔNG TIN BẠN ĐÃ CUNG CẤP
 CHO CHÚNG TÔI BẰNG CÁCH NÀO?
 13.1. Rút Lại Sự Đồng Ý, Yêu cầu hạn chế, phản đối xử lý dữ liệu
 13.1.1 Bạn có thể rút lại sự đồng ý cho phép, yêu cầu hạn chế, phản đối trong việc thu thập, xử lý, sử
@@ -457,12 +456,11 @@ cá nhân của bạn có thể đồng nghĩa với việc chúng tôi sẽ kh�
 bạn và chúng tôi có thể cần phải chấm dứt mối quan hệ hiện tại giữa bạn và/hoặc hợp đồng mà bạn có
 với Chúng tôi.
 13.1.2 Khi bạn chia sẻ nội dung trên YouTube, bên cạnh việc rút lại sự cho phép của bạn bằng việc gửi
-email  cho  chúng  tôi  phù  hợp  với  quy  định  tại  Điều  13.1.1,  bạn  cũng  có  thể  rút  lại  quyền  truy  cập  của
-Shopee  vào  dữ  liệu  cá  nhân  của  bạn  thông  qua  trang  cài  đặt  an  ninh  của  Google  tại  địa  chỉ
-https://security.google.com/settings/security/permissions .
+email cho chúng tôi phù hợp với quy định tại Điều 13.1.1, bạn cũng có thể rút lại quyền truy cập của
+Shopee vào dữ liệu cá nhân của bạn thông qua trang cài đặt an ninh của Google tại địa chỉ
 13.2. Yêu cầu cung cấp Dữ Liệu Cá Nhân
 13.2.1. Bạn có quyền yêu cầu chúng tôi cung cấp Dữ Liệu Cá Nhân của chính bản thân bạn cho bạn
-bằng  cách  gửi  yêu  cầu  cho  Chuyên  viên  Bảo  Vệ  Dữ  Liệu  Cá  Nhân  của  chúng  tôi  tại  địa  chỉ  email
+bằng cách gửi yêu cầu cho Chuyên viên Bảo Vệ Dữ Liệu Cá Nhân của chúng tôi tại địa chỉ email
 dpo.vn@shopee.com hoặc qua ĐÂY . Bạn cũng có quyền yêu cầu chúng tôi cung cấp Dữ Liệu Cá Nhân
 của bạn cho các tổ chức, cá nhân khác hoặc của các tổ chức, cá nhân khác cho bạn với điều kiện bạn
 phải cung cấp được ủy quyền hợp lệ hoặc tài liệu khác chứng minh chấp thuận của chủ thể dữ liệu theo
@@ -485,10 +483,10 @@ chức từ chối cung cấp dữ liệu cá nhân trong các trường hợp n
 13.3. Yêu Cầu Truy Cập đến hoặc Sửa Dữ Liệu Cá Nhân
 13.3.1. Nếu bạn đã đăng ký một tài khoản với chúng tôi, cá nhân bạn có thể truy cập và/hoặc sửa dữ
 liệu cá nhân của bạn mà chúng tôi đang lưu giữ hoặc kiểm soát thông qua trang Thiết Lập Tài Khoản
-trên  Nền  tàng.  Nếu  bạn  chưa  đăng  ký  tài  khoản  với  chúng  tôi,  cá  nhân  bạn  có  thể  yêu  cầu  truy  cập
+trên Nền tàng. Nếu bạn chưa đăng ký tài khoản với chúng tôi, cá nhân bạn có thể yêu cầu truy cập
 và/hoặc sửa dữ liệu cá nhân của bạn mà chúng tôi đang lưu giữ hoặc kiểm soát bằng cách gửi yêu cầu
 
-bằng  văn  bản  cho  chúng  tôi.  Chúng  tôi  sẽ  cần  có  đủ  thông  tin  từ  bạn  để  xác  định  danh  tính  của  bạn
+bằng văn bản cho chúng tôi. Chúng tôi sẽ cần có đủ thông tin từ bạn để xác định danh tính của bạn
 cũng như bản chất yêu cầu của bạn để có thể giải quyết yêu cầu của bạn. Do đó, vui lòng gửi yêu cầu
 bằng văn bản của bạn bằng cách gửi email cho Chuyên viên Bảo Vệ Dữ Liệu Cá Nhân của chúng tôi tại
 địa chỉ email dpo.vn@shopee.com hoặc tại ĐÂY .
@@ -500,7 +498,7 @@ phi bạn đã đồng ý đóng phí.
 bảo vệ bí mật thông tin cá nhân, trường hợp các điều luật đó yêu cầu và/hoặc cho phép một tổ chức từ
 chối sửa dữ liệu cá nhân trong các trường hợp như thế.
 14. THẮC MẮC, QUAN NGẠI HOẶC KHIẾU NẠI? LIÊN HỆ VỚI CHÚNG TÔI
-Nếu  bạn  có  bất  kỳ  thắc  mắc,  yêu  cầu  bảo  vệ  hoặc  khiếu  nại  nào  về  các  phương  pháp  bảo  vệ  quyền
+Nếu bạn có bất kỳ thắc mắc, yêu cầu bảo vệ hoặc khiếu nại nào về các phương pháp bảo vệ quyền
 riêng tư của chúng tôi vui lòng liên hệ với chúng tôi theo thông tin sau:
 CÔNG TY TNHH SHOPEE
 Địa chỉ: Tầng 4-5-6, Tòa nhà Capital Place, số 29 đường Liễu Giai, Phường Ngọc Hà, Thành phố Hà
@@ -508,6 +506,3 @@ Nội, Việt Nam
 Email: dpo.vn@shopee.com hoặc tại ĐÂY .
 Chính sách này được cập nhật vào ngày 04/6/2026 và có hiệu lực sau 07 (bảy) ngày kể từ ngày đăng
 tải. Để tham khảo phiên bản trước của Chính sách Bảo mật, vui lòng bấm vào ĐÂY .
-Bạn có hài lòng với bài viết này?
-Hài lòng
-Không hài lòng

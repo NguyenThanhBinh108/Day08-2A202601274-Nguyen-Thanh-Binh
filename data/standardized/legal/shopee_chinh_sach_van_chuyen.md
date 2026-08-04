@@ -1,10 +1,9 @@
 Shopee - Chính sách Vận chuyển và Theo dõi Đơn hàng
 
-Source URL: https://help.shopee.vn/portal/4/article/77250
+Source URL:
 Customer role: seller
 Collected at: 2026-08-04T15:30:33
 ------------------------------------------------------------ ------------------
-Xin chào, Shopee có thể giúp gì cho bạn?
 CHÍNH SÁCH VẬN CHUYỂN SHOPEE
 A. PHẠM VI VÀ ĐỐI TƯỢNG ÁP DỤNG
 1. Đối tượng áp dụng
@@ -19,7 +18,7 @@ Chính Sách Vận Chuyển này. Shopee bảo lưu quyền sửa đổi Chính 
 thời điểm nào.
 2. Phạm vi áp dụng
 a. Chính Sách Vận Chuyển này quy định về các loại hàng hóa không hỗ trợ vận chuyển, vận chuyển có
-điều  kiện,  quy  định  về  đóng  gói  hàng  hóa,  các  quyền,  nghĩa  vụ  của  các  Bên  liên  quan  đến  việc  vận
+điều kiện, quy định về đóng gói hàng hóa, các quyền, nghĩa vụ của các Bên liên quan đến việc vận
 chuyển hàng hóa mà Sàn Shopee hỗ trợ vận chuyển.
 b. Chính Sách Vận Chuyển này không áp dụng đối với trường hợp Người Bán tự tổ chức vận chuyển
 hàng hóa của Người Bán, dù một phần hoặc toàn bộ. Trong trường hợp này, Người Bán phải đảm bảo
@@ -41,24 +40,24 @@ g. Người dùng vi phạm các Tiêu chuẩn cộng đồng của Shopee. Tham
 ĐÂY ;
 h. Các đơn hàng vi phạm về số lượng và giá trị mua hàng giới hạn theo từng chương trình khuyến mại.
 Nội dung chi tiết sẽ được thông báo theo từng chương trình;
-i.  Hàng  hóa  không  có  đầy  đủ  hóa  đơn,  chứng  từ  chứng  minh  nguồn  gốc,  xuất  xứ  hàng  hóa  theo  quy
+i. Hàng hóa không có đầy đủ hóa đơn, chứng từ chứng minh nguồn gốc, xuất xứ hàng hóa theo quy
 định của pháp luật;
 j. Các loại hàng hóa không hỗ trợ vận chuyển khác theo thông báo của Shopee trong từng thời điểm.
-1.2.  Miễn  trừ  trách  nhiệm  cho  Shopee  và  các  bên  có  liên  quan:  Với  các  mặt  hàng  thuộc  danh  mục
+1.2. Miễn trừ trách nhiệm cho Shopee và các bên có liên quan: Với các mặt hàng thuộc danh mục
 Shopee không hỗ trợ vận chuyển kể trên, Shopee cũng như các bên có liên quan trong quá trình vận
 
-chuyển hàng hóa sẽ không chịu trách nhiệm nếu hàng hóa bị thu giữ, tiêu hủy hay hư hỏng, mất mát
+chuyển hàng hóa sẽ không chịu trách nhiệm nếu hàng hóa bị thu giữ, tiêu hủy hay hư hỏng, mất mát
 trong quá trình vận chuyển. Người Bán chịu hoàn toàn trách nhiệm trước Shopee và pháp luật (nếu có)
 khi gửi hàng vi phạm Chính Sách Vận Chuyển của Shopee và pháp luật Việt Nam.
 1.3. Trong trường hợp Người Bán cố tình vi phạm các quy định về hàng hóa không hỗ trợ vận chuyển
-trên  Sàn  Shopee,  Người  Bán  phải  bồi  thường  đầy  đủ  và  toàn  bộ  các  thiệt  hại  phát  sinh  mà  Shopee
+trên Sàn Shopee, Người Bán phải bồi thường đầy đủ và toàn bộ các thiệt hại phát sinh mà Shopee
 và/hoặc các bên có liên Quan trong quá trình vận chuyển phải gánh chịu.
 2. Quy định về các loại hàng hóa vận chuyển có điều kiện
 Nhóm hàng hóa đặc biệt sau đây chỉ được chấp nhận vận chuyển với điều kiện bắt buộc:
 a. Các sản phẩm cây cảnh
 i. Người Bán chỉ được hỗ trợ kênh vận chuyển Hỏa Tốc và Nhanh.
 ii. Do đặc tính của sản phẩm thuộc nhóm này, đơn vị vận chuyển chỉ hỗ trợ khi sản phẩm được đóng gói
-đúng  quy  cách  nhưng  Người  Bán  sẽ  hoàn  toàn  chịu  trách  nhiệm  nếu  có  hư  hỏng,  tổn  thất  khi  vận
+đúng quy cách nhưng Người Bán sẽ hoàn toàn chịu trách nhiệm nếu có hư hỏng, tổn thất khi vận
 chuyển. Shopee được miễn trừ mọi trách nhiệm, và sẽ không giải quyết bất kỳ khiếu nại, yêu cầu bồi
 thường nào phát sinh.
 iii. Xem chi tiết hướng dẫn đối với nhóm mặt hàng này TẠI ĐÂY .
@@ -72,7 +71,7 @@ trách nhiệm, và sẽ không giải quyết bất kỳ khiếu nại, yêu c�
 iii. Xem chi tiết TẠI ĐÂY
 3. Quy định về vận chuyển đối với những loại hàng hóa đặc thù khác
 a. Hàng dễ hư hại/ tổn thất do đặc tính sản phẩm
-Danh  mục  các  sản  phẩm  dễ  vỡ  hoặc  dễ  hư  hại/tổn  thất  trong  quá  trình  vận  chuyển  do  đặc  tính  sản
+Danh mục các sản phẩm dễ vỡ hoặc dễ hư hại/tổn thất trong quá trình vận chuyển do đặc tính sản
 phẩm:
 i. Các sản phẩm có đặc tính trong danh sách trên hoặc có đặc tính tương tự, khả năng xảy ra rủi ro hư
 hại, tổn thất trong quá trình vận chuyển rất lớn nếu không có chế độ cảnh báo và vận chuyển riêng. Do
@@ -96,15 +95,15 @@ ii. Thời gian vận chuyển các đơn hàng có chứa các sản phẩm nà
 do đơn vị vận chuyển phải sử dụng các phương tiện đường bộ như ô tô, tàu hỏa để vận chuyển hàng
 hóa. Người Bán có trách nhiệm ghi chú rõ ràng thông tin "Hàng không vận chuyển hàng không" lên trên
 
-gói hàng.
+gói hàng.
 iii. Các sản phẩm có đặc tính trong danh sách trên hoặc có đặc tính tương tự, khả năng xảy ra rủi ro hư
 hại, tổn thất, cháy nổ trong quá trình vận chuyển rất lớn nếu không có chế độ cảnh báo và vận chuyển
 riêng. Do vậy, đơn vị vận chuyển, shipper có quyền từ chối hỗ trợ vận chuyển nếu đánh giá đơn hàng có
 rủi ro lớn khi vận chuyển hoặc do đơn vị vận chuyển không đáp ứng được điều kiện để vận chuyển bưu
 kiện.
-iv.  Shopee  có  thể  vẫn  hỗ  trợ  nếu  có  yêu  cầu  từ  Người  Bán  theo  quyết  định  của  riêng  Shopee  nhưng
+iv. Shopee có thể vẫn hỗ trợ nếu có yêu cầu từ Người Bán theo quyết định của riêng Shopee nhưng
 Người Bán sẽ hoàn toàn chịu trách nhiệm nếu hàng hóa bị hư hỏng, tổn thất khi vận chuyển, hàng hóa
-bị  thu  giữ,  tiêu  hủy,  vận  chuyển  chậm  hoặc  không  thể  vận  chuyển  được.  Shopee  được  miễn  trừ  mọi
+bị thu giữ, tiêu hủy, vận chuyển chậm hoặc không thể vận chuyển được. Shopee được miễn trừ mọi
 trách nhiệm, và sẽ không giải quyết bất kỳ khiếu nại, yêu cầu bồi thường nào phát sinh.
 Trong trường hợp Người Bán cố tình vi phạm các quy định về hàng hóa đặc thù được quy định tại Chính
 Sách này, Người Bán phải bồi thường đầy đủ và toàn bộ các thiệt hại phát sinh mà Shopee và/hoặc các
@@ -119,7 +118,7 @@ hàng cho đơn vị vận chuyển. Xem chi tiết Quy định đóng gói TẠ
 b. Trường hợp hàng hóa không đóng gói đúng quy định tại mục a nêu trên: đơn vị vận chuyển, shipper
 có quyền từ chối nhận hàng.
 c. Trường hợp hàng hóa không đóng gói đúng quy định nhưng được bàn giao thành công cho đơn vị
-vận  chuyển:  Bưu  kiện  sẽ  được  đơn  vị  vận  chuyển  chuyển  hoàn  hoặc  tiêu  hủy  (trong  trường  hợp  xấu
+vận chuyển: Bưu kiện sẽ được đơn vị vận chuyển chuyển hoàn hoặc tiêu hủy (trong trường hợp xấu
 nhất) nếu xảy ra hư hỏng/bể vỡ, và không thể tiếp tục giao đến cho Người Mua. Người Bán sẽ chịu mọi
 trách nhiệm trong trường hợp này bao gồm cả nghĩa vụ bồi thường mọi thiệt hại mà Shopee và/hoặc
 các bên có liên quan trong quá trình vận chuyển phải gánh chịu.
@@ -139,13 +138,13 @@ cầu Người Bán phải gửi kèm hóa đơn tài chính, chứng từ chứ
 liệu chứng minh hàng hóa đáp ứng điều kiện theo quy định của pháp luật. Hóa đơn tài chính, chứng từ
 chứng minh nguồn gốc của hàng hóa hợp lệ, tài liệu chứng minh hàng hóa đáp ứng điều kiện theo quy
 định của pháp luật được dùng làm căn cứ hỗ trợ quá trình xử lý khiếu nại trong trường hợp cần xác định
-giá  trị  thị  trường,  tính  hợp  lệ  của  hàng  hóa  khi  hàng  hóa  bị  kiểm  tra  bởi  cơ  quan  nhà  nước  có  thẩm
+giá trị thị trường, tính hợp lệ của hàng hóa khi hàng hóa bị kiểm tra bởi cơ quan nhà nước có thẩm
 quyền, hoặc trong trường hợp có tranh chấp với các bên có liên quan v.v…
 2. Quy định về khối lượng và kích thước đóng gói hàng
 a. Trong quy định về khối lượng và kích thước đóng gói hàng, các đơn vị vận chuyển sẽ chỉ nhận các
 bưu kiện có khối lượng hoặc kích thước thuộc các giới hạn cho phép (như được thể hiện trong bảng
 
-dưới đây, và có thể bị thay đổi theo quyết định đơn phương của các đơn vị vận chuyển trong từng thời
+dưới đây, và có thể bị thay đổi theo quyết định đơn phương của các đơn vị vận chuyển trong từng thời
 điểm). Giới hạn về khối lượng và kích thước đóng gói áp dụng cho tất cả các chiều (dài, rộng, cao) của
 bưu kiện. Nếu một trong các chiều (dài, rộng, cao) vượt quá giới hạn cho phép, đơn vị vận chuyển sẽ từ
 chối hỗ trợ vận chuyển.
@@ -187,14 +186,14 @@ d. Để hạn chế việc đơn hàng bị hủy, Người Bán phải nhập 
 và kích thước ba chiều của bưu kiện để hệ thống tính khối lượng quy đổi chính xác theo từng đơn vị vận
 chuyển.
 e. Người Bán hoàn toàn chịu trách nhiệm về tính chính xác của khối lượng, kích thước của gói hàng.
-Với  đơn  hàng  có  khối  lượng  nhập  chênh  lệch  với  thực  tế,  đơn  vị  vận  chuyển  có  quyền  từ  chối  vận
-chuyển  đơn  hàng  hoặc  Người  Bán  sẽ  chịu  trách  nhiệm  chi  trả  phần  phí  vận  chuyển  phát  sinh  thêm.
-Shopee  sẽ  có  quyền  tự  động  cấn  trừ  phần  phí  vận  chuyển  phát  sinh  thêm  được  tính  bởi  đơn  vị  vận
+Với đơn hàng có khối lượng nhập chênh lệch với thực tế, đơn vị vận chuyển có quyền từ chối vận
+chuyển đơn hàng hoặc Người Bán sẽ chịu trách nhiệm chi trả phần phí vận chuyển phát sinh thêm.
+Shopee sẽ có quyền tự động cấn trừ phần phí vận chuyển phát sinh thêm được tính bởi đơn vị vận
 chuyển này vào doanh thu đơn hàng của Người Bán.
 f. Xem chi tiết quy định khối lượng và kích thước đóng gói đơn hàng Shopee TẠI ĐÂY .
 3. Quy định đóng gói
 
-Xem chi tiết Quy định đóng gói TẠI ĐÂY .
+Xem chi tiết Quy định đóng gói TẠI ĐÂY .
 Shopee có quyền sửa đổi các quy định này trong từng thời điểm. Việc Người Bán tiếp tục sử dụng dịch
 vụ của Shopee sau khi các thay đổi được đăng tải sẽ cấu thành việc Người Bán chấp nhận Quy định
 đóng gói được sửa đổi.
@@ -222,13 +221,13 @@ quyết bất kỳ khiếu nại, yêu cầu bồi thường nào phát sinh sau
 c. Khiếu nại sai phí vận chuyển dẫn đến tiền hàng nhận được bị thiếu: trong vòng 7 ngày kể từ ngày
 khoản tiền hàng của đơn hàng được chuyển vào Số dư Tài khoản Shopee.
 2. Thời gian xử lý khiếu nại:
-a.  Tối  đa  10  ngày  làm  việc  kể  từ  thời  điểm  nhận  được  đầy  đủ  bằng  chứng  hợp  lệ  từ  các  bên  có  liên
+a. Tối đa 10 ngày làm việc kể từ thời điểm nhận được đầy đủ bằng chứng hợp lệ từ các bên có liên
 quan. Trong trường hợp vụ việc có nhiều tình tiết phức tạp đòi hỏi cần nhiều thời gian để xác minh thì
 thời gian xử lý khiếu nại có thể kéo dài hơn.Thời gian xử lý khiếu nại sẽ được Shopee thông báo cho
 các bên liên quan theo từng trường hợp cụ thể.
 b. Lưu ý: Đối với các đơn hàng được vận chuyển theo quy định của pháp luật về bưu chính, thời hạn
 khiếu nại được áp dụng cho các đơn vị cung ứng dịch vụ bưu chính trên Sàn Shopee tuân theo quy định
-về  thời  hạn  khiếu  nại  của  Luật  bưu  chính.  Tuy  nhiên,  Người  Bán  phải  gửi  khiếu  nại  đến  đơn  vị  vận
+về thời hạn khiếu nại của Luật bưu chính. Tuy nhiên, Người Bán phải gửi khiếu nại đến đơn vị vận
 chuyển chịu trách nhiệm vận chuyển đơn hàng và trong trường hợp này quyền và nghĩa vụ giữa Người
 Bán và đơn vị vận chuyển sẽ được thực hiện theo quy định của pháp luật về bưu chính và chính sách
 của từng đơn vị vận chuyển.
@@ -243,7 +242,7 @@ cung cấp khi phát sinh khiếu nại):
 - Người Bán đã đóng gói đúng, đủ hàng, sản phẩm còn nguyên vẹn & đóng gói đúng theo quy định về
 đóng gói hàng hóa của Chính sách Vận chuyển;
 
-- Tình trạng bao bì gói hàng khi Người Bán gửi hàng đi;
+- Tình trạng bao bì gói hàng khi Người Bán gửi hàng đi;
 ii. Video và biên bản đồng kiểm với đơn vị vận chuyển (tham khảo mẫu Biên bản Shopee khuyên dùng
 TẠI ĐÂY hoặc TẠI ĐÂY ) ghi nhận tình trạng đơn hàng hoàn trả, hoặc Video quá trình Người Bán mở
 hàng hoàn thấy rõ (video & biên bản đồng kiểm với đơn vị vận chuyển là bằng chứng mạnh nhất được
@@ -279,7 +278,7 @@ Hàng hóa bị móp méo, bể vỡ, hư hại từ 1% đến 30% và sản ph�
 chữa gì
 30% Giá bán của sản phẩm tại thời điểm Người Mua đặt hàng
 Mất hàng, bưu gửi thất lạc hoàn toàn
-(i)  Số  tiền  mà  đơn  vị  vận  chuyển  đồng  ý  bồi  thường  theo  quy  trình  bồi  thường  được  thỏa  thuận  giữa
+(i) Số tiền mà đơn vị vận chuyển đồng ý bồi thường theo quy trình bồi thường được thỏa thuận giữa
 Shopee và đơn vị vận chuyển; hoặc
 (ii) 70% Giá bán của sản phẩm trong trường hợp đơn vị vận chuyển không bồi thường hoặc bồi thường
 với mức thấp hơn tỷ lệ này. Tỷ lệ bồi thường này sẽ không áp dụng đối với trường hợp bất khả kháng.
@@ -292,9 +291,9 @@ Giá bán của sản phẩm tại thời điểm Người Mua đặt hàng là 
 Bán (nếu có).
 Người Bán cần phải cung cấp Hóa đơn, chứng từ hợp pháp của (các) sản phẩm (bao gồm cả quà tặng
 
-đính kèm) có trong đơn hàng (Hóa đơn, chứng từ chứng minh giá trị hoặc tính pháp lý của hàng hóa) để
+đính kèm) có trong đơn hàng (Hóa đơn, chứng từ chứng minh giá trị hoặc tính pháp lý của hàng hóa) để
 được xem xét bồi thường. Trong mọi trường hợp, khoản tiền bồi thường sẽ không vượt quá giá bán sản
-phẩm  mà  Người  Bán  đã  niêm  yết  trên  website  https://shopee.vn/  và/hoặc  Ứng  dụng  Shopee  tại  thời
+phẩm mà Người Bán đã niêm yết trên website và/hoặc Ứng dụng Shopee tại thời
 điểm Người Mua đặt hàng (Tổng giá trị hàng hóa với giá khuyến mãi nếu có, không bao gồm mã giảm
 giá của Shopee, Shopee Xu và phí vận chuyển).
 Shopee có quyền từ chối bồi thường cho Người Bán nếu Người Bán gửi hàng hóa sai khác so với nội
@@ -303,10 +302,10 @@ lệ của sản phẩm.
 E. CÁC KHUYẾN CÁO VỀ DỊCH VỤ VẬN CHUYỂN
 1. Dịch vụ vận chuyển được hỗ trợ trên Sàn TMĐT Shopee không cho phép Người Mua kiểm tra hàng
 trước khi thanh toán (với mọi hình thức thanh toán khả dụng) và nhận hàng, trừ những đơn hàng được
-đồng  kiểm.  Xem  chi  tiết  Điều  khoản  chương  trình  đồng  kiểm  cho  Người  Mua  TẠI  ĐÂY  và  cho  Người
+đồng kiểm. Xem chi tiết Điều khoản chương trình đồng kiểm cho Người Mua TẠI ĐÂY và cho Người
 Bán TẠI ĐÂY .
 2. Người Bán hoàn toàn chịu trách nhiệm về tính chính xác của địa chỉ đăng ký gửi hàng (địa chỉ bàn
-giao  hàng  cho  đơn  vị  vận  chuyển).  Trong  trường  hợp  Người  Bán  thay  đổi  địa  chỉ  gửi  hàng  sau  khi
+giao hàng cho đơn vị vận chuyển). Trong trường hợp Người Bán thay đổi địa chỉ gửi hàng sau khi
 Người Mua đã đặt hàng, đơn vị vận chuyển có quyền từ chối vận chuyển đơn hàng hoặc Người Bán sẽ
 chịu trách nhiệm chi trả phần phí vận chuyển phát sinh thêm. Shopee sẽ có quyền tự động cấn trừ phần
 phí vận chuyển phát sinh thêm được tính bởi đơn vị vận chuyển này vào doanh thu đơn hàng của Người
@@ -314,15 +313,15 @@ Bán.
 3. Người Mua vui lòng kiểm tra kỹ bao bì của sản phẩm. Nếu bao bì sản phẩm có dấu hiệu bị hư hại
 (rách/móp méo/vỡ/ướt), không còn “nguyên đai, nguyên kiện” hoặc bạn nghi ngờ hàng hóa bên trong bị
 hư hại, vui lòng từ chối nhận hàng.
-4.  Shopee  khuyến  khích  Người  Mua/  Người  Bán  chụp  hình/ghi  hình  kiện  hàng  trước  khi  mở  và  trong
+4. Shopee khuyến khích Người Mua/ Người Bán chụp hình/ghi hình kiện hàng trước khi mở và trong
 quá trình mở hàng giao đến hoặc hoàn trả để lưu lại bằng chứng về tình trạng bao bì và các sản phẩm
 bên trong, phục vụ cho quá trình xử lý khiếu nại (nếu có).
 5. Khi có khiếu nại xảy ra, Người Mua/ Người Bán/Đơn vị cung cấp dịch vụ vận chuyển có liên quan đến
-đơn  hàng  phải  có  trách  nhiệm  hỗ  trợ  Shopee  trong  quá  trình  xác  minh  thông  tin  bằng  cách  cung  cấp
+đơn hàng phải có trách nhiệm hỗ trợ Shopee trong quá trình xác minh thông tin bằng cách cung cấp
 thông tin trung thực, chính xác, kịp thời khi Shopee liên hệ. Trong trường hợp Shopee không thể liên hệ
 với Người khiếu nại để xác minh thông tin, Shopee có quyền kết thúc khiếu nại và không giải thích gì
 thêm.
-6.  Shopee  có  quyền  từ  chối  hỗ  trợ  và  xử  lý  bất  cứ  yêu  cầu  khiếu  nại,  bồi  thường  nào  từ  phía  Người
+6. Shopee có quyền từ chối hỗ trợ và xử lý bất cứ yêu cầu khiếu nại, bồi thường nào từ phía Người
 Mua/ Người Bán nếu quá trình xử lý khiếu nại và điều tra của Shopee cho thấy:
 - Người Mua/ Người Bán không cung cấp được đầy đủ bằng chứng cho từng trường hợp khiếu nại cụ
 thể hoặc đơn hàng có khiếu nại không đáp ứng được điều kiện của các Chính sách liên quan ( Chính
@@ -334,23 +333,20 @@ xử lý do hàng hóa vi phạm các quy định của pháp luật.
 - Người Mua/ Người Bán vi phạm các quy định được nêu ra trong Chính Sách Vận Chuyển này, và/hoặc
 vi phạm các quy định về vận chuyển hàng hóa theo pháp luật Việt Nam hoặc quy định, chính sách khác
 của Shopee.
-7.  Đơn  vị  vận  chuyển,  cơ  quan  nhà  nước  có  thẩm  quyền  có  quyền  bóc  mở  bưu  kiện  để  kiểm  tra  nội
+7. Đơn vị vận chuyển, cơ quan nhà nước có thẩm quyền có quyền bóc mở bưu kiện để kiểm tra nội
 dung hàng hóa trong trường hợp nghi ngờ Người Bán gửi sản phẩm không hỗ trợ vận chuyển, không
 đáp ứng các điều kiện vận chuyển hoặc có hành vi bị nghi ngờ vi phạm pháp luật, nghi ngờ gian lận các
 chính sách của Sàn giao dịch thương mại điện tử Shopee, các chính sách của từng đơn vị vận chuyển.
 8. Việc không gửi hàng thật, đưa tiền cho nhân viên vận chuyển để cập nhật sai trạng thái đơn hàng, tự
 đặt hàng của chính mình, thông đồng giữa Người Bán, Người Mua vv… nhằm lợi dụng Chính Sách Vận
 
-Chuyển và/hoặc các chương trình khuyến mại theo từng thời kỳ của Shopee sẽ dẫn đến hình thức xử
+Chuyển và/hoặc các chương trình khuyến mại theo từng thời kỳ của Shopee sẽ dẫn đến hình thức xử
 phạt nghiêm khắc của Shopee theo Chính sách xử lý gian lận của Sàn Shopee trong từng thời kỳ. Ngoài
 ra, tất cả Người Bán có trách nhiệm đảm bảo hàng hóa gửi đi không vi phạm quy định của Shopee và
 pháp luật Việt Nam. Người Bán sẽ hoàn toàn chịu trách nhiệm trong trường hợp hàng hóa gửi đi bị phát
 hiện vi phạm pháp luật.
-9.  Mọi  tranh  chấp  phát  sinh  liên  quan  đến  vận  chuyển  đều  sẽ  được  giải  quyết  theo  Chính  Sách  Vận
+9. Mọi tranh chấp phát sinh liên quan đến vận chuyển đều sẽ được giải quyết theo Chính Sách Vận
 Chuyển và quyền quyết định cuối cùng thuộc về Shopee.
 Chính Sách này được cập nhật và đăng tải ngày 20/3/2026, có hiệu lực thay thế các Chính sách vận
 chuyển liên quan được ban hành trước đây (nếu có) sau 05 (năm) ngày kể từ ngày đăng tải .
 Để tham khảo phiên bản trước của Chính Sách Vận Chuyển, vui lòng bấm vào ĐÂY
-Bạn có hài lòng với bài viết này?
-Hài lòng
-Không hài lòng
