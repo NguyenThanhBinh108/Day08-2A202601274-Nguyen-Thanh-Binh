@@ -87,8 +87,31 @@ METRIC_LABELS: dict[str, str] = {
 # Số chunk đưa vào context khi eval (giữ bằng TOP_K của Task 10 để đo đúng hệ thống thật)
 EVAL_TOP_K = 5
 
-# LLM dùng làm "judge" cho RAGAS + để sinh answer. Đổi bằng biến môi trường EVAL_LLM_MODEL.
-EVAL_LLM_MODEL = os.getenv("EVAL_LLM_MODEL", "openai/gpt-4o-mini")
+# LLM dùng làm "judge" cho RAGAS. Tên model KHÁC NHAU giữa các nhà cung cấp nên
+# không thể dùng một hằng số cứng: "openai/gpt-4o-mini" là định danh của OpenRouter,
+# cắm vào Groq sẽ trả 404. _judge_model_for() chọn theo provider đang dùng.
+JUDGE_MODEL_BY_PROVIDER = {
+    "groq": "llama-3.3-70b-versatile",
+    "cerebras": "llama-3.3-70b",
+    "openrouter": "openai/gpt-4o-mini",
+    "openai": "gpt-4o-mini",
+}
+
+# Trần token cho mỗi lần chấm. BẮT BUỘC đặt tường minh: RAGAS mặc định xin tới
+# 16.384 token, và lần chạy đầu tiên đã chết với lỗi 402 "You requested up to
+# 16384 tokens, but can only afford 4172". Mỗi lần chấm chỉ cần trả về một điểm
+# số hoặc một danh sách câu ngắn nên 1.024 là thừa đủ.
+EVAL_MAX_TOKENS = 1024
+
+EVAL_LLM_MODEL = os.getenv("EVAL_LLM_MODEL", "")
+
+
+def _judge_model_for(provider: str) -> str:
+    """Tên model judge hợp lệ với provider đang dùng (env EVAL_LLM_MODEL ghi đè)."""
+    if EVAL_LLM_MODEL:
+        return EVAL_LLM_MODEL
+    return JUDGE_MODEL_BY_PROVIDER.get(provider, "openai/gpt-4o-mini")
+
 
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 OPENAI_BASE_URL = "https://api.openai.com/v1"
@@ -199,20 +222,33 @@ def _load_env() -> None:
 
 def _get_api_credentials() -> tuple[Optional[str], str, str]:
     """
-    Lấy API key cho LLM.
+    Lấy API key cho LLM judge của RAGAS.
 
-    Ưu tiên OpenRouter (bài lab dùng key này), fallback sang OpenAI thuần.
+    Thứ tự ưu tiên GIỐNG src/llm_pool.py: Groq trước, rồi Cerebras, cuối cùng mới
+    tới OpenRouter/OpenAI.
+
+    Vì sao không để OpenRouter đầu tiên như trước: lần chạy đánh giá đầu tiên chết
+    giữa chừng với lỗi 402 "requires more credits ... You requested up to 16384
+    tokens, but can only afford 4172" — RAGAS mặc định xin trần token rất cao cho
+    mỗi lần chấm, nhân với 18 câu × 4 chỉ số × 2 cấu hình thì đốt credit rất nhanh.
+    Groq có hạn mức free rộng hơn nhiều nên hợp làm judge.
 
     Returns:
         (api_key hoặc None, base_url, tên provider)
     """
     _load_env()
-    key = os.getenv("OPENROUTER_API_KEY")
-    if key and key.strip():
-        return key.strip(), OPENROUTER_BASE_URL, "openrouter"
-    key = os.getenv("OPENAI_API_KEY")
-    if key and key.strip():
-        return key.strip(), OPENAI_BASE_URL, "openai"
+    candidates = [
+        ("GROQ_API_KEY", "https://api.groq.com/openai/v1", "groq"),
+        ("CEREBRAS_API_KEY", "https://api.cerebras.ai/v1", "cerebras"),
+        ("OPENROUTER_API_KEY", OPENROUTER_BASE_URL, "openrouter"),
+        ("OPENAI_API_KEY", OPENAI_BASE_URL, "openai"),
+    ]
+    for env_name, base_url, provider in candidates:
+        key = (os.getenv(env_name) or "").strip()
+        # Nhiều key ngăn bằng dấu phẩy (xem src/llm_pool.py) — lấy key đầu tiên.
+        key = key.split(",")[0].strip()
+        if key and not key.endswith("..."):
+            return key, base_url, provider
     return None, OPENROUTER_BASE_URL, "none"
 
 
@@ -486,7 +522,10 @@ def _generate_answer(query: str, chunks: list[dict]) -> str:
 
     task10 = _import_project_module("src.task10_generation")
     system_prompt = getattr(task10, "SYSTEM_PROMPT", FALLBACK_SYSTEM_PROMPT)
-    model = getattr(task10, "LLM_MODEL", EVAL_LLM_MODEL) or EVAL_LLM_MODEL
+    # KHÔNG lấy LLM_MODEL của task10: đó là định danh của OpenRouter
+    # ("openai/gpt-4o-mini"), còn client ở đây có thể đang trỏ vào Groq.
+    _, _, provider = _get_api_credentials()
+    model = _judge_model_for(provider)
     temperature = getattr(task10, "TEMPERATURE", 0.3)
     top_p = getattr(task10, "TOP_P", 0.9)
 
@@ -666,7 +705,7 @@ def _get_ragas_llm() -> Any:
     if _RAGAS_LLM is not None:
         return _RAGAS_LLM
 
-    api_key, base_url, _ = _get_api_credentials()
+    api_key, base_url, provider = _get_api_credentials()
     if not api_key:
         return None
 
@@ -675,12 +714,13 @@ def _get_ragas_llm() -> Any:
         from ragas.llms import LangchainLLMWrapper
 
         chat = ChatOpenAI(
-            model=EVAL_LLM_MODEL,
+            model=_judge_model_for(provider),
             api_key=api_key,
             base_url=base_url,
             temperature=0.0,
             timeout=180,
             max_retries=3,
+            max_tokens=EVAL_MAX_TOKENS,   # xem ghi chú ở EVAL_MAX_TOKENS
         )
         _RAGAS_LLM = LangchainLLMWrapper(chat)
     except Exception as exc:
@@ -990,12 +1030,12 @@ def run_ab_comparison() -> dict:
         _print_setup_help()
         return {}
 
-    _log(f"Framework: {FRAMEWORK} | LLM judge: {EVAL_LLM_MODEL} ({provider})")
+    _log(f"Framework: {FRAMEWORK} | LLM judge: {_judge_model_for(provider)} ({provider})")
     _log(f"Golden dataset: {len(questions)} câu hỏi | top_k = {EVAL_TOP_K}")
 
     results: dict[str, Any] = {
         "framework": FRAMEWORK,
-        "llm_model": EVAL_LLM_MODEL,
+        "llm_model": _judge_model_for(provider),
         "provider": provider,
         "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "n_questions": len(questions),

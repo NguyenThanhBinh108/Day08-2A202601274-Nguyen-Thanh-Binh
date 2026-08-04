@@ -105,10 +105,13 @@ PROVIDERS: list[dict[str, Any]] = [
         "name": "openrouter",
         "env": "OPENROUTER_API_KEY",
         "base_url": "https://openrouter.ai/api/v1",
+        # Danh sách model ":free" của OpenRouter thay đổi liên tục — model bị gỡ
+        # trả về 404. Hai model dưới đây đã kiểm chứng có mặt trong
+        # GET /api/v1/models tại thời điểm viết. Kiểm tra lại bằng:
+        #   curl https://openrouter.ai/api/v1/models | jq '.data[].id' | grep ':free'
         "models": [
             "openai/gpt-4o-mini",
-            "meta-llama/llama-3.3-70b-instruct:free",
-            "deepseek/deepseek-chat-v3-0324:free",
+            "openai/gpt-oss-20b:free",
         ],
     },
     {
@@ -183,6 +186,12 @@ def _classify_error(exc: Exception) -> tuple[float, str]:
         return any(str(status) == c or f" {c}" in text or f"code: {c}" in text
                    for c in codes)
 
+    # Quota bằng 0 KHÔNG phải rate limit tạm thời. Gemini trả 429 kèm
+    # "limit: 0" khi dự án chưa được cấp hạn mức free tier nào — thử lại sau 60
+    # giây vẫn hỏng y hệt. Phải phạt dài như hết credit, nếu không mỗi phút lại
+    # tốn một lần gọi hỏng cộng ~1,7 giây độ trễ cho mỗi câu hỏi.
+    if "limit: 0" in text or "free_tier" in text:
+        return COOLDOWN_NO_CREDIT, "quota bằng 0 (chưa cấp hạn mức)"
     if has("429") or "rate limit" in text or "too many requests" in text:
         return COOLDOWN_RATE_LIMIT, "rate limit"
     if has("402") or "credit" in text or "quota" in text or "billing" in text:
