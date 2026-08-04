@@ -1,0 +1,22 @@
+{
+  "shopee_chinh_sach_tra_hang_hoan_tien.pdf": {
+    "title": "Shopee - Chính sách Trả hàng và Hoàn tiền",
+    "url": "https://help.shopee.vn/portal/4/article/77251",
+    "customer_role": "buyer"
+  },
+  "shopee_phuong_thuc_thanh_toan.pdf": {
+    "title": "Shopee - Phương thức Thanh toán (Payment Methods)",
+    "url": "https://help.shopee.vn/portal/4/article/79198",
+    "customer_role": "both"
+  },
+  "shopee_chinh_sach_bao_mat.pdf": {
+    "title": "Shopee - Chính sách Bảo mật",
+    "url": "https://help.shopee.vn/portal/4/article/77244",
+    "customer_role": "both"
+  },
+  "shopee_chinh_sach_van_chuyen.pdf": {
+    "title": "Shopee - Chính sách Vận chuyển và Theo dõi Đơn hàng",
+    "url": "https://help.shopee.vn/portal/4/article/77250",
+    "customer_role": "seller"
+  }
+}
